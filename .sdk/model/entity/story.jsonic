@@ -1,0 +1,180 @@
+# Entity: story
+
+main: kit: entity: story: {
+
+  alias: field: {}
+
+  name: "story"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/askstories.json"
+          parts: [
+            "askstories.json"
+          ]
+          select: {
+            exist: [
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/beststories.json"
+          parts: [
+            "beststories.json"
+          ]
+          select: {
+            exist: [
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/jobstories.json"
+          parts: [
+            "jobstories.json"
+          ]
+          select: {
+            exist: [
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/newstories.json"
+          parts: [
+            "newstories.json"
+          ]
+          select: {
+            exist: [
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/showstories.json"
+          parts: [
+            "showstories.json"
+          ]
+          select: {
+            exist: [
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/topstories.json"
+          parts: [
+            "topstories.json"
+          ]
+          select: {
+            exist: [
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

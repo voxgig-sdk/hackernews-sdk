@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "user": {
+      "USER00": {
+        "about": "s32",
+        "created": "s33",
+        "id": "USER00",
+        "karma": "s35",
+        "submitted": []
+      },
+      "USER01": {
+        "about": "s64",
+        "created": "s65",
+        "id": "USER01",
+        "karma": "s67",
+        "submitted": []
+      },
+      "USER02": {
+        "about": "s96",
+        "created": "s97",
+        "id": "USER02",
+        "karma": "s99",
+        "submitted": []
+      }
+    }
+  },
+  "new": {
+    "user": {
+      "user_ref01": {
+        "about": "sc8",
+        "created": "sc9",
+        "karma": "scb",
+        "submitted": []
+      }
+    }
+  }
+}

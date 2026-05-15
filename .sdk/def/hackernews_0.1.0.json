@@ -1,0 +1,743 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "HackerNews API",
+    "description": "Provides public Hacker News data in near real time. Accessible via Firebase client libraries for Android, iOS, and web. Includes information on stories, comments, jobs, Ask HNs, polls, and users.",
+    "version": "v0",
+    "contact": {
+      "email": "api@ycombinator.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/HackerNews/API/blob/master/LICENSE"
+    },
+    "termsOfService": "https://github.com/HackerNews/API"
+  },
+  "servers": [
+    {
+      "url": "https://hacker-news.firebaseio.com/v0",
+      "description": "HackerNews API v0"
+    }
+  ],
+  "paths": {
+    "/item/{id}.json": {
+      "get": {
+        "summary": "Get item by ID",
+        "description": "Returns a single item (story, comment, job, Ask HN, or poll) by its unique ID. Items include stories, comments, jobs, Ask HNs and polls.",
+        "operationId": "getItem",
+        "tags": [
+          "Items"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The item's unique ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                },
+                "examples": {
+                  "story": {
+                    "summary": "Story example",
+                    "value": {
+                      "by": "dhouston",
+                      "descendants": 71,
+                      "id": 8863,
+                      "kids": [
+                        8952,
+                        9224,
+                        8917,
+                        8884,
+                        8887
+                      ],
+                      "score": 111,
+                      "time": 1175714200,
+                      "title": "My YC app: Dropbox - Throw away your USB drive",
+                      "type": "story",
+                      "url": "http://www.getdropbox.com/u/2/screencast.html"
+                    }
+                  },
+                  "comment": {
+                    "summary": "Comment example",
+                    "value": {
+                      "by": "norvig",
+                      "id": 2921983,
+                      "kids": [
+                        2922097,
+                        2922429,
+                        2924562
+                      ],
+                      "parent": 2921506,
+                      "text": "Aw shucks, guys ... you make me blush with your compliments.<p>Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?",
+                      "time": 1314211127,
+                      "type": "comment"
+                    }
+                  },
+                  "job": {
+                    "summary": "Job example",
+                    "value": {
+                      "by": "justin",
+                      "id": 192327,
+                      "score": 6,
+                      "text": "Justin.tv is the biggest live video site online...",
+                      "time": 1210981217,
+                      "title": "Justin.tv is looking for a Lead Flash Engineer!",
+                      "type": "job",
+                      "url": ""
+                    }
+                  },
+                  "poll": {
+                    "summary": "Poll example",
+                    "value": {
+                      "by": "pg",
+                      "descendants": 54,
+                      "id": 126809,
+                      "kids": [
+                        126822,
+                        126823,
+                        126993
+                      ],
+                      "parts": [
+                        126810,
+                        126811,
+                        126812
+                      ],
+                      "score": 46,
+                      "text": "",
+                      "time": 1204403652,
+                      "title": "Poll: What would happen if News.YC had explicit support for polls?",
+                      "type": "poll"
+                    }
+                  },
+                  "pollopt": {
+                    "summary": "Poll option example",
+                    "value": {
+                      "by": "pg",
+                      "id": 160705,
+                      "poll": 160704,
+                      "score": 335,
+                      "text": "Yes, ban them; I'm tired of seeing Valleywag stories on News.YC.",
+                      "time": 1207886576,
+                      "type": "pollopt"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        }
+      }
+    },
+    "/user/{id}.json": {
+      "get": {
+        "summary": "Get user by username",
+        "description": "Returns a user profile by username. Only users with public activity (comments or story submissions) are available through the API.",
+        "operationId": "getUser",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The user's unique username (case-sensitive)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "example": {
+                  "about": "This is a test",
+                  "created": 1173923446,
+                  "id": "jl",
+                  "karma": 2937,
+                  "submitted": [
+                    8265435,
+                    8168423,
+                    8090946,
+                    8090326,
+                    7699907
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/maxitem.json": {
+      "get": {
+        "summary": "Get maximum item ID",
+        "description": "Returns the current largest item ID. You can walk backward from this ID to discover all items.",
+        "operationId": "getMaxItem",
+        "tags": [
+          "Live Data"
+        ],
+        "parameters": [
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "description": "The current largest item ID"
+                },
+                "example": 9130260
+              }
+            }
+          }
+        }
+      }
+    },
+    "/topstories.json": {
+      "get": {
+        "summary": "Get top stories",
+        "description": "Returns up to 500 top stories (also contains jobs).",
+        "operationId": "getTopStories",
+        "tags": [
+          "Stories"
+        ],
+        "parameters": [
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 500,
+                  "description": "Array of item IDs"
+                },
+                "example": [
+                  9129911,
+                  9129199,
+                  9127761,
+                  9128141,
+                  9128264
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/newstories.json": {
+      "get": {
+        "summary": "Get new stories",
+        "description": "Returns up to 500 newest stories.",
+        "operationId": "getNewStories",
+        "tags": [
+          "Stories"
+        ],
+        "parameters": [
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 500,
+                  "description": "Array of item IDs"
+                },
+                "example": [
+                  9129911,
+                  9129199,
+                  9127761,
+                  9128141,
+                  9128264
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/beststories.json": {
+      "get": {
+        "summary": "Get best stories",
+        "description": "Returns up to 500 best stories.",
+        "operationId": "getBestStories",
+        "tags": [
+          "Stories"
+        ],
+        "parameters": [
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 500,
+                  "description": "Array of item IDs"
+                },
+                "example": [
+                  9129911,
+                  9129199,
+                  9127761,
+                  9128141,
+                  9128264
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/askstories.json": {
+      "get": {
+        "summary": "Get Ask HN stories",
+        "description": "Returns up to 200 of the latest Ask HN stories.",
+        "operationId": "getAskStories",
+        "tags": [
+          "Stories"
+        ],
+        "parameters": [
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 200,
+                  "description": "Array of item IDs"
+                },
+                "example": [
+                  9127232,
+                  9128437,
+                  9130049,
+                  9130144,
+                  9130064
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/showstories.json": {
+      "get": {
+        "summary": "Get Show HN stories",
+        "description": "Returns up to 200 of the latest Show HN stories.",
+        "operationId": "getShowStories",
+        "tags": [
+          "Stories"
+        ],
+        "parameters": [
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 200,
+                  "description": "Array of item IDs"
+                },
+                "example": [
+                  9127232,
+                  9128437,
+                  9130049,
+                  9130144,
+                  9130064
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobstories.json": {
+      "get": {
+        "summary": "Get job stories",
+        "description": "Returns up to 200 of the latest job stories.",
+        "operationId": "getJobStories",
+        "tags": [
+          "Stories"
+        ],
+        "parameters": [
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 200,
+                  "description": "Array of item IDs"
+                },
+                "example": [
+                  9127232,
+                  9128437,
+                  9130049,
+                  9130144,
+                  9130064
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updates.json": {
+      "get": {
+        "summary": "Get changed items and profiles",
+        "description": "Returns the item and profile changes.",
+        "operationId": "getUpdates",
+        "tags": [
+          "Live Data"
+        ],
+        "parameters": [
+          {
+            "name": "print",
+            "in": "query",
+            "required": false,
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pretty"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Updates"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Item": {
+        "type": "object",
+        "description": "Represents a story, comment, job, Ask HN, poll, or poll option",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The item's unique id"
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "true if the item is deleted"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "job",
+              "story",
+              "comment",
+              "poll",
+              "pollopt"
+            ],
+            "description": "The type of item"
+          },
+          "by": {
+            "type": "string",
+            "description": "The username of the item's author"
+          },
+          "time": {
+            "type": "integer",
+            "description": "Creation date of the item, in Unix Time"
+          },
+          "text": {
+            "type": "string",
+            "description": "The comment, story or poll text. HTML."
+          },
+          "dead": {
+            "type": "boolean",
+            "description": "true if the item is dead"
+          },
+          "parent": {
+            "type": "integer",
+            "description": "The comment's parent: either another comment or the relevant story"
+          },
+          "poll": {
+            "type": "integer",
+            "description": "The pollopt's associated poll"
+          },
+          "kids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "The ids of the item's comments, in ranked display order"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of the story"
+          },
+          "score": {
+            "type": "integer",
+            "description": "The story's score, or the votes for a pollopt"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the story, poll or job. HTML."
+          },
+          "parts": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "A list of related pollopts, in display order"
+          },
+          "descendants": {
+            "type": "integer",
+            "description": "In the case of stories or polls, the total comment count"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "description": "Represents a Hacker News user",
+        "required": [
+          "id",
+          "created",
+          "karma"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The user's unique username. Case-sensitive."
+          },
+          "created": {
+            "type": "integer",
+            "description": "Creation date of the user, in Unix Time"
+          },
+          "karma": {
+            "type": "integer",
+            "description": "The user's karma"
+          },
+          "about": {
+            "type": "string",
+            "description": "The user's optional self-description. HTML."
+          },
+          "submitted": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "List of the user's stories, polls and comments"
+          }
+        }
+      },
+      "Updates": {
+        "type": "object",
+        "description": "Contains lists of changed items and profiles",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Array of item IDs that have been updated"
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of usernames whose profiles have been updated"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Items",
+      "description": "Operations related to stories, comments, jobs, Ask HNs, and polls"
+    },
+    {
+      "name": "Users",
+      "description": "Operations related to user profiles"
+    },
+    {
+      "name": "Stories",
+      "description": "Operations to retrieve different story lists"
+    },
+    {
+      "name": "Live Data",
+      "description": "Operations to retrieve live data updates and metadata"
+    }
+  ],
+  "externalDocs": {
+    "description": "Official HackerNews API Documentation",
+    "url": "https://github.com/HackerNews/API"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "live_data": {
+      "LIVE_DATA00": {},
+      "LIVE_DATA01": {},
+      "LIVE_DATA02": {}
+    }
+  },
+  "new": {
+    "live_data": {
+      "live_data_ref01": {}
+    }
+  }
+}

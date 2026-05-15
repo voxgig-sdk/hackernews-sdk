@@ -1,0 +1,55 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 5
+  metrics: count: path: 10
+  metrics: count: method: 10
+
+  entity: item: {
+    path: "/item/{id}.json": {
+      action: "id": {}
+      op: list: method: *GET
+    }
+  }
+
+  entity: live_data: {
+    path: "/maxitem.json": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: story: {
+    path: "/askstories.json": {
+      op: list: method: *GET
+    }
+    path: "/beststories.json": {
+      op: list: method: *GET
+    }
+    path: "/jobstories.json": {
+      op: list: method: *GET
+    }
+    path: "/newstories.json": {
+      op: list: method: *GET
+    }
+    path: "/showstories.json": {
+      op: list: method: *GET
+    }
+    path: "/topstories.json": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: update: {
+    path: "/updates.json": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: user: {
+    path: "/user/{id}.json": {
+      action: "id": {}
+      op: list: method: *GET
+    }
+  }
+
+}

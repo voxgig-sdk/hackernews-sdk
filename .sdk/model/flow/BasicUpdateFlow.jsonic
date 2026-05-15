@@ -1,0 +1,22 @@
+# BasicUpdateFlow
+
+main: kit: flow: BasicUpdateFlow:
+{
+  entity: "update",
+  kind: "basic",
+  name: "BasicUpdateFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "update_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUpdateFlow"
+}

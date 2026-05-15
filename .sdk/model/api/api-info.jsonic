@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "api@ycombinator.com"
+      }
+      description: "Provides public Hacker News data in near real time. Accessible via Firebase client libraries for Android, iOS, and web. Includes information on stories, comments, jobs, Ask HNs, polls, and users."
+      license: {
+        name: "MIT"
+        url: "https://github.com/HackerNews/API/blob/master/LICENSE"
+      }
+      servers: [
+        {
+          description: "HackerNews API v0"
+          url: "https://hacker-news.firebaseio.com/v0"
+        }
+      ]
+      termsOfService: "https://github.com/HackerNews/API"
+      title: "HackerNews API"
+      version: "v0"
+    }
+  }
+}
+
+}

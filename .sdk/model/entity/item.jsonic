@@ -1,0 +1,148 @@
+# Entity: item
+
+main: kit: entity: item: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "by"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "dead"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "deleted"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "descendant"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "kid"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "parent"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "part"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "poll"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "score"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "time"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "item"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/item/{id}.json"
+          parts: [
+            "item"
+            "{id}.json"
+          ]
+          select: {
+            "$action": "id"
+            exist: [
+              "id"
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "item"
+      ]
+    ]
+  }
+
+
+
+}

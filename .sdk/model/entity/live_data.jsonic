@@ -1,0 +1,45 @@
+# Entity: live_data
+
+main: kit: entity: live_data: {
+
+  alias: field: {}
+
+  name: "live_data"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/maxitem.json"
+          parts: [
+            "maxitem.json"
+          ]
+          select: {
+            exist: [
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

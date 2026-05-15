@@ -1,0 +1,28 @@
+# BasicLiveDataFlow
+
+main: kit: flow: BasicLiveDataFlow:
+{
+  entity: "live_data",
+  kind: "basic",
+  name: "BasicLiveDataFlow",
+  step: [
+    {
+      input: {
+        ref: "live_data_ref01",
+        srcdatavar: "live_data_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-live_data_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLiveDataFlow"
+}

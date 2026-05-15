@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "update": {
+      "UPDATE00": {
+        "item": [],
+        "profile": []
+      },
+      "UPDATE01": {
+        "item": [],
+        "profile": []
+      },
+      "UPDATE02": {
+        "item": [],
+        "profile": []
+      }
+    }
+  },
+  "new": {
+    "update": {
+      "update_ref01": {
+        "item": [],
+        "profile": []
+      }
+    }
+  }
+}

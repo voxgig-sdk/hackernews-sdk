@@ -1,0 +1,58 @@
+# Entity: update
+
+main: kit: entity: update: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "item"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "profile"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "update"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "print"
+                orig: "print"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/updates.json"
+          parts: [
+            "updates.json"
+          ]
+          select: {
+            exist: [
+              "print"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
