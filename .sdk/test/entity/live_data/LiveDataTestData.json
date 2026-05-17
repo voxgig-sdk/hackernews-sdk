@@ -1,9 +1,15 @@
 {
   "existing": {
     "live_data": {
-      "LIVE_DATA00": {},
-      "LIVE_DATA01": {},
-      "LIVE_DATA02": {}
+      "LIVE_DATA00": {
+        "id": "LIVE_DATA00"
+      },
+      "LIVE_DATA01": {
+        "id": "LIVE_DATA01"
+      },
+      "LIVE_DATA02": {
+        "id": "LIVE_DATA02"
+      }
     }
   },
   "new": {

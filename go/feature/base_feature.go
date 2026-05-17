@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/hackernews-sdk/core"
+	"github.com/voxgig-sdk/hackernews-sdk/go/core"
 )
 
 type BaseFeature struct {

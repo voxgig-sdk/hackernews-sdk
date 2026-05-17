@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/hackernews-sdk/core"
+	"github.com/voxgig-sdk/hackernews-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/hackernews-sdk/go/utility/struct"
 )
 
 type StoryEntity struct {

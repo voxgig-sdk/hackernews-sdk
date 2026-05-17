@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/hackernews-sdk"
-	"github.com/voxgig-sdk/hackernews-sdk/core"
+	sdk "github.com/voxgig-sdk/hackernews-sdk/go"
+	"github.com/voxgig-sdk/hackernews-sdk/go/core"
 )
 
 func TestStoryDirect(t *testing.T) {
