@@ -92,7 +92,6 @@ def _update_basic_setup(extra):
         "HACKERNEWS_TEST_UPDATE_ENTID": idmap,
         "HACKERNEWS_TEST_LIVE": "FALSE",
         "HACKERNEWS_TEST_EXPLAIN": "FALSE",
-        "HACKERNEWS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ def _update_basic_setup(extra):
     if env.get("HACKERNEWS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("HACKERNEWS_APIKEY"),
             },
             extra or {},
         ])

@@ -82,14 +82,12 @@ function user_direct_setup($mockres)
     $env = Runner::env_override([
         "HACKERNEWS_TEST_USER_ENTID" => [],
         "HACKERNEWS_TEST_LIVE" => "FALSE",
-        "HACKERNEWS_APIKEY" => "NONE",
     ]);
 
     $live = $env["HACKERNEWS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["HACKERNEWS_APIKEY"],
         ];
         $client = new HackernewsSDK($merged_opts);
         return [

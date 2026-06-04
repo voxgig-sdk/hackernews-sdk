@@ -15,9 +15,6 @@ module HackernewsConfig
       },
       "options" => {
         "base" => "https://hacker-news.firebaseio.com/v0",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

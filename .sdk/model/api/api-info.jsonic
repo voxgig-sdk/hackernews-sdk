@@ -21,8 +21,31 @@ main: {
       termsOfService: "https://github.com/HackerNews/API"
       title: "HackerNews API"
       version: "v0"
+      tagline: "Read Hacker News stories, comments, jobs, polls, and user profiles in near real time"
+      homepage: "https://github.com/HackerNews/API"
+      docs_url: "https://github.com/HackerNews/API"
+      license_short: "MIT License"
+      license_md: `- Released under the **MIT License** by Y Combinator / Hacker News.
+- Free to use for any purpose including commercial; attribution appreciated.
+- Data is user-generated; respect the original authors and HN's community guidelines when reusing content.`
+      about_md: `The [Hacker News API](https://github.com/HackerNews/API) exposes the public data of [Hacker News](https://news.ycombinator.com) — stories, comments, jobs, Ask HN posts, polls, and user profiles — in near real time. It is operated by Y Combinator and served through Firebase, so the same endpoints work from Firebase client libraries (Android, iOS, web) as well as plain HTTPS.
+
+What you get from the API:
+
+- **Items** (\`/v0/item/<id>.json\`) — a unified object covering stories, comments, jobs, Ask HN, Show HN, and polls, with fields such as \`id\`, \`type\`, \`by\`, \`time\`, \`text\`, \`url\`, \`score\`, \`title\`, \`kids\`, \`parent\`, and \`descendants\`.
+- **Users** (\`/v0/user/<id>.json\`) — profile data including \`id\`, \`created\`, \`karma\`, \`about\`, and \`submitted\` items.
+- **Story lists** — \`/v0/topstories.json\`, \`/v0/newstories.json\`, \`/v0/beststories.json\`, \`/v0/askstories.json\`, \`/v0/showstories.json\`, \`/v0/jobstories.json\`.
+- **Live data** — \`/v0/maxitem.json\` for the current largest item ID and \`/v0/updates.json\` for recently changed items and profiles.
+
+No authentication is required and CORS is enabled, so the endpoints work directly from browsers. There are no documented rate limits, but treat the service as a shared public resource. Questions go to api@ycombinator.com.`
+      entity_desc: {
+        item: "A single piece of Hacker News content — story, comment, job, Ask HN, Show HN, or poll — fetched at `/v0/item/<id>.json`."
+        live_data: "Real-time pointers into the dataset: `/v0/maxitem.json` returns the current largest item ID and `/v0/updates.json` lists items and profiles that have recently changed."
+        story: "Curated lists of front-page-style submissions, available as `/v0/topstories.json`, `/v0/newstories.json`, `/v0/beststories.json`, `/v0/askstories.json`, `/v0/showstories.json`, and `/v0/jobstories.json`."
+        update: "The `/v0/updates.json` feed of items and user profiles modified recently, used to keep mirrors in sync."
+        user: "A Hacker News account fetched at `/v0/user/<id>.json`, with creation date, karma, bio, and submission history."
+      }
+      auth: false
     }
   }
-}
-
 }
