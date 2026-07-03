@@ -117,6 +117,7 @@ func live_dataBasicSetup(extra map[string]any) *entityTestSetup {
 		"HACKERNEWS_TEST_LIVE_DATA_ENTID": idmap,
 		"HACKERNEWS_TEST_LIVE":      "FALSE",
 		"HACKERNEWS_TEST_EXPLAIN":   "FALSE",
+		"HACKERNEWS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["HACKERNEWS_TEST_LIVE_DATA_ENTID"])
@@ -127,6 +128,7 @@ func live_dataBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["HACKERNEWS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["HACKERNEWS_APIKEY"],
 			},
 			extra,
 		})

@@ -74,12 +74,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'HACKERNEWS_TEST_LIVE_DATA_ENTID': {},
     'HACKERNEWS_TEST_LIVE': 'FALSE',
+    'HACKERNEWS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.HACKERNEWS_TEST_LIVE
 
   if (live) {
     const client = new HackernewsSDK({
+      apikey: env.HACKERNEWS_APIKEY,
     })
 
     let idmap: any = env['HACKERNEWS_TEST_LIVE_DATA_ENTID']

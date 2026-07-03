@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://hacker-news.firebaseio.com/v0",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -30,136 +33,138 @@ def make_config():
       "item": {
         "fields": [
           {
+            "active": True,
             "name": "by",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "dead",
             "req": False,
             "type": "`$BOOLEAN`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "deleted",
             "req": False,
             "type": "`$BOOLEAN`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "descendant",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 3,
           },
           {
+            "active": True,
             "name": "id",
             "req": True,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 4,
           },
           {
+            "active": True,
             "name": "kid",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 5,
           },
           {
+            "active": True,
             "name": "parent",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 6,
           },
           {
+            "active": True,
             "name": "part",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 7,
           },
           {
+            "active": True,
             "name": "poll",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 8,
           },
           {
+            "active": True,
             "name": "score",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 9,
           },
           {
+            "active": True,
             "name": "text",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 10,
           },
           {
+            "active": True,
             "name": "time",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 11,
           },
           {
+            "active": True,
             "name": "title",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 12,
           },
           {
+            "active": True,
             "name": "type",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 13,
           },
           {
+            "active": True,
             "name": "url",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 14,
           },
         ],
         "name": "item",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "kind": "param",
                       "name": "id",
                       "orig": "id",
                       "reqd": True,
                       "type": "`$INTEGER`",
-                      "active": True,
                     },
                   ],
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -180,11 +185,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },
@@ -201,18 +204,20 @@ def make_config():
         "name": "live_data",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -230,11 +235,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -247,18 +250,20 @@ def make_config():
         "name": "story",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -276,19 +281,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -306,19 +311,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 1,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -336,19 +341,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 2,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -366,19 +371,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 3,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -396,19 +401,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 4,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -426,11 +431,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 5,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },
@@ -441,35 +444,37 @@ def make_config():
       "update": {
         "fields": [
           {
+            "active": True,
             "name": "item",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "profile",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 1,
           },
         ],
         "name": "update",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -487,11 +492,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },
@@ -502,66 +505,68 @@ def make_config():
       "user": {
         "fields": [
           {
+            "active": True,
             "name": "about",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "created",
             "req": True,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "id",
             "req": True,
             "type": "`$STRING`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "karma",
             "req": True,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 3,
           },
           {
+            "active": True,
             "name": "submitted",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 4,
           },
         ],
         "name": "user",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "kind": "param",
                       "name": "id",
                       "orig": "id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "print",
                       "orig": "print",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -582,11 +587,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },

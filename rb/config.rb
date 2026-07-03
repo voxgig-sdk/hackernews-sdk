@@ -15,6 +15,9 @@ module HackernewsConfig
       },
       "options" => {
         "base" => "https://hacker-news.firebaseio.com/v0",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -30,136 +33,138 @@ module HackernewsConfig
         "item" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "by",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "dead",
               "req" => false,
               "type" => "`$BOOLEAN`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "deleted",
               "req" => false,
               "type" => "`$BOOLEAN`",
-              "active" => true,
               "index$" => 2,
             },
             {
+              "active" => true,
               "name" => "descendant",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 3,
             },
             {
+              "active" => true,
               "name" => "id",
               "req" => true,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 4,
             },
             {
+              "active" => true,
               "name" => "kid",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 5,
             },
             {
+              "active" => true,
               "name" => "parent",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 6,
             },
             {
+              "active" => true,
               "name" => "part",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 7,
             },
             {
+              "active" => true,
               "name" => "poll",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 8,
             },
             {
+              "active" => true,
               "name" => "score",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 9,
             },
             {
+              "active" => true,
               "name" => "text",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 10,
             },
             {
+              "active" => true,
               "name" => "time",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 11,
             },
             {
+              "active" => true,
               "name" => "title",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 12,
             },
             {
+              "active" => true,
               "name" => "type",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 13,
             },
             {
+              "active" => true,
               "name" => "url",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 14,
             },
           ],
           "name" => "item",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "active" => true,
                       },
                     ],
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -180,11 +185,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
           },
@@ -201,18 +204,20 @@ module HackernewsConfig
           "name" => "live_data",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -230,11 +235,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -247,18 +250,20 @@ module HackernewsConfig
           "name" => "story",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -276,19 +281,19 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -306,19 +311,19 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 1,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -336,19 +341,19 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 2,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -366,19 +371,19 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 3,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -396,19 +401,19 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 4,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -426,11 +431,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 5,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
           },
@@ -441,35 +444,37 @@ module HackernewsConfig
         "update" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "item",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "profile",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 1,
             },
           ],
           "name" => "update",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -487,11 +492,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
           },
@@ -502,66 +505,68 @@ module HackernewsConfig
         "user" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "about",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "created",
               "req" => true,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "id",
               "req" => true,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 2,
             },
             {
+              "active" => true,
               "name" => "karma",
               "req" => true,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 3,
             },
             {
+              "active" => true,
               "name" => "submitted",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 4,
             },
           ],
           "name" => "user",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "print",
                         "orig" => "print",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -582,11 +587,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
           },

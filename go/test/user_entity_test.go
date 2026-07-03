@@ -119,6 +119,7 @@ func userBasicSetup(extra map[string]any) *entityTestSetup {
 		"HACKERNEWS_TEST_USER_ENTID": idmap,
 		"HACKERNEWS_TEST_LIVE":      "FALSE",
 		"HACKERNEWS_TEST_EXPLAIN":   "FALSE",
+		"HACKERNEWS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["HACKERNEWS_TEST_USER_ENTID"])
@@ -129,6 +130,7 @@ func userBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["HACKERNEWS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["HACKERNEWS_APIKEY"],
 			},
 			extra,
 		})

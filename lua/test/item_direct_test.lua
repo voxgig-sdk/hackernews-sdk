@@ -77,12 +77,14 @@ function item_direct_setup(mockres)
   local env = runner.env_override({
     ["HACKERNEWS_TEST_ITEM_ENTID"] = {},
     ["HACKERNEWS_TEST_LIVE"] = "FALSE",
+    ["HACKERNEWS_APIKEY"] = "NONE",
   })
 
   local live = env["HACKERNEWS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["HACKERNEWS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

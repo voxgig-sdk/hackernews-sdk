@@ -1,21 +1,8 @@
 # Hackernews SDK
 
-Read Hacker News stories, comments, jobs, polls, and user profiles in near real time
+HackerNews API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About HackerNews API
-
-The [Hacker News API](https://github.com/HackerNews/API) exposes the public data of [Hacker News](https://news.ycombinator.com) — stories, comments, jobs, Ask HN posts, polls, and user profiles — in near real time. It is operated by Y Combinator and served through Firebase, so the same endpoints work from Firebase client libraries (Android, iOS, web) as well as plain HTTPS.
-
-What you get from the API:
-
-- **Items** (`/v0/item/<id>.json`) — a unified object covering stories, comments, jobs, Ask HN, Show HN, and polls, with fields such as `id`, `type`, `by`, `time`, `text`, `url`, `score`, `title`, `kids`, `parent`, and `descendants`.
-- **Users** (`/v0/user/<id>.json`) — profile data including `id`, `created`, `karma`, `about`, and `submitted` items.
-- **Story lists** — `/v0/topstories.json`, `/v0/newstories.json`, `/v0/beststories.json`, `/v0/askstories.json`, `/v0/showstories.json`, `/v0/jobstories.json`.
-- **Live data** — `/v0/maxitem.json` for the current largest item ID and `/v0/updates.json` for recently changed items and profiles.
-
-No authentication is required and CORS is enabled, so the endpoints work directly from browsers. There are no documented rate limits, but treat the service as a shared public resource. Questions go to api@ycombinator.com.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install hackernews-sdk
 luarocks install hackernews-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { HackernewsSDK } from 'hackernews'
 
-const client = new HackernewsSDK({})
+const client = new HackernewsSDK({
+  apikey: process.env.HACKERNEWS_APIKEY,
+})
 
 // List all items
 const items = await client.Item().list()
+console.log(items.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,11 +90,11 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Item** | A single piece of Hacker News content — story, comment, job, Ask HN, Show HN, or poll — fetched at `/v0/item/<id>.json`. | `/item/{id}.json` |
-| **LiveData** | Real-time pointers into the dataset: `/v0/maxitem.json` returns the current largest item ID and `/v0/updates.json` lists items and profiles that have recently changed. | `/maxitem.json` |
-| **Story** | Curated lists of front-page-style submissions, available as `/v0/topstories.json`, `/v0/newstories.json`, `/v0/beststories.json`, `/v0/askstories.json`, `/v0/showstories.json`, and `/v0/jobstories.json`. | `/askstories.json` |
-| **Update** | The `/v0/updates.json` feed of items and user profiles modified recently, used to keep mirrors in sync. | `/updates.json` |
-| **User** | A Hacker News account fetched at `/v0/user/<id>.json`, with creation date, karma, bio, and submission history. | `/user/{id}.json` |
+| **Item** |  | `/item/{id}.json` |
+| **LiveData** |  | `/maxitem.json` |
+| **Story** |  | `/askstories.json` |
+| **Update** |  | `/updates.json` |
+| **User** |  | `/user/{id}.json` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,12 +104,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from hackernews_sdk import HackernewsSDK
 
-client = HackernewsSDK({})
+client = HackernewsSDK({
+    "apikey": os.environ.get("HACKERNEWS_APIKEY"),
+})
 
 # List all items
-items, err = client.Item(None).list(None, None)
+items, err = client.Item().list()
+print(items)
 ```
 
 ### PHP
@@ -129,10 +122,13 @@ items, err = client.Item(None).list(None, None)
 <?php
 require_once 'hackernews_sdk.php';
 
-$client = new HackernewsSDK([]);
+$client = new HackernewsSDK([
+    "apikey" => getenv("HACKERNEWS_APIKEY"),
+]);
 
 // List all items
-[$items, $err] = $client->Item(null)->list(null, null);
+[$items, $err] = $client->Item()->list();
+print_r($items);
 ```
 
 ### Golang
@@ -140,10 +136,13 @@ $client = new HackernewsSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/hackernews-sdk/go"
 
-client := sdk.NewHackernewsSDK(map[string]any{})
+client := sdk.NewHackernewsSDK(map[string]any{
+    "apikey": os.Getenv("HACKERNEWS_APIKEY"),
+})
 
 // List all items
 items, err := client.Item(nil).List(nil, nil)
+fmt.Println(items)
 ```
 
 ### Ruby
@@ -151,10 +150,13 @@ items, err := client.Item(nil).List(nil, nil)
 ```ruby
 require_relative "Hackernews_sdk"
 
-client = HackernewsSDK.new({})
+client = HackernewsSDK.new({
+  "apikey" => ENV["HACKERNEWS_APIKEY"],
+})
 
 # List all items
-items, err = client.Item(nil).list(nil, nil)
+items, err = client.Item().list
+puts items
 ```
 
 ### Lua
@@ -162,10 +164,13 @@ items, err = client.Item(nil).list(nil, nil)
 ```lua
 local sdk = require("hackernews_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("HACKERNEWS_APIKEY"),
+})
 
 -- List all items
-local items, err = client:Item(nil):list(nil, nil)
+local items, err = client:Item():list()
+print(items)
 ```
 
 ## Unit testing in offline mode
@@ -184,25 +189,21 @@ const result = await client.Item().load({ id: 'test01' })
 ### Python
 
 ```python
-client = HackernewsSDK.test(None, None)
-result, err = client.Item(None).load(
-    {"id": "test01"}, None
-)
+client = HackernewsSDK.test()
+result, err = client.Item().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = HackernewsSDK::test(null, null);
-[$result, $err] = $client->Item(null)->load(
-    ["id" => "test01"], null
-);
+$client = HackernewsSDK::test();
+[$result, $err] = $client->Item()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Item(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -211,19 +212,15 @@ result, err := client.Item(nil).Load(
 ### Ruby
 
 ```ruby
-client = HackernewsSDK.test(nil, nil)
-result, err = client.Item(nil).load(
-  { "id" => "test01" }, nil
-)
+client = HackernewsSDK.test
+result, err = client.Item().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Item(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Item():load({ id = "test01" })
 ```
 
 ## How it works
@@ -327,14 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the HackerNews API
-
-- Upstream: [https://github.com/HackerNews/API](https://github.com/HackerNews/API)
-
-- Released under the **MIT License** by Y Combinator / Hacker News.
-- Free to use for any purpose including commercial; attribution appreciated.
-- Data is user-generated; respect the original authors and HN's community guidelines when reusing content.
 
 ---
 

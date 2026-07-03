@@ -76,12 +76,14 @@ def item_direct_setup(mockres)
   env = Runner.env_override({
     "HACKERNEWS_TEST_ITEM_ENTID" => {},
     "HACKERNEWS_TEST_LIVE" => "FALSE",
+    "HACKERNEWS_APIKEY" => "NONE",
   })
 
   live = env["HACKERNEWS_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["HACKERNEWS_APIKEY"],
     }
     client = HackernewsSDK.new(merged_opts)
     return {

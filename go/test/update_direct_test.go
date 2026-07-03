@@ -93,12 +93,14 @@ func updateDirectSetup(mockres any) *updateDirectSetupResult {
 	env := envOverride(map[string]any{
 		"HACKERNEWS_TEST_UPDATE_ENTID": map[string]any{},
 		"HACKERNEWS_TEST_LIVE":    "FALSE",
+		"HACKERNEWS_APIKEY":       "NONE",
 	})
 
 	live := env["HACKERNEWS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["HACKERNEWS_APIKEY"],
 		}
 		client := sdk.NewHackernewsSDK(mergedOpts)
 
