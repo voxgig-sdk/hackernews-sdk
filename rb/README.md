@@ -10,13 +10,13 @@ The Ruby SDK for the Hackernews API — an entity-oriented client using idiomati
 
 ## Install
 ```bash
-gem install hackernews-sdk
+gem install voxgig-sdk-hackernews
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "hackernews-sdk"
+gem "voxgig-sdk-hackernews"
 ```
 
 Then run:

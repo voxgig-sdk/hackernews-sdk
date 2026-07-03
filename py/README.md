@@ -10,7 +10,7 @@ The Python SDK for the Hackernews API — an entity-oriented client following Py
 
 ## Install
 ```bash
-pip install hackernews-sdk
+pip install voxgig-sdk-hackernews
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The PHP SDK for the Hackernews API — an entity-oriented client using PHP conve
 
 ## Install
 ```bash
-composer require voxgig/hackernews-sdk
+composer require voxgig-sdk/hackernews
 ```
 
 

@@ -10,7 +10,7 @@ The TypeScript SDK for the Hackernews API — a type-safe, entity-oriented clien
 
 ## Install
 ```bash
-npm install hackernews
+npm install @voxgig-sdk/hackernews
 ```
 ## Tutorial: your first API call
 
