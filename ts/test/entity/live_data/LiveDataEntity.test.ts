@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'HACKERNEWS_TEST_LIVE_DATA_ENTID': idmap,
     'HACKERNEWS_TEST_LIVE': 'FALSE',
     'HACKERNEWS_TEST_EXPLAIN': 'FALSE',
-    'HACKERNEWS_APIKEY': 'NONE',
   })
 
   idmap = env['HACKERNEWS_TEST_LIVE_DATA_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new HackernewsSDK(merge([
       {
-        apikey: env.HACKERNEWS_APIKEY,
       },
       extra
     ]))

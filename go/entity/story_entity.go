@@ -85,6 +85,27 @@ func (e *StoryEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Story; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *StoryEntity) DataTyped(data ...Story) Story {
+	if len(data) > 0 {
+		return typedFrom[Story](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Story](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Story (all fields
+// optional at the wire level).
+func (e *StoryEntity) MatchTyped(match ...Story) Story {
+	if len(match) > 0 {
+		return typedFrom[Story](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Story](e.Match())
+}
+
 func (e *StoryEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *StoryEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, e
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// StoryListMatch and returns []Story. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *StoryEntity) ListTyped(reqmatch StoryListMatch, ctrl map[string]any) ([]Story, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Story](res), nil
 }
 
 

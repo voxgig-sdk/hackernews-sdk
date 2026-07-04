@@ -118,14 +118,12 @@ func itemDirectSetup(mockres any) *itemDirectSetupResult {
 	env := envOverride(map[string]any{
 		"HACKERNEWS_TEST_ITEM_ENTID": map[string]any{},
 		"HACKERNEWS_TEST_LIVE":    "FALSE",
-		"HACKERNEWS_APIKEY":       "NONE",
 	})
 
 	live := env["HACKERNEWS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["HACKERNEWS_APIKEY"],
 		}
 		client := sdk.NewHackernewsSDK(mergedOpts)
 

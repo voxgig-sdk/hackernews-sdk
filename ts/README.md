@@ -9,9 +9,12 @@ The TypeScript SDK for the Hackernews API — a type-safe, entity-oriented clien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/hackernews
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/hackernews-sdk/releases](https://github.com/voxgig-sdk/hackernews-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { HackernewsSDK } from 'hackernews'
+import { HackernewsSDK } from '@voxgig-sdk/hackernews'
 
-const client = new HackernewsSDK({
-  apikey: process.env.HACKERNEWS_APIKEY,
-})
+const client = new HackernewsSDK()
 ```
 
 ### 2. List items
 
 ```ts
-const result = await client.Item().list()
+const result = await client.item.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HackernewsSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.item.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new HackernewsSDK({ apikey: '...' })
+const client = new HackernewsSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.item
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new HackernewsSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -136,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 HACKERNEWS_TEST_LIVE=TRUE
-HACKERNEWS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new HackernewsSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new HackernewsSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -329,7 +326,7 @@ API path: `/user/{id}.json`
 
 ### Item
 
-Create an instance: `const item = client.Item()`
+Create an instance: `const item = client.item`
 
 #### Operations
 
@@ -360,13 +357,13 @@ Create an instance: `const item = client.Item()`
 #### Example: List
 
 ```ts
-const items = await client.Item().list()
+const items = await client.item.list()
 ```
 
 
 ### LiveData
 
-Create an instance: `const live_data = client.LiveData()`
+Create an instance: `const live_data = client.live_data`
 
 #### Operations
 
@@ -377,13 +374,13 @@ Create an instance: `const live_data = client.LiveData()`
 #### Example: Load
 
 ```ts
-const live_data = await client.LiveData().load({ id: 'live_data_id' })
+const live_data = await client.live_data.load({ id: 'live_data_id' })
 ```
 
 
 ### Story
 
-Create an instance: `const story = client.Story()`
+Create an instance: `const story = client.story`
 
 #### Operations
 
@@ -394,13 +391,13 @@ Create an instance: `const story = client.Story()`
 #### Example: List
 
 ```ts
-const storys = await client.Story().list()
+const storys = await client.story.list()
 ```
 
 
 ### Update
 
-Create an instance: `const update = client.Update()`
+Create an instance: `const update = client.update`
 
 #### Operations
 
@@ -418,13 +415,13 @@ Create an instance: `const update = client.Update()`
 #### Example: List
 
 ```ts
-const updates = await client.Update().list()
+const updates = await client.update.list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -445,7 +442,7 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 
@@ -506,7 +503,7 @@ hackernews/
 Import the SDK from the package root:
 
 ```ts
-import { HackernewsSDK } from 'hackernews'
+import { HackernewsSDK } from '@voxgig-sdk/hackernews'
 ```
 
 ### Entity state
@@ -516,11 +513,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const item = client.item
+await item.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// item.data() now returns the loaded item data
+// item.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

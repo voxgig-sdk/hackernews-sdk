@@ -245,26 +245,41 @@ func (sdk *HackernewsSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 }
 
 
+// Item returns a Item entity bound to this client.
+// Idiomatic usage: client.Item(nil).List(nil, nil) or
+// client.Item(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HackernewsSDK) Item(data map[string]any) HackernewsEntity {
 	return NewItemEntityFunc(sdk, data)
 }
 
 
+// LiveData returns a LiveData entity bound to this client.
+// Idiomatic usage: client.LiveData(nil).List(nil, nil) or
+// client.LiveData(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HackernewsSDK) LiveData(data map[string]any) HackernewsEntity {
 	return NewLiveDataEntityFunc(sdk, data)
 }
 
 
+// Story returns a Story entity bound to this client.
+// Idiomatic usage: client.Story(nil).List(nil, nil) or
+// client.Story(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HackernewsSDK) Story(data map[string]any) HackernewsEntity {
 	return NewStoryEntityFunc(sdk, data)
 }
 
 
+// Update returns a Update entity bound to this client.
+// Idiomatic usage: client.Update(nil).List(nil, nil) or
+// client.Update(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HackernewsSDK) Update(data map[string]any) HackernewsEntity {
 	return NewUpdateEntityFunc(sdk, data)
 }
 
 
+// User returns a User entity bound to this client.
+// Idiomatic usage: client.User(nil).List(nil, nil) or
+// client.User(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HackernewsSDK) User(data map[string]any) HackernewsEntity {
 	return NewUserEntityFunc(sdk, data)
 }

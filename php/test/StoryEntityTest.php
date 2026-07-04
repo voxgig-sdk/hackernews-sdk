@@ -50,8 +50,7 @@ class StoryEntityTest extends TestCase
         $story_ref01_ent = $client->Story(null);
         $story_ref01_match = [];
 
-        [$story_ref01_list_result, $err] = $story_ref01_ent->list($story_ref01_match, null);
-        $this->assertNull($err);
+        $story_ref01_list_result = $story_ref01_ent->list($story_ref01_match, null);
         $this->assertIsArray($story_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function story_basic_setup($extra)
         "HACKERNEWS_TEST_STORY_ENTID" => $idmap,
         "HACKERNEWS_TEST_LIVE" => "FALSE",
         "HACKERNEWS_TEST_EXPLAIN" => "FALSE",
-        "HACKERNEWS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function story_basic_setup($extra)
     if ($env["HACKERNEWS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["HACKERNEWS_APIKEY"],
             ],
             $extra ?? [],
         ]);

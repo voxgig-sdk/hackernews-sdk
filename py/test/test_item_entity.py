@@ -50,8 +50,7 @@ class TestItemEntity:
         item_ref01_ent = client.Item(None)
         item_ref01_match = {}
 
-        item_ref01_list_result, err = item_ref01_ent.list(item_ref01_match, None)
-        assert err is None
+        item_ref01_list_result = item_ref01_ent.list(item_ref01_match, None)
         assert isinstance(item_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _item_basic_setup(extra):
         "HACKERNEWS_TEST_ITEM_ENTID": idmap,
         "HACKERNEWS_TEST_LIVE": "FALSE",
         "HACKERNEWS_TEST_EXPLAIN": "FALSE",
-        "HACKERNEWS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _item_basic_setup(extra):
     if env.get("HACKERNEWS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("HACKERNEWS_APIKEY"),
             },
             extra or {},
         ])

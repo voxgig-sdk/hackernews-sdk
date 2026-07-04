@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -100,7 +99,7 @@ same parameters as `direct()`.
 ## ItemEntity
 
 ```lua
-local item = client:Item(nil)
+local item = client:item(nil)
 ```
 
 ### Fields
@@ -130,7 +129,7 @@ local item = client:Item(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Item():list()
+local results, err = client:item():list()
 ```
 
 ### Common Methods
@@ -166,7 +165,7 @@ Return the entity name.
 ## LiveDataEntity
 
 ```lua
-local live_data = client:LiveData(nil)
+local live_data = client:live_data(nil)
 ```
 
 ### Operations
@@ -176,7 +175,7 @@ local live_data = client:LiveData(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:LiveData():load({ id = "live_data_id" })
+local result, err = client:live_data():load({ id = "live_data_id" })
 ```
 
 ### Common Methods
@@ -212,7 +211,7 @@ Return the entity name.
 ## StoryEntity
 
 ```lua
-local story = client:Story(nil)
+local story = client:story(nil)
 ```
 
 ### Operations
@@ -222,7 +221,7 @@ local story = client:Story(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Story():list()
+local results, err = client:story():list()
 ```
 
 ### Common Methods
@@ -258,7 +257,7 @@ Return the entity name.
 ## UpdateEntity
 
 ```lua
-local update = client:Update(nil)
+local update = client:update(nil)
 ```
 
 ### Fields
@@ -275,7 +274,7 @@ local update = client:Update(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Update():list()
+local results, err = client:update():list()
 ```
 
 ### Common Methods
@@ -311,7 +310,7 @@ Return the entity name.
 ## UserEntity
 
 ```lua
-local user = client:User(nil)
+local user = client:user(nil)
 ```
 
 ### Fields
@@ -331,7 +330,7 @@ local user = client:User(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:User():list()
+local results, err = client:user():list()
 ```
 
 ### Common Methods

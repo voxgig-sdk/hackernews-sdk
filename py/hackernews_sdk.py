@@ -144,16 +144,23 @@ class HackernewsSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class HackernewsSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,35 +212,90 @@ class HackernewsSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def item(self):
+        """Idiomatic facade: client.item.list() / client.item.load({"id": ...})."""
+        from entity.item_entity import ItemEntity
+        cached = getattr(self, "_item", None)
+        if cached is None:
+            cached = ItemEntity(self, None)
+            self._item = cached
+        return cached
 
     def Item(self, data=None):
+        # Deprecated: use client.item instead.
         from entity.item_entity import ItemEntity
         return ItemEntity(self, data)
 
 
+    @property
+    def live_data(self):
+        """Idiomatic facade: client.live_data.list() / client.live_data.load({"id": ...})."""
+        from entity.live_data_entity import LiveDataEntity
+        cached = getattr(self, "_live_data", None)
+        if cached is None:
+            cached = LiveDataEntity(self, None)
+            self._live_data = cached
+        return cached
+
     def LiveData(self, data=None):
+        # Deprecated: use client.live_data instead.
         from entity.live_data_entity import LiveDataEntity
         return LiveDataEntity(self, data)
 
 
+    @property
+    def story(self):
+        """Idiomatic facade: client.story.list() / client.story.load({"id": ...})."""
+        from entity.story_entity import StoryEntity
+        cached = getattr(self, "_story", None)
+        if cached is None:
+            cached = StoryEntity(self, None)
+            self._story = cached
+        return cached
+
     def Story(self, data=None):
+        # Deprecated: use client.story instead.
         from entity.story_entity import StoryEntity
         return StoryEntity(self, data)
 
 
+    @property
+    def update(self):
+        """Idiomatic facade: client.update.list() / client.update.load({"id": ...})."""
+        from entity.update_entity import UpdateEntity
+        cached = getattr(self, "_update", None)
+        if cached is None:
+            cached = UpdateEntity(self, None)
+            self._update = cached
+        return cached
+
     def Update(self, data=None):
+        # Deprecated: use client.update instead.
         from entity.update_entity import UpdateEntity
         return UpdateEntity(self, data)
 
 
+    @property
+    def user(self):
+        """Idiomatic facade: client.user.list() / client.user.load({"id": ...})."""
+        from entity.user_entity import UserEntity
+        cached = getattr(self, "_user", None)
+        if cached is None:
+            cached = UserEntity(self, None)
+            self._user = cached
+        return cached
+
     def User(self, data=None):
+        # Deprecated: use client.user instead.
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 

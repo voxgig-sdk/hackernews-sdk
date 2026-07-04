@@ -6,6 +6,8 @@ import { StoryEntity } from './entity/StoryEntity'
 import { UpdateEntity } from './entity/UpdateEntity'
 import { UserEntity } from './entity/UserEntity'
 
+export type * from './HackernewsTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -206,30 +208,70 @@ class HackernewsSDK {
 
 
 
+  _item?: ItemEntity
+
+  // Idiomatic facade: `client.item.list()` / `client.item.load({ id })`.
+  get item(): ItemEntity {
+    return (this._item ??= new ItemEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.item` instead. */
   Item(data?: any) {
     const self = this
     return new ItemEntity(self,data)
   }
 
 
+  _live_data?: LiveDataEntity
+
+  // Idiomatic facade: `client.live_data.list()` / `client.live_data.load({ id })`.
+  get live_data(): LiveDataEntity {
+    return (this._live_data ??= new LiveDataEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.live_data` instead. */
   LiveData(data?: any) {
     const self = this
     return new LiveDataEntity(self,data)
   }
 
 
+  _story?: StoryEntity
+
+  // Idiomatic facade: `client.story.list()` / `client.story.load({ id })`.
+  get story(): StoryEntity {
+    return (this._story ??= new StoryEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.story` instead. */
   Story(data?: any) {
     const self = this
     return new StoryEntity(self,data)
   }
 
 
+  _update?: UpdateEntity
+
+  // Idiomatic facade: `client.update.list()` / `client.update.load({ id })`.
+  get update(): UpdateEntity {
+    return (this._update ??= new UpdateEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.update` instead. */
   Update(data?: any) {
     const self = this
     return new UpdateEntity(self,data)
   }
 
 
+  _user?: UserEntity
+
+  // Idiomatic facade: `client.user.list()` / `client.user.load({ id })`.
+  get user(): UserEntity {
+    return (this._user ??= new UserEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.user` instead. */
   User(data?: any) {
     const self = this
     return new UserEntity(self,data)

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  LiveData,
+  LiveDataLoadMatch,
+} from '../HackernewsTypes'
 
 // TODO: needs Entity superclass
-class LiveDataEntity extends HackernewsEntityBase {
+class LiveDataEntity extends HackernewsEntityBase<LiveData> {
 
   constructor(client: HackernewsSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class LiveDataEntity extends HackernewsEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: LiveDataLoadMatch, ctrl?: Control): Promise<LiveData> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class LiveDataEntity extends HackernewsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<LiveData> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

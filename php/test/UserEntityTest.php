@@ -50,8 +50,7 @@ class UserEntityTest extends TestCase
         $user_ref01_ent = $client->User(null);
         $user_ref01_match = [];
 
-        [$user_ref01_list_result, $err] = $user_ref01_ent->list($user_ref01_match, null);
-        $this->assertNull($err);
+        $user_ref01_list_result = $user_ref01_ent->list($user_ref01_match, null);
         $this->assertIsArray($user_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function user_basic_setup($extra)
         "HACKERNEWS_TEST_USER_ENTID" => $idmap,
         "HACKERNEWS_TEST_LIVE" => "FALSE",
         "HACKERNEWS_TEST_EXPLAIN" => "FALSE",
-        "HACKERNEWS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function user_basic_setup($extra)
     if ($env["HACKERNEWS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["HACKERNEWS_APIKEY"],
             ],
             $extra ?? [],
         ]);

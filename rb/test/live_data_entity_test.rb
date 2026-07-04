@@ -42,8 +42,7 @@ class LiveDataEntityTest < Minitest::Test
     # LOAD
     live_data_ref01_ent = client.LiveData(nil)
     live_data_ref01_match_dt0 = {}
-    live_data_ref01_data_dt0_loaded, err = live_data_ref01_ent.load(live_data_ref01_match_dt0, nil)
-    assert_nil err
+    live_data_ref01_data_dt0_loaded = live_data_ref01_ent.load(live_data_ref01_match_dt0, nil)
     assert !live_data_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def live_data_basic_setup(extra)
     "HACKERNEWS_TEST_LIVE_DATA_ENTID" => idmap,
     "HACKERNEWS_TEST_LIVE" => "FALSE",
     "HACKERNEWS_TEST_EXPLAIN" => "FALSE",
-    "HACKERNEWS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def live_data_basic_setup(extra)
   if env["HACKERNEWS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["HACKERNEWS_APIKEY"],
       },
       extra || {},
     ])

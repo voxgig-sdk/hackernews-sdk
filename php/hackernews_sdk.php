@@ -103,7 +103,7 @@ class HackernewsSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class HackernewsSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class HackernewsSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,52 +216,107 @@ class HackernewsSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Item($data = null)
+    private $_item = null;
+
+    // Idiomatic facade: $client->item()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Item() (PHP method
+    // names are case-insensitive).
+    public function item($data = null)
     {
         require_once __DIR__ . '/entity/item_entity.php';
+        if ($data === null) {
+            if ($this->_item === null) {
+                $this->_item = new ItemEntity($this, null);
+            }
+            return $this->_item;
+        }
         return new ItemEntity($this, $data);
     }
 
 
-    public function LiveData($data = null)
+    private $_live_data = null;
+
+    // Idiomatic facade: $client->live_data()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias LiveData() (PHP method
+    // names are case-insensitive).
+    public function live_data($data = null)
     {
         require_once __DIR__ . '/entity/live_data_entity.php';
+        if ($data === null) {
+            if ($this->_live_data === null) {
+                $this->_live_data = new LiveDataEntity($this, null);
+            }
+            return $this->_live_data;
+        }
         return new LiveDataEntity($this, $data);
     }
 
 
-    public function Story($data = null)
+    private $_story = null;
+
+    // Idiomatic facade: $client->story()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Story() (PHP method
+    // names are case-insensitive).
+    public function story($data = null)
     {
         require_once __DIR__ . '/entity/story_entity.php';
+        if ($data === null) {
+            if ($this->_story === null) {
+                $this->_story = new StoryEntity($this, null);
+            }
+            return $this->_story;
+        }
         return new StoryEntity($this, $data);
     }
 
 
-    public function Update($data = null)
+    private $_update = null;
+
+    // Idiomatic facade: $client->update()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Update() (PHP method
+    // names are case-insensitive).
+    public function update($data = null)
     {
         require_once __DIR__ . '/entity/update_entity.php';
+        if ($data === null) {
+            if ($this->_update === null) {
+                $this->_update = new UpdateEntity($this, null);
+            }
+            return $this->_update;
+        }
         return new UpdateEntity($this, $data);
     }
 
 
-    public function User($data = null)
+    private $_user = null;
+
+    // Idiomatic facade: $client->user()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias User() (PHP method
+    // names are case-insensitive).
+    public function user($data = null)
     {
         require_once __DIR__ . '/entity/user_entity.php';
+        if ($data === null) {
+            if ($this->_user === null) {
+                $this->_user = new UserEntity($this, null);
+            }
+            return $this->_user;
+        }
         return new UserEntity($this, $data);
     }
 

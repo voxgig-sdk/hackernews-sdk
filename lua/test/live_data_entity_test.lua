@@ -91,7 +91,6 @@ function live_data_basic_setup(extra)
     ["HACKERNEWS_TEST_LIVE_DATA_ENTID"] = idmap,
     ["HACKERNEWS_TEST_LIVE"] = "FALSE",
     ["HACKERNEWS_TEST_EXPLAIN"] = "FALSE",
-    ["HACKERNEWS_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function live_data_basic_setup(extra)
   if env["HACKERNEWS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["HACKERNEWS_APIKEY"],
       },
       extra or {},
     })

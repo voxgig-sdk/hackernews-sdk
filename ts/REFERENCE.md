@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -158,7 +157,7 @@ Alias for `HackernewsSDK.test()`.
 ## ItemEntity
 
 ```ts
-const item = client.Item()
+const item = client.item
 ```
 
 ### Fields
@@ -188,7 +187,7 @@ const item = client.Item()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Item().list()
+const results = await client.item.list()
 ```
 
 ### Common Methods
@@ -222,7 +221,7 @@ Return a copy of the entity options.
 ## LiveDataEntity
 
 ```ts
-const live_data = client.LiveData()
+const live_data = client.live_data
 ```
 
 ### Operations
@@ -232,7 +231,7 @@ const live_data = client.LiveData()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.LiveData().load({ id: 'live_data_id' })
+const result = await client.live_data.load({ id: 'live_data_id' })
 ```
 
 ### Common Methods
@@ -266,7 +265,7 @@ Return a copy of the entity options.
 ## StoryEntity
 
 ```ts
-const story = client.Story()
+const story = client.story
 ```
 
 ### Operations
@@ -276,7 +275,7 @@ const story = client.Story()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Story().list()
+const results = await client.story.list()
 ```
 
 ### Common Methods
@@ -310,7 +309,7 @@ Return a copy of the entity options.
 ## UpdateEntity
 
 ```ts
-const update = client.Update()
+const update = client.update
 ```
 
 ### Fields
@@ -327,7 +326,7 @@ const update = client.Update()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Update().list()
+const results = await client.update.list()
 ```
 
 ### Common Methods
@@ -361,7 +360,7 @@ Return a copy of the entity options.
 ## UserEntity
 
 ```ts
-const user = client.User()
+const user = client.user
 ```
 
 ### Fields
@@ -381,7 +380,7 @@ const user = client.User()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.User().list()
+const results = await client.user.list()
 ```
 
 ### Common Methods

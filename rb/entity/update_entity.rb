@@ -45,6 +45,7 @@ class UpdateEntity
     end
   end
 
+  # @return [Update, Hash] the current Update data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class UpdateEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Update fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class UpdateEntity
   
 
   
+  # List Update items matching the given filter.
+  #
+  # @param reqmatch [UpdateListMatch, Hash, nil] match filter (any subset of Update fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Update>, Array] the matching Update items; raises HackernewsError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

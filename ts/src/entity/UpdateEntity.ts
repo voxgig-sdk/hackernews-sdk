@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Update,
+  UpdateListMatch,
+} from '../HackernewsTypes'
 
 // TODO: needs Entity superclass
-class UpdateEntity extends HackernewsEntityBase {
+class UpdateEntity extends HackernewsEntityBase<Update> {
 
   constructor(client: HackernewsSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class UpdateEntity extends HackernewsEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: UpdateListMatch, ctrl?: Control): Promise<Update[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class UpdateEntity extends HackernewsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Update[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

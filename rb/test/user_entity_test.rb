@@ -43,8 +43,7 @@ class UserEntityTest < Minitest::Test
     user_ref01_ent = client.User(nil)
     user_ref01_match = {}
 
-    user_ref01_list_result, err = user_ref01_ent.list(user_ref01_match, nil)
-    assert_nil err
+    user_ref01_list_result = user_ref01_ent.list(user_ref01_match, nil)
     assert user_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def user_basic_setup(extra)
     "HACKERNEWS_TEST_USER_ENTID" => idmap,
     "HACKERNEWS_TEST_LIVE" => "FALSE",
     "HACKERNEWS_TEST_EXPLAIN" => "FALSE",
-    "HACKERNEWS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def user_basic_setup(extra)
   if env["HACKERNEWS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["HACKERNEWS_APIKEY"],
       },
       extra || {},
     ])

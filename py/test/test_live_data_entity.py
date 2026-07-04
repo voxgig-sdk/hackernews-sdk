@@ -49,8 +49,7 @@ class TestLiveDataEntity:
         # LOAD
         live_data_ref01_ent = client.LiveData(None)
         live_data_ref01_match_dt0 = {}
-        live_data_ref01_data_dt0_loaded, err = live_data_ref01_ent.load(live_data_ref01_match_dt0, None)
-        assert err is None
+        live_data_ref01_data_dt0_loaded = live_data_ref01_ent.load(live_data_ref01_match_dt0, None)
         assert live_data_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _live_data_basic_setup(extra):
         "HACKERNEWS_TEST_LIVE_DATA_ENTID": idmap,
         "HACKERNEWS_TEST_LIVE": "FALSE",
         "HACKERNEWS_TEST_EXPLAIN": "FALSE",
-        "HACKERNEWS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _live_data_basic_setup(extra):
     if env.get("HACKERNEWS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("HACKERNEWS_APIKEY"),
             },
             extra or {},
         ])

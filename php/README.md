@@ -9,9 +9,10 @@ The PHP SDK for the Hackernews API — an entity-oriented client using PHP conve
 
 
 ## Install
-```bash
-composer require voxgig-sdk/hackernews
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/hackernews-sdk/releases](https://github.com/voxgig-sdk/hackernews-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,22 +26,22 @@ loading a specific record.
 <?php
 require_once 'hackernews_sdk.php';
 
-$client = new HackernewsSDK([
-    "apikey" => getenv("HACKERNEWS_APIKEY"),
-]);
+$client = new HackernewsSDK();
 ```
 
 ### 2. List items
 
 ```php
-[$result, $err] = $client->Item()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->item()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
@@ -52,28 +53,31 @@ if (is_array($result)) {
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -87,7 +91,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = HackernewsSDK::test();
 
-[$result, $err] = $client->Hackernews()->load(["id" => "test01"]);
+$result = $client->item()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -122,7 +126,6 @@ Create a `.env.local` file at the project root:
 
 ```
 HACKERNEWS_TEST_LIVE=TRUE
-HACKERNEWS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,7 +148,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -195,8 +197,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -283,7 +289,7 @@ API path: `/user/{id}.json`
 
 ### Item
 
-Create an instance: `const item = client.Item()`
+Create an instance: `const item = client.item`
 
 #### Operations
 
@@ -314,13 +320,13 @@ Create an instance: `const item = client.Item()`
 #### Example: List
 
 ```ts
-const items = await client.Item().list()
+const items = await client.item.list()
 ```
 
 
 ### LiveData
 
-Create an instance: `const live_data = client.LiveData()`
+Create an instance: `const live_data = client.live_data`
 
 #### Operations
 
@@ -331,13 +337,13 @@ Create an instance: `const live_data = client.LiveData()`
 #### Example: Load
 
 ```ts
-const live_data = await client.LiveData().load({ id: 'live_data_id' })
+const live_data = await client.live_data.load({ id: 'live_data_id' })
 ```
 
 
 ### Story
 
-Create an instance: `const story = client.Story()`
+Create an instance: `const story = client.story`
 
 #### Operations
 
@@ -348,13 +354,13 @@ Create an instance: `const story = client.Story()`
 #### Example: List
 
 ```ts
-const storys = await client.Story().list()
+const storys = await client.story.list()
 ```
 
 
 ### Update
 
-Create an instance: `const update = client.Update()`
+Create an instance: `const update = client.update`
 
 #### Operations
 
@@ -372,13 +378,13 @@ Create an instance: `const update = client.Update()`
 #### Example: List
 
 ```ts
-const updates = await client.Update().list()
+const updates = await client.update.list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -399,7 +405,7 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 
@@ -474,11 +480,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$item = $client->item();
+$item->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $item->dataGet() now returns the loaded item data
+// $item->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

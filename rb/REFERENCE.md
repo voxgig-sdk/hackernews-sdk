@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `Hash` | SDK configuration options. |
-| `options["apikey"]` | `String` | API key for authentication. |
 | `options["base"]` | `String` | Base URL for API requests. |
 | `options["prefix"]` | `String` | URL prefix appended after base. |
 | `options["suffix"]` | `String` | URL suffix appended after path. |
@@ -70,9 +69,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -86,14 +87,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -101,7 +102,7 @@ same parameters as `direct()`.
 ## ItemEntity
 
 ```ruby
-item = client.Item
+item = client.item
 ```
 
 ### Fields
@@ -126,12 +127,12 @@ item = client.Item
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Item.list(nil)
+results = client.item.list(nil)
 ```
 
 ### Common Methods
@@ -167,17 +168,17 @@ Return the entity name.
 ## LiveDataEntity
 
 ```ruby
-live_data = client.LiveData
+live_data = client.live_data
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.LiveData.load({ "id" => "live_data_id" })
+result = client.live_data.load({ "id" => "live_data_id" })
 ```
 
 ### Common Methods
@@ -213,17 +214,17 @@ Return the entity name.
 ## StoryEntity
 
 ```ruby
-story = client.Story
+story = client.story
 ```
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Story.list(nil)
+results = client.story.list(nil)
 ```
 
 ### Common Methods
@@ -259,7 +260,7 @@ Return the entity name.
 ## UpdateEntity
 
 ```ruby
-update = client.Update
+update = client.update
 ```
 
 ### Fields
@@ -271,12 +272,12 @@ update = client.Update
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Update.list(nil)
+results = client.update.list(nil)
 ```
 
 ### Common Methods
@@ -312,7 +313,7 @@ Return the entity name.
 ## UserEntity
 
 ```ruby
-user = client.User
+user = client.user
 ```
 
 ### Fields
@@ -327,12 +328,12 @@ user = client.User
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.User.list(nil)
+results = client.user.list(nil)
 ```
 
 ### Common Methods

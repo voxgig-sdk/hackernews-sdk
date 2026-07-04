@@ -50,8 +50,7 @@ class TestUpdateEntity:
         update_ref01_ent = client.Update(None)
         update_ref01_match = {}
 
-        update_ref01_list_result, err = update_ref01_ent.list(update_ref01_match, None)
-        assert err is None
+        update_ref01_list_result = update_ref01_ent.list(update_ref01_match, None)
         assert isinstance(update_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _update_basic_setup(extra):
         "HACKERNEWS_TEST_UPDATE_ENTID": idmap,
         "HACKERNEWS_TEST_LIVE": "FALSE",
         "HACKERNEWS_TEST_EXPLAIN": "FALSE",
-        "HACKERNEWS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _update_basic_setup(extra):
     if env.get("HACKERNEWS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("HACKERNEWS_APIKEY"),
             },
             extra or {},
         ])

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch StoryListMatch
+---@param ctrl? table
+---@return Story[]
+---@return string? err
 function StoryEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

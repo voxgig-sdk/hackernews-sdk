@@ -244,30 +244,95 @@ end
 
 
 
+-- Idiomatic facade: client:item():list() / client:item():load({ id = ... })
+function HackernewsSDK:item(data)
+  local EntityMod = require("entity.item_entity")
+  if data == nil then
+    if self._item == nil then
+      self._item = EntityMod.new(self, nil)
+    end
+    return self._item
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:item() instead.
 function HackernewsSDK:Item(data)
   local EntityMod = require("entity.item_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:live_data():list() / client:live_data():load({ id = ... })
+function HackernewsSDK:live_data(data)
+  local EntityMod = require("entity.live_data_entity")
+  if data == nil then
+    if self._live_data == nil then
+      self._live_data = EntityMod.new(self, nil)
+    end
+    return self._live_data
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:live_data() instead.
 function HackernewsSDK:LiveData(data)
   local EntityMod = require("entity.live_data_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:story():list() / client:story():load({ id = ... })
+function HackernewsSDK:story(data)
+  local EntityMod = require("entity.story_entity")
+  if data == nil then
+    if self._story == nil then
+      self._story = EntityMod.new(self, nil)
+    end
+    return self._story
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:story() instead.
 function HackernewsSDK:Story(data)
   local EntityMod = require("entity.story_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:update():list() / client:update():load({ id = ... })
+function HackernewsSDK:update(data)
+  local EntityMod = require("entity.update_entity")
+  if data == nil then
+    if self._update == nil then
+      self._update = EntityMod.new(self, nil)
+    end
+    return self._update
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:update() instead.
 function HackernewsSDK:Update(data)
   local EntityMod = require("entity.update_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
+function HackernewsSDK:user(data)
+  local EntityMod = require("entity.user_entity")
+  if data == nil then
+    if self._user == nil then
+      self._user = EntityMod.new(self, nil)
+    end
+    return self._user
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:user() instead.
 function HackernewsSDK:User(data)
   local EntityMod = require("entity.user_entity")
   return EntityMod.new(self, data)

@@ -50,8 +50,7 @@ class TestUserEntity:
         user_ref01_ent = client.User(None)
         user_ref01_match = {}
 
-        user_ref01_list_result, err = user_ref01_ent.list(user_ref01_match, None)
-        assert err is None
+        user_ref01_list_result = user_ref01_ent.list(user_ref01_match, None)
         assert isinstance(user_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _user_basic_setup(extra):
         "HACKERNEWS_TEST_USER_ENTID": idmap,
         "HACKERNEWS_TEST_LIVE": "FALSE",
         "HACKERNEWS_TEST_EXPLAIN": "FALSE",
-        "HACKERNEWS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _user_basic_setup(extra):
     if env.get("HACKERNEWS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("HACKERNEWS_APIKEY"),
             },
             extra or {},
         ])

@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Hackernews_types'
+
 
 class HackernewsSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class HackernewsSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class HackernewsSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue HackernewsError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = HackernewsHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class HackernewsSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,40 +198,75 @@ class HackernewsSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.item.list / client.item.load({ "id" => ... })
+  def item
+    require_relative 'entity/item_entity'
+    @item ||= ItemEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.item instead.
   def Item(data = nil)
     require_relative 'entity/item_entity'
     ItemEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.live_data.list / client.live_data.load({ "id" => ... })
+  def live_data
+    require_relative 'entity/live_data_entity'
+    @live_data ||= LiveDataEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.live_data instead.
   def LiveData(data = nil)
     require_relative 'entity/live_data_entity'
     LiveDataEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.story.list / client.story.load({ "id" => ... })
+  def story
+    require_relative 'entity/story_entity'
+    @story ||= StoryEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.story instead.
   def Story(data = nil)
     require_relative 'entity/story_entity'
     StoryEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.update.list / client.update.load({ "id" => ... })
+  def update
+    require_relative 'entity/update_entity'
+    @update ||= UpdateEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.update instead.
   def Update(data = nil)
     require_relative 'entity/update_entity'
     UpdateEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.user.list / client.user.load({ "id" => ... })
+  def user
+    require_relative 'entity/user_entity'
+    @user ||= UserEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.user instead.
   def User(data = nil)
     require_relative 'entity/user_entity'
     UserEntity.new(self, data)

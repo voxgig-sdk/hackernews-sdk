@@ -43,8 +43,7 @@ class StoryEntityTest < Minitest::Test
     story_ref01_ent = client.Story(nil)
     story_ref01_match = {}
 
-    story_ref01_list_result, err = story_ref01_ent.list(story_ref01_match, nil)
-    assert_nil err
+    story_ref01_list_result = story_ref01_ent.list(story_ref01_match, nil)
     assert story_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def story_basic_setup(extra)
     "HACKERNEWS_TEST_STORY_ENTID" => idmap,
     "HACKERNEWS_TEST_LIVE" => "FALSE",
     "HACKERNEWS_TEST_EXPLAIN" => "FALSE",
-    "HACKERNEWS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def story_basic_setup(extra)
   if env["HACKERNEWS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["HACKERNEWS_APIKEY"],
       },
       extra || {},
     ])
