@@ -101,7 +101,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ItemEntity
 
 ```php
-$item = $client->item();
+$item = $client->Item();
 ```
 
 ### Fields
@@ -131,7 +131,7 @@ $item = $client->item();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->item()->list([]);
+$results = $client->Item()->list([]);
 ```
 
 ### Common Methods
@@ -167,7 +167,7 @@ Return the entity name.
 ## LiveDataEntity
 
 ```php
-$live_data = $client->live_data();
+$live_data = $client->LiveData();
 ```
 
 ### Operations
@@ -177,7 +177,7 @@ $live_data = $client->live_data();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->live_data()->load(["id" => "live_data_id"]);
+$result = $client->LiveData()->load(["id" => "live_data_id"]);
 ```
 
 ### Common Methods
@@ -213,7 +213,7 @@ Return the entity name.
 ## StoryEntity
 
 ```php
-$story = $client->story();
+$story = $client->Story();
 ```
 
 ### Operations
@@ -223,7 +223,7 @@ $story = $client->story();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->story()->list([]);
+$results = $client->Story()->list([]);
 ```
 
 ### Common Methods
@@ -259,7 +259,7 @@ Return the entity name.
 ## UpdateEntity
 
 ```php
-$update = $client->update();
+$update = $client->Update();
 ```
 
 ### Fields
@@ -276,7 +276,7 @@ $update = $client->update();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->update()->list([]);
+$results = $client->Update()->list([]);
 ```
 
 ### Common Methods
@@ -312,7 +312,7 @@ Return the entity name.
 ## UserEntity
 
 ```php
-$user = $client->user();
+$user = $client->User();
 ```
 
 ### Fields
@@ -332,7 +332,7 @@ $user = $client->user();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->user()->list([]);
+$results = $client->User()->list([]);
 ```
 
 ### Common Methods

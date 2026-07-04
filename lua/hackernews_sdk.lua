@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:item():list() / client:item():load({ id = ... })
-function HackernewsSDK:item(data)
+-- Idiomatic facade: client:Item():list() / client:Item():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HackernewsSDK:Item(data)
   local EntityMod = require("entity.item_entity")
   if data == nil then
     if self._item == nil then
@@ -256,15 +257,10 @@ function HackernewsSDK:item(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:item() instead.
-function HackernewsSDK:Item(data)
-  local EntityMod = require("entity.item_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:live_data():list() / client:live_data():load({ id = ... })
-function HackernewsSDK:live_data(data)
+-- Idiomatic facade: client:LiveData():list() / client:LiveData():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HackernewsSDK:LiveData(data)
   local EntityMod = require("entity.live_data_entity")
   if data == nil then
     if self._live_data == nil then
@@ -275,15 +271,10 @@ function HackernewsSDK:live_data(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:live_data() instead.
-function HackernewsSDK:LiveData(data)
-  local EntityMod = require("entity.live_data_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:story():list() / client:story():load({ id = ... })
-function HackernewsSDK:story(data)
+-- Idiomatic facade: client:Story():list() / client:Story():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HackernewsSDK:Story(data)
   local EntityMod = require("entity.story_entity")
   if data == nil then
     if self._story == nil then
@@ -294,15 +285,10 @@ function HackernewsSDK:story(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:story() instead.
-function HackernewsSDK:Story(data)
-  local EntityMod = require("entity.story_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:update():list() / client:update():load({ id = ... })
-function HackernewsSDK:update(data)
+-- Idiomatic facade: client:Update():list() / client:Update():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HackernewsSDK:Update(data)
   local EntityMod = require("entity.update_entity")
   if data == nil then
     if self._update == nil then
@@ -313,15 +299,10 @@ function HackernewsSDK:update(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:update() instead.
-function HackernewsSDK:Update(data)
-  local EntityMod = require("entity.update_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
-function HackernewsSDK:user(data)
+-- Idiomatic facade: client:User():list() / client:User():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HackernewsSDK:User(data)
   local EntityMod = require("entity.user_entity")
   if data == nil then
     if self._user == nil then
@@ -329,12 +310,6 @@ function HackernewsSDK:user(data)
     end
     return self._user
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:user() instead.
-function HackernewsSDK:User(data)
-  local EntityMod = require("entity.user_entity")
   return EntityMod.new(self, data)
 end
 

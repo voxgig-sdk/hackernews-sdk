@@ -208,70 +208,35 @@ class HackernewsSDK {
 
 
 
-  _item?: ItemEntity
-
-  // Idiomatic facade: `client.item.list()` / `client.item.load({ id })`.
-  get item(): ItemEntity {
-    return (this._item ??= new ItemEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.item` instead. */
+  // Entity access: `client.Item().list()` / `client.Item().load({ id })`.
   Item(data?: any) {
     const self = this
     return new ItemEntity(self,data)
   }
 
 
-  _live_data?: LiveDataEntity
-
-  // Idiomatic facade: `client.live_data.list()` / `client.live_data.load({ id })`.
-  get live_data(): LiveDataEntity {
-    return (this._live_data ??= new LiveDataEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.live_data` instead. */
+  // Entity access: `client.LiveData().list()` / `client.LiveData().load({ id })`.
   LiveData(data?: any) {
     const self = this
     return new LiveDataEntity(self,data)
   }
 
 
-  _story?: StoryEntity
-
-  // Idiomatic facade: `client.story.list()` / `client.story.load({ id })`.
-  get story(): StoryEntity {
-    return (this._story ??= new StoryEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.story` instead. */
+  // Entity access: `client.Story().list()` / `client.Story().load({ id })`.
   Story(data?: any) {
     const self = this
     return new StoryEntity(self,data)
   }
 
 
-  _update?: UpdateEntity
-
-  // Idiomatic facade: `client.update.list()` / `client.update.load({ id })`.
-  get update(): UpdateEntity {
-    return (this._update ??= new UpdateEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.update` instead. */
+  // Entity access: `client.Update().list()` / `client.Update().load({ id })`.
   Update(data?: any) {
     const self = this
     return new UpdateEntity(self,data)
   }
 
 
-  _user?: UserEntity
-
-  // Idiomatic facade: `client.user.list()` / `client.user.load({ id })`.
-  get user(): UserEntity {
-    return (this._user ??= new UserEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.user` instead. */
+  // Entity access: `client.User().list()` / `client.User().load({ id })`.
   User(data?: any) {
     const self = this
     return new UserEntity(self,data)

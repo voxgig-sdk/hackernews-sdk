@@ -208,65 +208,35 @@ class HackernewsSDK
   end
 
 
-  # Idiomatic facade: client.item.list / client.item.load({ "id" => ... })
-  def item
-    require_relative 'entity/item_entity'
-    @item ||= ItemEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.item instead.
+  # Canonical facade: client.Item.list / client.Item.load({ "id" => ... })
   def Item(data = nil)
     require_relative 'entity/item_entity'
     ItemEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.live_data.list / client.live_data.load({ "id" => ... })
-  def live_data
-    require_relative 'entity/live_data_entity'
-    @live_data ||= LiveDataEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.live_data instead.
+  # Canonical facade: client.LiveData.list / client.LiveData.load({ "id" => ... })
   def LiveData(data = nil)
     require_relative 'entity/live_data_entity'
     LiveDataEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.story.list / client.story.load({ "id" => ... })
-  def story
-    require_relative 'entity/story_entity'
-    @story ||= StoryEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.story instead.
+  # Canonical facade: client.Story.list / client.Story.load({ "id" => ... })
   def Story(data = nil)
     require_relative 'entity/story_entity'
     StoryEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.update.list / client.update.load({ "id" => ... })
-  def update
-    require_relative 'entity/update_entity'
-    @update ||= UpdateEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.update instead.
+  # Canonical facade: client.Update.list / client.Update.load({ "id" => ... })
   def Update(data = nil)
     require_relative 'entity/update_entity'
     UpdateEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.user.list / client.user.load({ "id" => ... })
-  def user
-    require_relative 'entity/user_entity'
-    @user ||= UserEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.user instead.
+  # Canonical facade: client.User.list / client.User.load({ "id" => ... })
   def User(data = nil)
     require_relative 'entity/user_entity'
     UserEntity.new(self, data)

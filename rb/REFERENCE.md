@@ -102,7 +102,7 @@ same parameters as `direct()`. Raises on error.
 ## ItemEntity
 
 ```ruby
-item = client.item
+item = client.Item
 ```
 
 ### Fields
@@ -132,7 +132,7 @@ item = client.item
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.item.list(nil)
+results = client.Item.list(nil)
 ```
 
 ### Common Methods
@@ -168,7 +168,7 @@ Return the entity name.
 ## LiveDataEntity
 
 ```ruby
-live_data = client.live_data
+live_data = client.LiveData
 ```
 
 ### Operations
@@ -178,7 +178,7 @@ live_data = client.live_data
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.live_data.load({ "id" => "live_data_id" })
+result = client.LiveData.load({ "id" => "live_data_id" })
 ```
 
 ### Common Methods
@@ -214,7 +214,7 @@ Return the entity name.
 ## StoryEntity
 
 ```ruby
-story = client.story
+story = client.Story
 ```
 
 ### Operations
@@ -224,7 +224,7 @@ story = client.story
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.story.list(nil)
+results = client.Story.list(nil)
 ```
 
 ### Common Methods
@@ -260,7 +260,7 @@ Return the entity name.
 ## UpdateEntity
 
 ```ruby
-update = client.update
+update = client.Update
 ```
 
 ### Fields
@@ -277,7 +277,7 @@ update = client.update
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.update.list(nil)
+results = client.Update.list(nil)
 ```
 
 ### Common Methods
@@ -313,7 +313,7 @@ Return the entity name.
 ## UserEntity
 
 ```ruby
-user = client.user
+user = client.User
 ```
 
 ### Fields
@@ -333,7 +333,7 @@ user = client.user
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.user.list(nil)
+results = client.User.list(nil)
 ```
 
 ### Common Methods

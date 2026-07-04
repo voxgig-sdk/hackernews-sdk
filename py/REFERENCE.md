@@ -96,7 +96,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ItemEntity
 
 ```python
-item = client.item
+item = client.Item()
 ```
 
 ### Fields
@@ -126,7 +126,9 @@ item = client.item
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.item.list({})
+results = client.Item().list({})
+for item in results:
+    print(item)
 ```
 
 ### Common Methods
@@ -161,7 +163,7 @@ Return the entity name.
 ## LiveDataEntity
 
 ```python
-live_data = client.live_data
+live_data = client.LiveData()
 ```
 
 ### Operations
@@ -171,7 +173,7 @@ live_data = client.live_data
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.live_data.load({"id": "live_data_id"})
+result = client.LiveData().load({"id": "live_data_id"})
 ```
 
 ### Common Methods
@@ -206,7 +208,7 @@ Return the entity name.
 ## StoryEntity
 
 ```python
-story = client.story
+story = client.Story()
 ```
 
 ### Operations
@@ -216,7 +218,9 @@ story = client.story
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.story.list({})
+results = client.Story().list({})
+for story in results:
+    print(story)
 ```
 
 ### Common Methods
@@ -251,7 +255,7 @@ Return the entity name.
 ## UpdateEntity
 
 ```python
-update = client.update
+update = client.Update()
 ```
 
 ### Fields
@@ -268,7 +272,9 @@ update = client.update
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.update.list({})
+results = client.Update().list({})
+for update in results:
+    print(update)
 ```
 
 ### Common Methods
@@ -303,7 +309,7 @@ Return the entity name.
 ## UserEntity
 
 ```python
-user = client.user
+user = client.User()
 ```
 
 ### Fields
@@ -323,7 +329,9 @@ user = client.user
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.user.list({})
+results = client.User().list({})
+for user in results:
+    print(user)
 ```
 
 ### Common Methods

@@ -26,9 +26,11 @@ import { HackernewsSDK } from '@voxgig-sdk/hackernews'
 
 const client = new HackernewsSDK()
 
-// List all items
-const items = await client.item.list()
-console.log(items.data)
+// List all items (returns Item[])
+const items = await client.Item().list()
+for (const item of items) {
+  console.log(item)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -87,9 +89,10 @@ from hackernews_sdk import HackernewsSDK
 
 client = HackernewsSDK()
 
-# List all items
-items = client.item.list()
-print(items)
+# List all items (returns a list, raises on error)
+items = client.Item().list({})
+for item in items:
+    print(item)
 ```
 
 ### PHP
@@ -100,8 +103,8 @@ require_once 'hackernews_sdk.php';
 
 $client = new HackernewsSDK();
 
-// List all items (throws on error)
-$items = $client->item()->list();
+// List all items (returns an array; throws on error)
+$items = $client->Item()->list();
 print_r($items);
 ```
 
@@ -124,8 +127,8 @@ require_relative "Hackernews_sdk"
 
 client = HackernewsSDK.new
 
-# List all items
-items = client.item.list
+# List all items (returns an Array; raises on error)
+items = client.Item.list
 puts items
 ```
 
@@ -137,7 +140,7 @@ local sdk = require("hackernews_sdk")
 local client = sdk.new()
 
 -- List all items
-local items, err = client:item():list()
+local items, err = client:Item():list()
 print(items)
 ```
 
@@ -150,22 +153,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = HackernewsSDK.test()
-const result = await client.item.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const item = await client.Item().load({ id: 1 })
+// item is a bare Item populated with mock data
+console.log(item)
 ```
 
 ### Python
 
 ```python
 client = HackernewsSDK.test()
-result = client.item.load({"id": "test01"})
+item = client.Item().load({"id": "test01"})
+print(item)
 ```
 
 ### PHP
 
 ```php
-$client = HackernewsSDK::test();
-$result = $client->item()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = HackernewsSDK::test([
+    "entity" => ["item" => ["test01" => ["id" => "test01"]]],
+]);
+$item = $client->Item()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +188,18 @@ result, err := client.Item(nil).Load(
 ### Ruby
 
 ```ruby
-client = HackernewsSDK.test
-result = client.item.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = HackernewsSDK.test({
+  "entity" => { "item" => { "test01" => { "id" => "test01" } } },
+})
+item = client.Item.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:item():load({ id = "test01" })
+local result, err = client:Item():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +247,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

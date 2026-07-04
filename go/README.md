@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/hackernews-sdk/go=../hackernews-sdk/g
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/hackernews-sdk/go"
-    "github.com/voxgig-sdk/hackernews-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List items
-
-```go
-    result, err := client.Item(nil).List(nil, nil)
+    // List item records — the value is the array of records itself.
+    items, err := client.Item(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range items.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Item(nil).Load(
+item, err := client.Item(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(item) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -190,11 +189,11 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Item` | `(data map[string]any) HackernewsEntity` | Create a Item entity instance. |
+| `Item` | `(data map[string]any) HackernewsEntity` | Create an Item entity instance. |
 | `LiveData` | `(data map[string]any) HackernewsEntity` | Create a LiveData entity instance. |
 | `Story` | `(data map[string]any) HackernewsEntity` | Create a Story entity instance. |
-| `Update` | `(data map[string]any) HackernewsEntity` | Create a Update entity instance. |
-| `User` | `(data map[string]any) HackernewsEntity` | Create a User entity instance. |
+| `Update` | `(data map[string]any) HackernewsEntity` | Create an Update entity instance. |
+| `User` | `(data map[string]any) HackernewsEntity` | Create an User entity instance. |
 
 ### Entity interface (HackernewsEntity)
 
@@ -214,17 +213,24 @@ All entities implement the `HackernewsEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    item, err := client.Item(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // item is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -333,7 +339,11 @@ Create an instance: `item := client.Item(nil)`
 #### Example: List
 
 ```go
-results, err := client.Item(nil).List(nil, nil)
+items, err := client.Item(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(items) // the array of records
 ```
 
 
@@ -350,7 +360,11 @@ Create an instance: `live_data := client.LiveData(nil)`
 #### Example: Load
 
 ```go
-result, err := client.LiveData(nil).Load(map[string]any{"id": "live_data_id"}, nil)
+live_data, err := client.LiveData(nil).Load(map[string]any{"id": "live_data_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(live_data) // the loaded record
 ```
 
 
@@ -367,7 +381,11 @@ Create an instance: `story := client.Story(nil)`
 #### Example: List
 
 ```go
-results, err := client.Story(nil).List(nil, nil)
+storys, err := client.Story(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(storys) // the array of records
 ```
 
 
@@ -391,7 +409,11 @@ Create an instance: `update := client.Update(nil)`
 #### Example: List
 
 ```go
-results, err := client.Update(nil).List(nil, nil)
+updates, err := client.Update(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updates) // the array of records
 ```
 
 
@@ -418,7 +440,11 @@ Create an instance: `user := client.User(nil)`
 #### Example: List
 
 ```go
-results, err := client.User(nil).List(nil, nil)
+users, err := client.User(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(users) // the array of records
 ```
 
 

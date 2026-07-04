@@ -31,17 +31,17 @@ local sdk = require("hackernews_sdk")
 local client = sdk.new()
 ```
 
-### 2. List items
+### 2. List item records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:item():list()
+local items, err = client:Item():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(items) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:item():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Item():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,11 +167,11 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Item` | `(data) -> ItemEntity` | Create a Item entity instance. |
+| `Item` | `(data) -> ItemEntity` | Create an Item entity instance. |
 | `LiveData` | `(data) -> LiveDataEntity` | Create a LiveData entity instance. |
 | `Story` | `(data) -> StoryEntity` | Create a Story entity instance. |
-| `Update` | `(data) -> UpdateEntity` | Create a Update entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `Update` | `(data) -> UpdateEntity` | Create an Update entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -193,17 +193,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local item, err = client:Item():load({ id = "example_id" })
+    if err then error(err) end
+    -- item is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -281,7 +286,7 @@ API path: `/user/{id}.json`
 
 ### Item
 
-Create an instance: `const item = client.item`
+Create an instance: `local item = client:Item(nil)`
 
 #### Operations
 
@@ -311,14 +316,14 @@ Create an instance: `const item = client.item`
 
 #### Example: List
 
-```ts
-const items = await client.item.list()
+```lua
+local items, err = client:Item():list()
 ```
 
 
 ### LiveData
 
-Create an instance: `const live_data = client.live_data`
+Create an instance: `local live_data = client:LiveData(nil)`
 
 #### Operations
 
@@ -328,14 +333,14 @@ Create an instance: `const live_data = client.live_data`
 
 #### Example: Load
 
-```ts
-const live_data = await client.live_data.load({ id: 'live_data_id' })
+```lua
+local live_data, err = client:LiveData():load({ id = "live_data_id" })
 ```
 
 
 ### Story
 
-Create an instance: `const story = client.story`
+Create an instance: `local story = client:Story(nil)`
 
 #### Operations
 
@@ -345,14 +350,14 @@ Create an instance: `const story = client.story`
 
 #### Example: List
 
-```ts
-const storys = await client.story.list()
+```lua
+local storys, err = client:Story():list()
 ```
 
 
 ### Update
 
-Create an instance: `const update = client.update`
+Create an instance: `local update = client:Update(nil)`
 
 #### Operations
 
@@ -369,14 +374,14 @@ Create an instance: `const update = client.update`
 
 #### Example: List
 
-```ts
-const updates = await client.update.list()
+```lua
+local updates, err = client:Update():list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `local user = client:User(nil)`
 
 #### Operations
 
@@ -396,8 +401,8 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```lua
+local users, err = client:User():list()
 ```
 
 
@@ -472,7 +477,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local item = client:item()
+local item = client:Item()
 item:load({ id = "example_id" })
 
 -- item:data_get() now returns the loaded item data

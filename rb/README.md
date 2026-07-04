@@ -28,16 +28,14 @@ require_relative "Hackernews_sdk"
 client = HackernewsSDK.new
 ```
 
-### 2. List items
+### 2. List item records
 
 ```ruby
 begin
-  result = client.item.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Item records — iterate directly.
+  items = client.Item.list
+  items.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = HackernewsSDK.test
+client = HackernewsSDK.test({
+  "entity" => { "item" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.item.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+item = client.Item.load({ "id" => "test01" })
+puts item
 ```
 
 ### Use a custom fetch function
@@ -167,11 +169,11 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Item` | `(data) -> ItemEntity` | Create a Item entity instance. |
+| `Item` | `(data) -> ItemEntity` | Create an Item entity instance. |
 | `LiveData` | `(data) -> LiveDataEntity` | Create a LiveData entity instance. |
 | `Story` | `(data) -> StoryEntity` | Create a Story entity instance. |
-| `Update` | `(data) -> UpdateEntity` | Create a Update entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `Update` | `(data) -> UpdateEntity` | Create an Update entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -284,7 +286,7 @@ API path: `/user/{id}.json`
 
 ### Item
 
-Create an instance: `const item = client.item`
+Create an instance: `item = client.Item`
 
 #### Operations
 
@@ -314,14 +316,15 @@ Create an instance: `const item = client.item`
 
 #### Example: List
 
-```ts
-const items = await client.item.list()
+```ruby
+# list returns an Array of Item records (raises on error).
+items = client.Item.list
 ```
 
 
 ### LiveData
 
-Create an instance: `const live_data = client.live_data`
+Create an instance: `live_data = client.LiveData`
 
 #### Operations
 
@@ -331,14 +334,15 @@ Create an instance: `const live_data = client.live_data`
 
 #### Example: Load
 
-```ts
-const live_data = await client.live_data.load({ id: 'live_data_id' })
+```ruby
+# load returns the bare LiveData record (raises on error).
+live_data = client.LiveData.load({ "id" => "live_data_id" })
 ```
 
 
 ### Story
 
-Create an instance: `const story = client.story`
+Create an instance: `story = client.Story`
 
 #### Operations
 
@@ -348,14 +352,15 @@ Create an instance: `const story = client.story`
 
 #### Example: List
 
-```ts
-const storys = await client.story.list()
+```ruby
+# list returns an Array of Story records (raises on error).
+storys = client.Story.list
 ```
 
 
 ### Update
 
-Create an instance: `const update = client.update`
+Create an instance: `update = client.Update`
 
 #### Operations
 
@@ -372,14 +377,15 @@ Create an instance: `const update = client.update`
 
 #### Example: List
 
-```ts
-const updates = await client.update.list()
+```ruby
+# list returns an Array of Update records (raises on error).
+updates = client.Update.list
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User`
 
 #### Operations
 
@@ -399,8 +405,9 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```ruby
+# list returns an Array of User records (raises on error).
+users = client.User.list
 ```
 
 
@@ -475,7 +482,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-item = client.item
+item = client.Item
 item.load({ "id" => "example_id" })
 
 # item.data_get now returns the loaded item data

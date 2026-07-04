@@ -220,89 +220,39 @@ class HackernewsSDK:
         }
 
 
-    @property
-    def item(self):
-        """Idiomatic facade: client.item.list() / client.item.load({"id": ...})."""
-        from entity.item_entity import ItemEntity
-        cached = getattr(self, "_item", None)
-        if cached is None:
-            cached = ItemEntity(self, None)
-            self._item = cached
-        return cached
-
-    def Item(self, data=None):
-        # Deprecated: use client.item instead.
+    def Item(self, data=None) -> "ItemEntity":
+        """Entity factory: client.Item().list({}) / client.Item().load({"id": ...})."""
         from entity.item_entity import ItemEntity
         return ItemEntity(self, data)
 
 
-    @property
-    def live_data(self):
-        """Idiomatic facade: client.live_data.list() / client.live_data.load({"id": ...})."""
-        from entity.live_data_entity import LiveDataEntity
-        cached = getattr(self, "_live_data", None)
-        if cached is None:
-            cached = LiveDataEntity(self, None)
-            self._live_data = cached
-        return cached
-
-    def LiveData(self, data=None):
-        # Deprecated: use client.live_data instead.
+    def LiveData(self, data=None) -> "LiveDataEntity":
+        """Entity factory: client.LiveData().list({}) / client.LiveData().load({"id": ...})."""
         from entity.live_data_entity import LiveDataEntity
         return LiveDataEntity(self, data)
 
 
-    @property
-    def story(self):
-        """Idiomatic facade: client.story.list() / client.story.load({"id": ...})."""
-        from entity.story_entity import StoryEntity
-        cached = getattr(self, "_story", None)
-        if cached is None:
-            cached = StoryEntity(self, None)
-            self._story = cached
-        return cached
-
-    def Story(self, data=None):
-        # Deprecated: use client.story instead.
+    def Story(self, data=None) -> "StoryEntity":
+        """Entity factory: client.Story().list({}) / client.Story().load({"id": ...})."""
         from entity.story_entity import StoryEntity
         return StoryEntity(self, data)
 
 
-    @property
-    def update(self):
-        """Idiomatic facade: client.update.list() / client.update.load({"id": ...})."""
-        from entity.update_entity import UpdateEntity
-        cached = getattr(self, "_update", None)
-        if cached is None:
-            cached = UpdateEntity(self, None)
-            self._update = cached
-        return cached
-
-    def Update(self, data=None):
-        # Deprecated: use client.update instead.
+    def Update(self, data=None) -> "UpdateEntity":
+        """Entity factory: client.Update().list({}) / client.Update().load({"id": ...})."""
         from entity.update_entity import UpdateEntity
         return UpdateEntity(self, data)
 
 
-    @property
-    def user(self):
-        """Idiomatic facade: client.user.list() / client.user.load({"id": ...})."""
-        from entity.user_entity import UserEntity
-        cached = getattr(self, "_user", None)
-        if cached is None:
-            cached = UserEntity(self, None)
-            self._user = cached
-        return cached
-
-    def User(self, data=None):
-        # Deprecated: use client.user instead.
+    def User(self, data=None) -> "UserEntity":
+        """Entity factory: client.User().list({}) / client.User().load({"id": ...})."""
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "HackernewsSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -322,3 +272,13 @@ class HackernewsSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.item_entity import ItemEntity
+    from entity.live_data_entity import LiveDataEntity
+    from entity.story_entity import StoryEntity
+    from entity.update_entity import UpdateEntity
+    from entity.user_entity import UserEntity

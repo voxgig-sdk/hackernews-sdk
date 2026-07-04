@@ -157,7 +157,7 @@ Alias for `HackernewsSDK.test()`.
 ## ItemEntity
 
 ```ts
-const item = client.item
+const item = client.Item()
 ```
 
 ### Fields
@@ -187,7 +187,7 @@ const item = client.item
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.item.list()
+const results = await client.Item().list()
 ```
 
 ### Common Methods
@@ -221,7 +221,7 @@ Return a copy of the entity options.
 ## LiveDataEntity
 
 ```ts
-const live_data = client.live_data
+const live_data = client.LiveData()
 ```
 
 ### Operations
@@ -231,7 +231,7 @@ const live_data = client.live_data
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.live_data.load({ id: 'live_data_id' })
+const result = await client.LiveData().load({ id: 'live_data_id' })
 ```
 
 ### Common Methods
@@ -265,7 +265,7 @@ Return a copy of the entity options.
 ## StoryEntity
 
 ```ts
-const story = client.story
+const story = client.Story()
 ```
 
 ### Operations
@@ -275,7 +275,7 @@ const story = client.story
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.story.list()
+const results = await client.Story().list()
 ```
 
 ### Common Methods
@@ -309,7 +309,7 @@ Return a copy of the entity options.
 ## UpdateEntity
 
 ```ts
-const update = client.update
+const update = client.Update()
 ```
 
 ### Fields
@@ -326,7 +326,7 @@ const update = client.update
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.update.list()
+const results = await client.Update().list()
 ```
 
 ### Common Methods
@@ -360,7 +360,7 @@ Return a copy of the entity options.
 ## UserEntity
 
 ```ts
-const user = client.user
+const user = client.User()
 ```
 
 ### Fields
@@ -380,7 +380,7 @@ const user = client.user
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.user.list()
+const results = await client.User().list()
 ```
 
 ### Common Methods

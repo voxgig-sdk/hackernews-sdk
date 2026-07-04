@@ -29,18 +29,16 @@ require_once 'hackernews_sdk.php';
 $client = new HackernewsSDK();
 ```
 
-### 2. List items
+### 2. List item records
 
 ```php
 try {
-    $result = $client->item()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Item records — iterate directly.
+    $items = $client->Item()->list();
+    foreach ($items as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = HackernewsSDK::test();
+$client = HackernewsSDK::test([
+    "entity" => ["item" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->item()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$item = $client->Item()->load(["id" => "test01"]);
+print_r($item);
 ```
 
 ### Use a custom fetch function
@@ -171,11 +173,11 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Item` | `($data): ItemEntity` | Create a Item entity instance. |
+| `Item` | `($data): ItemEntity` | Create an Item entity instance. |
 | `LiveData` | `($data): LiveDataEntity` | Create a LiveData entity instance. |
 | `Story` | `($data): StoryEntity` | Create a Story entity instance. |
-| `Update` | `($data): UpdateEntity` | Create a Update entity instance. |
-| `User` | `($data): UserEntity` | Create a User entity instance. |
+| `Update` | `($data): UpdateEntity` | Create an Update entity instance. |
+| `User` | `($data): UserEntity` | Create an User entity instance. |
 
 ### Entity interface
 
@@ -289,7 +291,7 @@ API path: `/user/{id}.json`
 
 ### Item
 
-Create an instance: `const item = client.item`
+Create an instance: `$item = $client->Item();`
 
 #### Operations
 
@@ -319,14 +321,15 @@ Create an instance: `const item = client.item`
 
 #### Example: List
 
-```ts
-const items = await client.item.list()
+```php
+// list() returns an array of Item records (throws on error).
+$items = $client->Item()->list();
 ```
 
 
 ### LiveData
 
-Create an instance: `const live_data = client.live_data`
+Create an instance: `$live_data = $client->LiveData();`
 
 #### Operations
 
@@ -336,14 +339,15 @@ Create an instance: `const live_data = client.live_data`
 
 #### Example: Load
 
-```ts
-const live_data = await client.live_data.load({ id: 'live_data_id' })
+```php
+// load() returns the bare LiveData record (throws on error).
+$live_data = $client->LiveData()->load(["id" => "live_data_id"]);
 ```
 
 
 ### Story
 
-Create an instance: `const story = client.story`
+Create an instance: `$story = $client->Story();`
 
 #### Operations
 
@@ -353,14 +357,15 @@ Create an instance: `const story = client.story`
 
 #### Example: List
 
-```ts
-const storys = await client.story.list()
+```php
+// list() returns an array of Story records (throws on error).
+$storys = $client->Story()->list();
 ```
 
 
 ### Update
 
-Create an instance: `const update = client.update`
+Create an instance: `$update = $client->Update();`
 
 #### Operations
 
@@ -377,14 +382,15 @@ Create an instance: `const update = client.update`
 
 #### Example: List
 
-```ts
-const updates = await client.update.list()
+```php
+// list() returns an array of Update records (throws on error).
+$updates = $client->Update()->list();
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `$user = $client->User();`
 
 #### Operations
 
@@ -404,8 +410,9 @@ Create an instance: `const user = client.user`
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```php
+// list() returns an array of User records (throws on error).
+$users = $client->User()->list();
 ```
 
 
@@ -480,7 +487,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$item = $client->item();
+$item = $client->Item();
 $item->load(["id" => "example_id"]);
 
 // $item->dataGet() now returns the loaded item data

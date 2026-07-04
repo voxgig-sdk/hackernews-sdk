@@ -99,7 +99,7 @@ same parameters as `direct()`.
 ## ItemEntity
 
 ```lua
-local item = client:item(nil)
+local item = client:Item(nil)
 ```
 
 ### Fields
@@ -129,7 +129,7 @@ local item = client:item(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:item():list()
+local results, err = client:Item():list()
 ```
 
 ### Common Methods
@@ -165,7 +165,7 @@ Return the entity name.
 ## LiveDataEntity
 
 ```lua
-local live_data = client:live_data(nil)
+local live_data = client:LiveData(nil)
 ```
 
 ### Operations
@@ -175,7 +175,7 @@ local live_data = client:live_data(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:live_data():load({ id = "live_data_id" })
+local result, err = client:LiveData():load({ id = "live_data_id" })
 ```
 
 ### Common Methods
@@ -211,7 +211,7 @@ Return the entity name.
 ## StoryEntity
 
 ```lua
-local story = client:story(nil)
+local story = client:Story(nil)
 ```
 
 ### Operations
@@ -221,7 +221,7 @@ local story = client:story(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:story():list()
+local results, err = client:Story():list()
 ```
 
 ### Common Methods
@@ -257,7 +257,7 @@ Return the entity name.
 ## UpdateEntity
 
 ```lua
-local update = client:update(nil)
+local update = client:Update(nil)
 ```
 
 ### Fields
@@ -274,7 +274,7 @@ local update = client:update(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:update():list()
+local results, err = client:Update():list()
 ```
 
 ### Common Methods
@@ -310,7 +310,7 @@ Return the entity name.
 ## UserEntity
 
 ```lua
-local user = client:user(nil)
+local user = client:User(nil)
 ```
 
 ### Fields
@@ -330,7 +330,7 @@ local user = client:user(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:user():list()
+local results, err = client:User():list()
 ```
 
 ### Common Methods

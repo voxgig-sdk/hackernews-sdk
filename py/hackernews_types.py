@@ -4,79 +4,79 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Item:
-    id: int
-    by: Optional[str] = None
-    dead: Optional[bool] = None
-    deleted: Optional[bool] = None
-    descendant: Optional[int] = None
-    kid: Optional[list] = None
-    parent: Optional[int] = None
-    part: Optional[list] = None
-    poll: Optional[int] = None
-    score: Optional[int] = None
-    text: Optional[str] = None
-    time: Optional[int] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
-
-
-@dataclass
-class ItemListMatch:
+class ItemRequired(TypedDict):
     id: int
 
 
-@dataclass
-class LiveData:
+class Item(ItemRequired, total=False):
+    by: str
+    dead: bool
+    deleted: bool
+    descendant: int
+    kid: list
+    parent: int
+    part: list
+    poll: int
+    score: int
+    text: str
+    time: int
+    title: str
+    type: str
+    url: str
+
+
+class ItemListMatch(TypedDict):
+    id: int
+
+
+class LiveData(TypedDict):
     pass
 
 
-@dataclass
-class LiveDataLoadMatch:
+class LiveDataLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Story:
+class Story(TypedDict):
     pass
 
 
-@dataclass
-class StoryListMatch:
+class StoryListMatch(TypedDict):
     pass
 
 
-@dataclass
-class Update:
-    item: Optional[list] = None
-    profile: Optional[list] = None
+class Update(TypedDict, total=False):
+    item: list
+    profile: list
 
 
-@dataclass
-class UpdateListMatch:
-    item: Optional[list] = None
-    profile: Optional[list] = None
+class UpdateListMatch(TypedDict, total=False):
+    item: list
+    profile: list
 
 
-@dataclass
-class User:
+class UserRequired(TypedDict):
     created: int
     id: str
     karma: int
-    about: Optional[str] = None
-    submitted: Optional[list] = None
 
 
-@dataclass
-class UserListMatch:
+class User(UserRequired, total=False):
+    about: str
+    submitted: list
+
+
+class UserListMatch(TypedDict):
     id: str
-

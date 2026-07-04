@@ -233,10 +233,10 @@ class HackernewsSDK
 
     private $_item = null;
 
-    // Idiomatic facade: $client->item()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Item() (PHP method
-    // names are case-insensitive).
-    public function item($data = null)
+    // Canonical facade: $client->Item()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->item()
+    // resolves here too.
+    public function Item($data = null)
     {
         require_once __DIR__ . '/entity/item_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class HackernewsSDK
 
     private $_live_data = null;
 
-    // Idiomatic facade: $client->live_data()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias LiveData() (PHP method
-    // names are case-insensitive).
-    public function live_data($data = null)
+    // Canonical facade: $client->LiveData()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->live_data()
+    // resolves here too.
+    public function LiveData($data = null)
     {
         require_once __DIR__ . '/entity/live_data_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class HackernewsSDK
 
     private $_story = null;
 
-    // Idiomatic facade: $client->story()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Story() (PHP method
-    // names are case-insensitive).
-    public function story($data = null)
+    // Canonical facade: $client->Story()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->story()
+    // resolves here too.
+    public function Story($data = null)
     {
         require_once __DIR__ . '/entity/story_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class HackernewsSDK
 
     private $_update = null;
 
-    // Idiomatic facade: $client->update()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Update() (PHP method
-    // names are case-insensitive).
-    public function update($data = null)
+    // Canonical facade: $client->Update()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->update()
+    // resolves here too.
+    public function Update($data = null)
     {
         require_once __DIR__ . '/entity/update_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class HackernewsSDK
 
     private $_user = null;
 
-    // Idiomatic facade: $client->user()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias User() (PHP method
-    // names are case-insensitive).
-    public function user($data = null)
+    // Canonical facade: $client->User()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->user()
+    // resolves here too.
+    public function User($data = null)
     {
         require_once __DIR__ . '/entity/user_entity.php';
         if ($data === null) {
