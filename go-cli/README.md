@@ -17,8 +17,6 @@ go build -o hackernews-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./hackernews-cli list item
-./hackernews-cli load 1 item
-./hackernews-cli load '{id:1}' item
 
 # REPL
 ./hackernews-cli
@@ -30,7 +28,6 @@ go build -o hackernews-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

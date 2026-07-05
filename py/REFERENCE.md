@@ -103,30 +103,30 @@ item = client.Item()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | ``$STRING`` | No |  |
-| `dead` | ``$BOOLEAN`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `descendant` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | Yes |  |
-| `kid` | ``$ARRAY`` | No |  |
-| `parent` | ``$INTEGER`` | No |  |
-| `part` | ``$ARRAY`` | No |  |
-| `poll` | ``$INTEGER`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `time` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `by` | `str` | No |  |
+| `dead` | `bool` | No |  |
+| `deleted` | `bool` | No |  |
+| `descendant` | `int` | No |  |
+| `id` | `int` | Yes |  |
+| `kid` | `list` | No |  |
+| `parent` | `int` | No |  |
+| `part` | `list` | No |  |
+| `poll` | `int` | No |  |
+| `score` | `int` | No |  |
+| `text` | `str` | No |  |
+| `time` | `int` | No |  |
+| `title` | `str` | No |  |
+| `type` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Item().list({})
+results = client.Item().list()
 for item in results:
     print(item)
 ```
@@ -173,7 +173,7 @@ live_data = client.LiveData()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.LiveData().load({"id": "live_data_id"})
+result = client.LiveData().load()
 ```
 
 ### Common Methods
@@ -213,12 +213,12 @@ story = client.Story()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Story().list({})
+results = client.Story().list()
 for story in results:
     print(story)
 ```
@@ -262,17 +262,17 @@ update = client.Update()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | ``$ARRAY`` | No |  |
-| `profile` | ``$ARRAY`` | No |  |
+| `item` | `list` | No |  |
+| `profile` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Update().list({})
+results = client.Update().list()
 for update in results:
     print(update)
 ```
@@ -316,20 +316,20 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | ``$STRING`` | No |  |
-| `created` | ``$INTEGER`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `karma` | ``$INTEGER`` | Yes |  |
-| `submitted` | ``$ARRAY`` | No |  |
+| `about` | `str` | No |  |
+| `created` | `int` | Yes |  |
+| `id` | `str` | Yes |  |
+| `karma` | `int` | Yes |  |
+| `submitted` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.User().list({})
+results = client.User().list()
 for user in results:
     print(user)
 ```

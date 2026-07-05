@@ -164,21 +164,21 @@ const item = client.Item()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | ``$STRING`` | No |  |
-| `dead` | ``$BOOLEAN`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `descendant` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | Yes |  |
-| `kid` | ``$ARRAY`` | No |  |
-| `parent` | ``$INTEGER`` | No |  |
-| `part` | ``$ARRAY`` | No |  |
-| `poll` | ``$INTEGER`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `time` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `by` | `string` | No |  |
+| `dead` | `boolean` | No |  |
+| `deleted` | `boolean` | No |  |
+| `descendant` | `number` | No |  |
+| `id` | `number` | Yes |  |
+| `kid` | `any[]` | No |  |
+| `parent` | `number` | No |  |
+| `part` | `any[]` | No |  |
+| `poll` | `number` | No |  |
+| `score` | `number` | No |  |
+| `text` | `string` | No |  |
+| `time` | `number` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -231,7 +231,7 @@ const live_data = client.LiveData()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.LiveData().load({ id: 'live_data_id' })
+const result = await client.LiveData().load()
 ```
 
 ### Common Methods
@@ -316,8 +316,8 @@ const update = client.Update()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | ``$ARRAY`` | No |  |
-| `profile` | ``$ARRAY`` | No |  |
+| `item` | `any[]` | No |  |
+| `profile` | `any[]` | No |  |
 
 ### Operations
 
@@ -367,11 +367,11 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | ``$STRING`` | No |  |
-| `created` | ``$INTEGER`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `karma` | ``$INTEGER`` | Yes |  |
-| `submitted` | ``$ARRAY`` | No |  |
+| `about` | `string` | No |  |
+| `created` | `number` | Yes |  |
+| `id` | `string` | Yes |  |
+| `karma` | `number` | Yes |  |
+| `submitted` | `any[]` | No |  |
 
 ### Operations
 

@@ -106,21 +106,21 @@ local item = client:Item(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | ``$STRING`` | No |  |
-| `dead` | ``$BOOLEAN`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `descendant` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | Yes |  |
-| `kid` | ``$ARRAY`` | No |  |
-| `parent` | ``$INTEGER`` | No |  |
-| `part` | ``$ARRAY`` | No |  |
-| `poll` | ``$INTEGER`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `time` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `by` | `string` | No |  |
+| `dead` | `boolean` | No |  |
+| `deleted` | `boolean` | No |  |
+| `descendant` | `number` | No |  |
+| `id` | `number` | Yes |  |
+| `kid` | `table` | No |  |
+| `parent` | `number` | No |  |
+| `part` | `table` | No |  |
+| `poll` | `number` | No |  |
+| `score` | `number` | No |  |
+| `text` | `string` | No |  |
+| `time` | `number` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -175,7 +175,7 @@ local live_data = client:LiveData(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:LiveData():load({ id = "live_data_id" })
+local result, err = client:LiveData():load()
 ```
 
 ### Common Methods
@@ -264,8 +264,8 @@ local update = client:Update(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | ``$ARRAY`` | No |  |
-| `profile` | ``$ARRAY`` | No |  |
+| `item` | `table` | No |  |
+| `profile` | `table` | No |  |
 
 ### Operations
 
@@ -317,11 +317,11 @@ local user = client:User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | ``$STRING`` | No |  |
-| `created` | ``$INTEGER`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `karma` | ``$INTEGER`` | Yes |  |
-| `submitted` | ``$ARRAY`` | No |  |
+| `about` | `string` | No |  |
+| `created` | `number` | Yes |  |
+| `id` | `string` | Yes |  |
+| `karma` | `number` | Yes |  |
+| `submitted` | `table` | No |  |
 
 ### Operations
 

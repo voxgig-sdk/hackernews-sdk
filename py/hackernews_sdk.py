@@ -221,31 +221,31 @@ class HackernewsSDK:
 
 
     def Item(self, data=None) -> "ItemEntity":
-        """Entity factory: client.Item().list({}) / client.Item().load({"id": ...})."""
+        """Entity factory: client.Item().list() / client.Item().load({"id": ...})."""
         from entity.item_entity import ItemEntity
         return ItemEntity(self, data)
 
 
     def LiveData(self, data=None) -> "LiveDataEntity":
-        """Entity factory: client.LiveData().list({}) / client.LiveData().load({"id": ...})."""
+        """Entity factory: client.LiveData().list() / client.LiveData().load({"id": ...})."""
         from entity.live_data_entity import LiveDataEntity
         return LiveDataEntity(self, data)
 
 
     def Story(self, data=None) -> "StoryEntity":
-        """Entity factory: client.Story().list({}) / client.Story().load({"id": ...})."""
+        """Entity factory: client.Story().list() / client.Story().load({"id": ...})."""
         from entity.story_entity import StoryEntity
         return StoryEntity(self, data)
 
 
     def Update(self, data=None) -> "UpdateEntity":
-        """Entity factory: client.Update().list({}) / client.Update().load({"id": ...})."""
+        """Entity factory: client.Update().list() / client.Update().load({"id": ...})."""
         from entity.update_entity import UpdateEntity
         return UpdateEntity(self, data)
 
 
     def User(self, data=None) -> "UserEntity":
-        """Entity factory: client.User().list({}) / client.User().load({"id": ...})."""
+        """Entity factory: client.User().list() / client.User().load({"id": ...})."""
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 

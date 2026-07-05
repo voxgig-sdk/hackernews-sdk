@@ -113,21 +113,21 @@ item := client.Item(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | ``$STRING`` | No |  |
-| `dead` | ``$BOOLEAN`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `descendant` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | Yes |  |
-| `kid` | ``$ARRAY`` | No |  |
-| `parent` | ``$INTEGER`` | No |  |
-| `part` | ``$ARRAY`` | No |  |
-| `poll` | ``$INTEGER`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `time` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `by` | `string` | No |  |
+| `dead` | `bool` | No |  |
+| `deleted` | `bool` | No |  |
+| `descendant` | `int` | No |  |
+| `id` | `int` | Yes |  |
+| `kid` | `[]any` | No |  |
+| `parent` | `int` | No |  |
+| `part` | `[]any` | No |  |
+| `poll` | `int` | No |  |
+| `score` | `int` | No |  |
+| `text` | `string` | No |  |
+| `time` | `int` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -176,7 +176,7 @@ live_data := client.LiveData(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.LiveData(nil).Load(map[string]any{"id": "live_data_id"}, nil)
+result, err := client.LiveData(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -253,8 +253,8 @@ update := client.Update(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | ``$ARRAY`` | No |  |
-| `profile` | ``$ARRAY`` | No |  |
+| `item` | `[]any` | No |  |
+| `profile` | `[]any` | No |  |
 
 ### Operations
 
@@ -300,11 +300,11 @@ user := client.User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | ``$STRING`` | No |  |
-| `created` | ``$INTEGER`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `karma` | ``$INTEGER`` | Yes |  |
-| `submitted` | ``$ARRAY`` | No |  |
+| `about` | `string` | No |  |
+| `created` | `int` | Yes |  |
+| `id` | `string` | Yes |  |
+| `karma` | `int` | Yes |  |
+| `submitted` | `[]any` | No |  |
 
 ### Operations
 

@@ -39,6 +39,8 @@
 ---@field profile? table
 
 ---@class UpdateListMatch
+---@field item? table
+---@field profile? table
 
 ---@class User
 ---@field about? string

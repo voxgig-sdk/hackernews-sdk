@@ -36,8 +36,7 @@ type ItemListMatch struct {
 type LiveData struct {
 }
 
-// LiveDataLoadMatch mirrors the live_data fields as an all-optional match
-// filter (Go analog of Partial<LiveData>).
+// LiveDataLoadMatch is the typed request payload for LiveData.LoadTyped.
 type LiveDataLoadMatch struct {
 }
 
@@ -45,8 +44,7 @@ type LiveDataLoadMatch struct {
 type Story struct {
 }
 
-// StoryListMatch mirrors the story fields as an all-optional match
-// filter (Go analog of Partial<Story>).
+// StoryListMatch is the typed request payload for Story.ListTyped.
 type StoryListMatch struct {
 }
 
@@ -56,8 +54,7 @@ type Update struct {
 	Profile *[]any `json:"profile,omitempty"`
 }
 
-// UpdateListMatch mirrors the update fields as an all-optional match
-// filter (Go analog of Partial<Update>).
+// UpdateListMatch is the typed request payload for Update.ListTyped.
 type UpdateListMatch struct {
 	Item *[]any `json:"item,omitempty"`
 	Profile *[]any `json:"profile,omitempty"`

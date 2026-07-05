@@ -43,7 +43,7 @@ class LiveData
 {
 }
 
-/** Match filter for LiveData#load (any subset of LiveData fields). */
+/** Request payload for LiveData#load. */
 class LiveDataLoadMatch
 {
 }
@@ -53,7 +53,7 @@ class Story
 {
 }
 
-/** Match filter for Story#list (any subset of Story fields). */
+/** Request payload for Story#list. */
 class StoryListMatch
 {
 }
@@ -65,7 +65,7 @@ class Update
     public ?array $profile = null;
 }
 
-/** Match filter for Update#list (any subset of Update fields). */
+/** Request payload for Update#list. */
 class UpdateListMatch
 {
     public ?array $item = null;

@@ -86,7 +86,7 @@ ItemListMatch = Struct.new(
 class LiveData
 end
 
-# Match filter for LiveData#load (any subset of LiveData fields).
+# Request payload for LiveData#load.
 class LiveDataLoadMatch
 end
 
@@ -94,7 +94,7 @@ end
 class Story
 end
 
-# Match filter for Story#list (any subset of Story fields).
+# Request payload for Story#list.
 class StoryListMatch
 end
 
@@ -111,7 +111,7 @@ Update = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Update#list (any subset of Update fields).
+# Request payload for Update#list.
 #
 # @!attribute [rw] item
 #   @return [Array, nil]

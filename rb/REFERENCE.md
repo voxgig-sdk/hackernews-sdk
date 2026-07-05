@@ -8,7 +8,7 @@ Complete API reference for the Hackernews Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'hackernews_sdk'
+require_relative 'Hackernews_sdk'
 
 client = HackernewsSDK.new(options)
 ```
@@ -109,30 +109,30 @@ item = client.Item
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | ``$STRING`` | No |  |
-| `dead` | ``$BOOLEAN`` | No |  |
-| `deleted` | ``$BOOLEAN`` | No |  |
-| `descendant` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | Yes |  |
-| `kid` | ``$ARRAY`` | No |  |
-| `parent` | ``$INTEGER`` | No |  |
-| `part` | ``$ARRAY`` | No |  |
-| `poll` | ``$INTEGER`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `time` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `by` | `String` | No |  |
+| `dead` | `Boolean` | No |  |
+| `deleted` | `Boolean` | No |  |
+| `descendant` | `Integer` | No |  |
+| `id` | `Integer` | Yes |  |
+| `kid` | `Array` | No |  |
+| `parent` | `Integer` | No |  |
+| `part` | `Array` | No |  |
+| `poll` | `Integer` | No |  |
+| `score` | `Integer` | No |  |
+| `text` | `String` | No |  |
+| `time` | `Integer` | No |  |
+| `title` | `String` | No |  |
+| `type` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Item.list(nil)
+results = client.Item.list
 ```
 
 ### Common Methods
@@ -178,7 +178,7 @@ live_data = client.LiveData
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.LiveData.load({ "id" => "live_data_id" })
+result = client.LiveData.load()
 ```
 
 ### Common Methods
@@ -219,12 +219,12 @@ story = client.Story
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Story.list(nil)
+results = client.Story.list
 ```
 
 ### Common Methods
@@ -267,17 +267,17 @@ update = client.Update
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | ``$ARRAY`` | No |  |
-| `profile` | ``$ARRAY`` | No |  |
+| `item` | `Array` | No |  |
+| `profile` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Update.list(nil)
+results = client.Update.list
 ```
 
 ### Common Methods
@@ -320,20 +320,20 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | ``$STRING`` | No |  |
-| `created` | ``$INTEGER`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `karma` | ``$INTEGER`` | Yes |  |
-| `submitted` | ``$ARRAY`` | No |  |
+| `about` | `String` | No |  |
+| `created` | `Integer` | Yes |  |
+| `id` | `String` | Yes |  |
+| `karma` | `Integer` | Yes |  |
+| `submitted` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.User.list(nil)
+results = client.User.list
 ```
 
 ### Common Methods

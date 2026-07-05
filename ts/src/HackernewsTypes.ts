@@ -30,19 +30,24 @@ export interface ItemListMatch {
 export interface LiveData {
 }
 
-export type LiveDataLoadMatch = Partial<LiveData>
+export interface LiveDataLoadMatch {
+}
 
 export interface Story {
 }
 
-export type StoryListMatch = Partial<Story>
+export interface StoryListMatch {
+}
 
 export interface Update {
   item?: any[]
   profile?: any[]
 }
 
-export type UpdateListMatch = Partial<Update>
+export interface UpdateListMatch {
+  item?: any[]
+  profile?: any[]
+}
 
 export interface User {
   about?: string
