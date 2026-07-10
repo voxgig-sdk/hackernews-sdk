@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -824,15 +821,18 @@
           "name": "MIT",
           "url": "https://github.com/HackerNews/API/blob/master/LICENSE"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "HackerNews API v0",
             "url": "https://hacker-news.firebaseio.com/v0"
           }
         ],
+        "summary": "Provides public Hacker News data in near real time.",
         "termsOfService": "https://github.com/HackerNews/API",
         "title": "HackerNews API",
-        "version": "v0"
+        "version": "v0",
+        "website": "https://github.com/HackerNews/API"
       },
       "option": {},
       "target": {
@@ -885,6 +885,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -935,6 +938,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

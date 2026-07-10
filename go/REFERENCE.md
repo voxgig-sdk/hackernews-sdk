@@ -107,6 +107,7 @@ same parameters as `Direct()`.
 
 ```go
 item := client.Item(nil)
+fmt.Println(item.GetName()) // "item"
 ```
 
 ### Fields
@@ -137,6 +138,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Item(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -166,7 +171,8 @@ Return the entity name.
 ## LiveDataEntity
 
 ```go
-live_data := client.LiveData(nil)
+liveData := client.LiveData(nil)
+fmt.Println(liveData.GetName()) // "live_data"
 ```
 
 ### Operations
@@ -177,6 +183,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.LiveData(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -207,6 +217,7 @@ Return the entity name.
 
 ```go
 story := client.Story(nil)
+fmt.Println(story.GetName()) // "story"
 ```
 
 ### Operations
@@ -217,6 +228,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Story(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -247,6 +262,7 @@ Return the entity name.
 
 ```go
 update := client.Update(nil)
+fmt.Println(update.GetName()) // "update"
 ```
 
 ### Fields
@@ -264,6 +280,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Update(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -294,6 +314,7 @@ Return the entity name.
 
 ```go
 user := client.User(nil)
+fmt.Println(user.GetName()) // "user"
 ```
 
 ### Fields
@@ -314,6 +335,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.User(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

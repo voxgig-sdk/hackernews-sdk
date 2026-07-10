@@ -377,7 +377,7 @@ fmt.Println(items) // the array of records
 
 ### LiveData
 
-Create an instance: `live_data := client.LiveData(nil)`
+Create an instance: `liveData := client.LiveData(nil)`
 
 #### Operations
 
@@ -388,11 +388,11 @@ Create an instance: `live_data := client.LiveData(nil)`
 #### Example: Load
 
 ```go
-live_data, err := client.LiveData(nil).Load(nil, nil)
+liveData, err := client.LiveData(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(live_data) // the loaded record
+fmt.Println(liveData) // the loaded record
 ```
 
 

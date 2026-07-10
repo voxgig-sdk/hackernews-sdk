@@ -19,10 +19,10 @@ main: {
           url: "https://hacker-news.firebaseio.com/v0"
         }
       ]
+      summary: "Provides public Hacker News data in near real time."
       termsOfService: "https://github.com/HackerNews/API"
       title: "HackerNews API"
       version: "v0"
+      website: "https://github.com/HackerNews/API"
     }
   }
-}
-
