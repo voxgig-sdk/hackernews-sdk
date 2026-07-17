@@ -1,4 +1,4 @@
--- ProjectName SDK feature factory
+-- Hackernews SDK feature factory
 
 local BaseFeature = require("feature.base_feature")
 local TestFeature = require("feature.test_feature")
