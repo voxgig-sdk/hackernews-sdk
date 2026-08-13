@@ -18,11 +18,11 @@ class Item
     public ?string $by = null;
     public ?bool $dead = null;
     public ?bool $deleted = null;
-    public ?int $descendant = null;
+    public ?int $descendants = null;
     public int $id;
-    public ?array $kid = null;
+    public ?array $kids = null;
     public ?int $parent = null;
-    public ?array $part = null;
+    public ?array $parts = null;
     public ?int $poll = null;
     public ?int $score = null;
     public ?string $text = null;
@@ -61,15 +61,15 @@ class StoryListMatch
 /** Update entity data model. */
 class Update
 {
-    public ?array $item = null;
-    public ?array $profile = null;
+    public ?array $items = null;
+    public ?array $profiles = null;
 }
 
 /** Request payload for Update#list. */
 class UpdateListMatch
 {
-    public ?array $item = null;
-    public ?array $profile = null;
+    public ?array $items = null;
+    public ?array $profiles = null;
 }
 
 /** User entity data model. */

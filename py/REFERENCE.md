@@ -106,11 +106,11 @@ item = client.Item()
 | `by` | `str` | No |  |
 | `dead` | `bool` | No |  |
 | `deleted` | `bool` | No |  |
-| `descendant` | `int` | No |  |
+| `descendants` | `int` | No |  |
 | `id` | `int` | Yes |  |
-| `kid` | `list` | No |  |
+| `kids` | `list` | No |  |
 | `parent` | `int` | No |  |
-| `part` | `list` | No |  |
+| `parts` | `list` | No |  |
 | `poll` | `int` | No |  |
 | `score` | `int` | No |  |
 | `text` | `str` | No |  |
@@ -126,7 +126,7 @@ item = client.Item()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Item().list()
+results = client.Item().list({"id": 1})
 for item in results:
     print(item)
 ```
@@ -262,8 +262,8 @@ update = client.Update()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | `list` | No |  |
-| `profile` | `list` | No |  |
+| `items` | `list` | No |  |
+| `profiles` | `list` | No |  |
 
 ### Operations
 
@@ -329,7 +329,7 @@ user = client.User()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.User().list()
+results = client.User().list({"id": "example"})
 for user in results:
     print(user)
 ```

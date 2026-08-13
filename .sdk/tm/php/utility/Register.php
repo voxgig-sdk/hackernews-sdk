@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ HackernewsUtility::setRegistrar(function (HackernewsUtility $u): void {
     $u->prepare_params = [HackernewsPrepareParams::class, 'call'];
     $u->prepare_path = [HackernewsPreparePath::class, 'call'];
     $u->prepare_query = [HackernewsPrepareQuery::class, 'call'];
+    $u->graphql_body = [HackernewsGraphql::class, 'body'];
+    $u->graphql_errors = [HackernewsGraphql::class, 'errors'];
     $u->result_basic = [HackernewsResultBasic::class, 'call'];
     $u->result_body = [HackernewsResultBody::class, 'call'];
     $u->result_headers = [HackernewsResultHeaders::class, 'call'];

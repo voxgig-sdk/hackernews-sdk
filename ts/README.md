@@ -35,10 +35,12 @@ const client = new HackernewsSDK()
 
 ### 2. List item records
 
-`list()` resolves to an array of Item objects — iterate it directly:
+`list()` resolves to an array of Item ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const items = await client.Item().list()
+const items = await client.Item().list({ id: 1 })
 
 for (const item of items) {
   console.log(item)
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const items = await client.Item().list()
-  console.log(items)
+  const updates = await client.Update().list()
+  console.log(updates)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HackernewsSDK.test()
 
-const item = await client.Item().list()
-// item is a bare entity populated with mock response data
-console.log(item)
+const update = await client.Update().list()
+// update is the entity, populated with mock response data
+// — call update.data() for the record itself
+console.log(update)
 ```
 
 You can also use the instance method:
@@ -136,14 +139,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Item()
+const entity = client.Update()
 
 // First call runs the operation and stores its result
 await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id)
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -293,11 +296,11 @@ The `prepare()` method returns:
 | `by` |  |
 | `dead` |  |
 | `deleted` |  |
-| `descendant` |  |
+| `descendants` |  |
 | `id` |  |
-| `kid` |  |
+| `kids` |  |
 | `parent` |  |
-| `part` |  |
+| `parts` |  |
 | `poll` |  |
 | `score` |  |
 | `text` |  |
@@ -332,8 +335,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `item` |  |
-| `profile` |  |
+| `items` |  |
+| `profiles` |  |
 
 Operations: list.
 
@@ -375,11 +378,11 @@ Create an instance: `const item = client.Item()`
 | `by` | `string` |  |
 | `dead` | `boolean` |  |
 | `deleted` | `boolean` |  |
-| `descendant` | `number` |  |
+| `descendants` | `number` |  |
 | `id` | `number` |  |
-| `kid` | `any[]` |  |
+| `kids` | `any[]` |  |
 | `parent` | `number` |  |
-| `part` | `any[]` |  |
+| `parts` | `any[]` |  |
 | `poll` | `number` |  |
 | `score` | `number` |  |
 | `text` | `string` |  |
@@ -391,7 +394,7 @@ Create an instance: `const item = client.Item()`
 #### Example: List
 
 ```ts
-const items = await client.Item().list()
+const items = await client.Item().list({ id: 1 })
 ```
 
 
@@ -443,8 +446,8 @@ Create an instance: `const update = client.Update()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `item` | `any[]` |  |
-| `profile` | `any[]` |  |
+| `items` | `any[]` |  |
+| `profiles` | `any[]` |  |
 
 #### Example: List
 
@@ -476,7 +479,7 @@ Create an instance: `const user = client.User()`
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.User().list({ id: "example" })
 ```
 
 
@@ -549,11 +552,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const item = client.Item()
-await item.list()
+const update = client.Update()
+await update.list()
 
-// item.data() now returns the item data from the last `list`
-// item.match() returns the last match criteria
+// update.data() now returns the update data from the last `list`
+// update.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

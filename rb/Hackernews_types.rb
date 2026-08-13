@@ -19,19 +19,19 @@
 # @!attribute [rw] deleted
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] descendant
+# @!attribute [rw] descendants
 #   @return [Integer, nil]
 #
 # @!attribute [rw] id
 #   @return [Integer]
 #
-# @!attribute [rw] kid
+# @!attribute [rw] kids
 #   @return [Array, nil]
 #
 # @!attribute [rw] parent
 #   @return [Integer, nil]
 #
-# @!attribute [rw] part
+# @!attribute [rw] parts
 #   @return [Array, nil]
 #
 # @!attribute [rw] poll
@@ -58,11 +58,11 @@ Item = Struct.new(
   :by,
   :dead,
   :deleted,
-  :descendant,
+  :descendants,
   :id,
-  :kid,
+  :kids,
   :parent,
-  :part,
+  :parts,
   :poll,
   :score,
   :text,
@@ -100,27 +100,27 @@ end
 
 # Update entity data model.
 #
-# @!attribute [rw] item
+# @!attribute [rw] items
 #   @return [Array, nil]
 #
-# @!attribute [rw] profile
+# @!attribute [rw] profiles
 #   @return [Array, nil]
 Update = Struct.new(
-  :item,
-  :profile,
+  :items,
+  :profiles,
   keyword_init: true
 )
 
 # Request payload for Update#list.
 #
-# @!attribute [rw] item
+# @!attribute [rw] items
 #   @return [Array, nil]
 #
-# @!attribute [rw] profile
+# @!attribute [rw] profiles
 #   @return [Array, nil]
 UpdateListMatch = Struct.new(
-  :item,
-  :profile,
+  :items,
+  :profiles,
   keyword_init: true
 )
 

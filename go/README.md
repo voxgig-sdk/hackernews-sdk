@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-items, err := client.Item(nil).List(nil, nil)
+updates, err := client.Update(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = items
+_ = updates
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-item, err := client.Item(nil).List(
+update, err := client.Update(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(item) // the returned mock data
+fmt.Println(update) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -269,11 +269,11 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"by"` |  |
 | `"dead"` |  |
 | `"deleted"` |  |
-| `"descendant"` |  |
+| `"descendants"` |  |
 | `"id"` |  |
-| `"kid"` |  |
+| `"kids"` |  |
 | `"parent"` |  |
-| `"part"` |  |
+| `"parts"` |  |
 | `"poll"` |  |
 | `"score"` |  |
 | `"text"` |  |
@@ -308,8 +308,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `"item"` |  |
-| `"profile"` |  |
+| `"items"` |  |
+| `"profiles"` |  |
 
 Operations: List.
 
@@ -351,11 +351,11 @@ Create an instance: `item := client.Item(nil)`
 | `by` | `string` |  |
 | `dead` | `bool` |  |
 | `deleted` | `bool` |  |
-| `descendant` | `int` |  |
+| `descendants` | `int` |  |
 | `id` | `int` |  |
-| `kid` | `[]any` |  |
+| `kids` | `[]any` |  |
 | `parent` | `int` |  |
-| `part` | `[]any` |  |
+| `parts` | `[]any` |  |
 | `poll` | `int` |  |
 | `score` | `int` |  |
 | `text` | `string` |  |
@@ -431,8 +431,8 @@ Create an instance: `update := client.Update(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `item` | `[]any` |  |
-| `profile` | `[]any` |  |
+| `items` | `[]any` |  |
+| `profiles` | `[]any` |  |
 
 #### Example: List
 
@@ -549,11 +549,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-item := client.Item(nil)
-item.List(nil, nil)
+update := client.Update(nil)
+update.List(nil, nil)
 
-// item.Data() now returns the item data from the last list
-// item.Match() returns the last match criteria
+// update.Data() now returns the update data from the last list
+// update.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

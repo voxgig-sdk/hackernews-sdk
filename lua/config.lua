@@ -51,7 +51,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "descendant",
+            ["name"] = "descendants",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
@@ -65,7 +65,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "kid",
+            ["name"] = "kids",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 5,
@@ -79,7 +79,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "part",
+            ["name"] = "parts",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 7,
@@ -165,6 +165,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/item/{id}.json",
                 ["parts"] = {
@@ -218,6 +219,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/maxitem.json",
                 ["parts"] = {
@@ -264,6 +266,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/askstories.json",
                 ["parts"] = {
@@ -294,6 +297,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/beststories.json",
                 ["parts"] = {
@@ -324,6 +328,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/jobstories.json",
                 ["parts"] = {
@@ -354,6 +359,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/newstories.json",
                 ["parts"] = {
@@ -384,6 +390,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/showstories.json",
                 ["parts"] = {
@@ -414,6 +421,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/topstories.json",
                 ["parts"] = {
@@ -442,14 +450,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "item",
+            ["name"] = "items",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "profile",
+            ["name"] = "profiles",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -475,6 +483,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/updates.json",
                 ["parts"] = {
@@ -568,6 +577,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/user/{id}.json",
                 ["parts"] = {
@@ -583,7 +593,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.submitted`",
                 },
                 ["index$"] = 0,
               },

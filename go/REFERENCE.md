@@ -117,11 +117,11 @@ fmt.Println(item.GetName()) // "item"
 | `by` | `string` | No |  |
 | `dead` | `bool` | No |  |
 | `deleted` | `bool` | No |  |
-| `descendant` | `int` | No |  |
+| `descendants` | `int` | No |  |
 | `id` | `int` | Yes |  |
-| `kid` | `[]any` | No |  |
+| `kids` | `[]any` | No |  |
 | `parent` | `int` | No |  |
-| `part` | `[]any` | No |  |
+| `parts` | `[]any` | No |  |
 | `poll` | `int` | No |  |
 | `score` | `int` | No |  |
 | `text` | `string` | No |  |
@@ -269,8 +269,8 @@ fmt.Println(update.GetName()) // "update"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | `[]any` | No |  |
-| `profile` | `[]any` | No |  |
+| `items` | `[]any` | No |  |
+| `profiles` | `[]any` | No |  |
 
 ### Operations
 

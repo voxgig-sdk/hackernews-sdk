@@ -52,7 +52,7 @@ module HackernewsConfig
             },
             {
               "active" => true,
-              "name" => "descendant",
+              "name" => "descendants",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 3,
@@ -66,7 +66,7 @@ module HackernewsConfig
             },
             {
               "active" => true,
-              "name" => "kid",
+              "name" => "kids",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 5,
@@ -80,7 +80,7 @@ module HackernewsConfig
             },
             {
               "active" => true,
-              "name" => "part",
+              "name" => "parts",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 7,
@@ -166,6 +166,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/item/{id}.json",
                   "parts" => [
@@ -219,6 +220,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/maxitem.json",
                   "parts" => [
@@ -265,6 +267,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/askstories.json",
                   "parts" => [
@@ -295,6 +298,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/beststories.json",
                   "parts" => [
@@ -325,6 +329,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jobstories.json",
                   "parts" => [
@@ -355,6 +360,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/newstories.json",
                   "parts" => [
@@ -385,6 +391,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/showstories.json",
                   "parts" => [
@@ -415,6 +422,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/topstories.json",
                   "parts" => [
@@ -443,14 +451,14 @@ module HackernewsConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "item",
+              "name" => "items",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "profile",
+              "name" => "profiles",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 1,
@@ -476,6 +484,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/updates.json",
                   "parts" => [
@@ -569,6 +578,7 @@ module HackernewsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/user/{id}.json",
                   "parts" => [
@@ -584,7 +594,7 @@ module HackernewsConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.submitted`",
                   },
                   "index$" => 0,
                 },

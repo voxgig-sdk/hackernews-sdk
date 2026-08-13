@@ -6,12 +6,12 @@ main: kit: entity: update: {
 
   fields: [
     {
-      name: "item"
+      name: "items"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "profile"
+      name: "profiles"
       req: false
       type: "`$ARRAY`"
     }

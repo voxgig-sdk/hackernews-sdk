@@ -62,7 +62,7 @@ describe('LiveDataEntity', async () => {
     // LOAD
     const live_data_ref01_ent = client.LiveData()
     const live_data_ref01_match_dt0: any = {}
-    const live_data_ref01_data_dt0 = await live_data_ref01_ent.load(live_data_ref01_match_dt0)
+    const live_data_ref01_data_dt0 = (await live_data_ref01_ent.load(live_data_ref01_match_dt0)).data()
     assert(null != live_data_ref01_data_dt0)
 
 

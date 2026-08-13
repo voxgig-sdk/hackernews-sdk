@@ -37,7 +37,7 @@ class UpdateEntity extends HackernewsEntityBase<Update> {
 
 
 
-  async list(this: any, reqmatch?: UpdateListMatch, ctrl?: Control): Promise<Update[]> {
+  async list(this: any, reqmatch?: UpdateListMatch, ctrl?: Control): Promise<UpdateEntity[]> {
 
     const utility = this._utility
 

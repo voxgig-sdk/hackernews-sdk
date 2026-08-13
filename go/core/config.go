@@ -51,7 +51,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "descendant",
+						"name": "descendants",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 3,
@@ -65,7 +65,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "kid",
+						"name": "kids",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 5,
@@ -79,7 +79,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "part",
+						"name": "parts",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 7,
@@ -165,6 +165,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/item/{id}.json",
 								"parts": []any{
@@ -185,7 +186,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -218,6 +218,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/maxitem.json",
 								"parts": []any{
@@ -235,7 +236,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -264,6 +264,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/askstories.json",
 								"parts": []any{
@@ -294,6 +295,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/beststories.json",
 								"parts": []any{
@@ -324,6 +326,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/jobstories.json",
 								"parts": []any{
@@ -354,6 +357,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/newstories.json",
 								"parts": []any{
@@ -384,6 +388,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/showstories.json",
 								"parts": []any{
@@ -414,6 +419,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/topstories.json",
 								"parts": []any{
@@ -431,7 +437,6 @@ func MakeConfig() map[string]any {
 								"index$": 5,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -442,14 +447,14 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "item",
+						"name": "items",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "profile",
+						"name": "profiles",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 1,
@@ -475,6 +480,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/updates.json",
 								"parts": []any{
@@ -492,7 +498,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -568,6 +573,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/user/{id}.json",
 								"parts": []any{
@@ -583,12 +589,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.submitted`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

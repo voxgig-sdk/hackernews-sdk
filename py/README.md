@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    items = client.Item().list()
+    items = client.Item().list({"id": 1})
     for item in items:
         print(item)
 except Exception as err:
@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    items = client.Item().list()
-    print(items)
+    updates = client.Update().list()
+    print(updates)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = HackernewsSDK.test()
 
-# Entity ops return the bare record and raise on error.
-item = client.Item().list()
-# item contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+update = client.Update().list()
+# update contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -225,7 +226,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -250,11 +251,11 @@ On error, `ok` is `False` and `err` contains the error value.
 | `by` |  |
 | `dead` |  |
 | `deleted` |  |
-| `descendant` |  |
+| `descendants` |  |
 | `id` |  |
-| `kid` |  |
+| `kids` |  |
 | `parent` |  |
-| `part` |  |
+| `parts` |  |
 | `poll` |  |
 | `score` |  |
 | `text` |  |
@@ -289,8 +290,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `item` |  |
-| `profile` |  |
+| `items` |  |
+| `profiles` |  |
 
 Operations: List.
 
@@ -332,11 +333,11 @@ Create an instance: `item = client.Item()`
 | `by` | `str` |  |
 | `dead` | `bool` |  |
 | `deleted` | `bool` |  |
-| `descendant` | `int` |  |
+| `descendants` | `int` |  |
 | `id` | `int` |  |
-| `kid` | `list` |  |
+| `kids` | `list` |  |
 | `parent` | `int` |  |
-| `part` | `list` |  |
+| `parts` | `list` |  |
 | `poll` | `int` |  |
 | `score` | `int` |  |
 | `text` | `str` |  |
@@ -348,7 +349,7 @@ Create an instance: `item = client.Item()`
 #### Example: List
 
 ```python
-items = client.Item().list()
+items = client.Item().list({"id": 1})
 ```
 
 
@@ -400,8 +401,8 @@ Create an instance: `update = client.Update()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `item` | `list` |  |
-| `profile` | `list` |  |
+| `items` | `list` |  |
+| `profiles` | `list` |  |
 
 #### Example: List
 
@@ -433,7 +434,7 @@ Create an instance: `user = client.User()`
 #### Example: List
 
 ```python
-users = client.User().list()
+users = client.User().list({"id": "example"})
 ```
 
 
@@ -512,11 +513,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-item = client.Item()
-item.list()
+update = client.Update()
+update.list()
 
-# item.data_get() now returns the item data from the last list
-# item.match_get() returns the last match criteria
+# update.data_get() now returns the update data from the last list
+# update.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

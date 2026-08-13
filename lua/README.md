@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local items, err = client:Item():list()
+local updates, err = client:Update():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Item():list()
+local result, err = client:Update():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -224,9 +224,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local item, err = client:Item():load()
+    local live_data, err = client:LiveData():load()
     if err then error(err) end
-    -- item is the loaded record
+    -- live_data is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -240,11 +240,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `by` |  |
 | `dead` |  |
 | `deleted` |  |
-| `descendant` |  |
+| `descendants` |  |
 | `id` |  |
-| `kid` |  |
+| `kids` |  |
 | `parent` |  |
-| `part` |  |
+| `parts` |  |
 | `poll` |  |
 | `score` |  |
 | `text` |  |
@@ -279,8 +279,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `item` |  |
-| `profile` |  |
+| `items` |  |
+| `profiles` |  |
 
 Operations: List.
 
@@ -322,11 +322,11 @@ Create an instance: `local item = client:Item(nil)`
 | `by` | `string` |  |
 | `dead` | `boolean` |  |
 | `deleted` | `boolean` |  |
-| `descendant` | `number` |  |
+| `descendants` | `number` |  |
 | `id` | `number` |  |
-| `kid` | `table` |  |
+| `kids` | `table` |  |
 | `parent` | `number` |  |
-| `part` | `table` |  |
+| `parts` | `table` |  |
 | `poll` | `number` |  |
 | `score` | `number` |  |
 | `text` | `string` |  |
@@ -390,8 +390,8 @@ Create an instance: `local update = client:Update(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `item` | `table` |  |
-| `profile` | `table` |  |
+| `items` | `table` |  |
+| `profiles` | `table` |  |
 
 #### Example: List
 
@@ -503,11 +503,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local item = client:Item()
-item:list()
+local update = client:Update()
+update:list()
 
--- item:data_get() now returns the item data from the last list
--- item:match_get() returns the last match criteria
+-- update:data_get() now returns the update data from the last list
+-- update:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

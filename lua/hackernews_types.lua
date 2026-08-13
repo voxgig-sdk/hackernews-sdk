@@ -10,11 +10,11 @@
 ---@field by? string
 ---@field dead? boolean
 ---@field deleted? boolean
----@field descendant? number
+---@field descendants? number
 ---@field id number
----@field kid? table
+---@field kids? table
 ---@field parent? number
----@field part? table
+---@field parts? table
 ---@field poll? number
 ---@field score? number
 ---@field text? string
@@ -35,12 +35,12 @@
 ---@class StoryListMatch
 
 ---@class Update
----@field item? table
----@field profile? table
+---@field items? table
+---@field profiles? table
 
 ---@class UpdateListMatch
----@field item? table
----@field profile? table
+---@field items? table
+---@field profiles? table
 
 ---@class User
 ---@field about? string

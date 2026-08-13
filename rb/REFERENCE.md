@@ -112,11 +112,11 @@ item = client.Item
 | `by` | `String` | No |  |
 | `dead` | `Boolean` | No |  |
 | `deleted` | `Boolean` | No |  |
-| `descendant` | `Integer` | No |  |
+| `descendants` | `Integer` | No |  |
 | `id` | `Integer` | Yes |  |
-| `kid` | `Array` | No |  |
+| `kids` | `Array` | No |  |
 | `parent` | `Integer` | No |  |
-| `part` | `Array` | No |  |
+| `parts` | `Array` | No |  |
 | `poll` | `Integer` | No |  |
 | `score` | `Integer` | No |  |
 | `text` | `String` | No |  |
@@ -267,8 +267,8 @@ update = client.Update
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | `Array` | No |  |
-| `profile` | `Array` | No |  |
+| `items` | `Array` | No |  |
+| `profiles` | `Array` | No |  |
 
 ### Operations
 

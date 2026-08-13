@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import HackernewsSDK
-from core.error import HackernewsError
-from core.result import HackernewsResult
-from core.response import HackernewsResponse
-from core.spec import HackernewsSpec
-from feature.base_feature import HackernewsBaseFeature
+from projectname_sdk.core.error import HackernewsError
+from projectname_sdk.core.result import HackernewsResult
+from projectname_sdk.core.response import HackernewsResponse
+from projectname_sdk.core.spec import HackernewsSpec
+from projectname_sdk.feature.base_feature import HackernewsBaseFeature
 
 
 def _client():

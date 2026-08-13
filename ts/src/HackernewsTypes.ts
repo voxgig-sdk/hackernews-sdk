@@ -9,11 +9,11 @@ export interface Item {
   by?: string
   dead?: boolean
   deleted?: boolean
-  descendant?: number
+  descendants?: number
   id: number
-  kid?: any[]
+  kids?: any[]
   parent?: number
-  part?: any[]
+  parts?: any[]
   poll?: number
   score?: number
   text?: string
@@ -25,6 +25,12 @@ export interface Item {
 
 export interface ItemListMatch {
   id: number
+
+  // Selects a custom action instead of the plain list:
+  //   'id'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface LiveData {
@@ -40,13 +46,13 @@ export interface StoryListMatch {
 }
 
 export interface Update {
-  item?: any[]
-  profile?: any[]
+  items?: any[]
+  profiles?: any[]
 }
 
 export interface UpdateListMatch {
-  item?: any[]
-  profile?: any[]
+  items?: any[]
+  profiles?: any[]
 }
 
 export interface User {
@@ -59,5 +65,11 @@ export interface User {
 
 export interface UserListMatch {
   id: string
+
+  // Selects a custom action instead of the plain list:
+  //   'id'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 

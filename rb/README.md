@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  items = client.Item.list()
+  updates = client.Update.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = HackernewsSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-item = client.Item.list()
-puts item
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+update = client.Update.list()
+puts update
 ```
 
 ### Use a custom fetch function
@@ -244,11 +245,11 @@ returns a result `Hash` with these keys:
 | `by` |  |
 | `dead` |  |
 | `deleted` |  |
-| `descendant` |  |
+| `descendants` |  |
 | `id` |  |
-| `kid` |  |
+| `kids` |  |
 | `parent` |  |
-| `part` |  |
+| `parts` |  |
 | `poll` |  |
 | `score` |  |
 | `text` |  |
@@ -283,8 +284,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `item` |  |
-| `profile` |  |
+| `items` |  |
+| `profiles` |  |
 
 Operations: List.
 
@@ -326,11 +327,11 @@ Create an instance: `item = client.Item`
 | `by` | `String` |  |
 | `dead` | `Boolean` |  |
 | `deleted` | `Boolean` |  |
-| `descendant` | `Integer` |  |
+| `descendants` | `Integer` |  |
 | `id` | `Integer` |  |
-| `kid` | `Array` |  |
+| `kids` | `Array` |  |
 | `parent` | `Integer` |  |
-| `part` | `Array` |  |
+| `parts` | `Array` |  |
 | `poll` | `Integer` |  |
 | `score` | `Integer` |  |
 | `text` | `String` |  |
@@ -360,7 +361,7 @@ Create an instance: `live_data = client.LiveData`
 #### Example: Load
 
 ```ruby
-# load returns the bare LiveData record (raises on error).
+# load returns the ENTITY — call data_get for the LiveData record (raises on error).
 live_data = client.LiveData.load()
 ```
 
@@ -397,8 +398,8 @@ Create an instance: `update = client.Update`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `item` | `Array` |  |
-| `profile` | `Array` |  |
+| `items` | `Array` |  |
+| `profiles` | `Array` |  |
 
 #### Example: List
 
@@ -512,11 +513,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-item = client.Item
-item.list()
+update = client.Update
+update.list()
 
-# item.data_get now returns the item data from the last list
-# item.match_get returns the last match criteria
+# update.data_get now returns the update data from the last list
+# update.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

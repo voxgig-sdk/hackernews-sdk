@@ -167,11 +167,11 @@ const item = client.Item()
 | `by` | `string` | No |  |
 | `dead` | `boolean` | No |  |
 | `deleted` | `boolean` | No |  |
-| `descendant` | `number` | No |  |
+| `descendants` | `number` | No |  |
 | `id` | `number` | Yes |  |
-| `kid` | `any[]` | No |  |
+| `kids` | `any[]` | No |  |
 | `parent` | `number` | No |  |
-| `part` | `any[]` | No |  |
+| `parts` | `any[]` | No |  |
 | `poll` | `number` | No |  |
 | `score` | `number` | No |  |
 | `text` | `string` | No |  |
@@ -180,6 +180,26 @@ const item = client.Item()
 | `type` | `string` | No |  |
 | `url` | `string` | No |  |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `id` | `/item/{id}.json` | `client.Item().list({ $action: 'id', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Item record — check the API definition for its shape.
+
+```ts
+const result = await client.Item().list({
+  $action: 'id',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `list(match: object, ctrl?: object)`
@@ -187,7 +207,7 @@ const item = client.Item()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Item().list()
+const results = await client.Item().list({ id: 1 })
 ```
 
 ### Common Methods
@@ -316,8 +336,8 @@ const update = client.Update()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | `any[]` | No |  |
-| `profile` | `any[]` | No |  |
+| `items` | `any[]` | No |  |
+| `profiles` | `any[]` | No |  |
 
 ### Operations
 
@@ -373,6 +393,26 @@ const user = client.User()
 | `karma` | `number` | Yes |  |
 | `submitted` | `any[]` | No |  |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `id` | `/user/{id}.json` | `client.User().list({ $action: 'id', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+User record — check the API definition for its shape.
+
+```ts
+const result = await client.User().list({
+  $action: 'id',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `list(match: object, ctrl?: object)`
@@ -380,7 +420,7 @@ const user = client.User()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.User().list()
+const results = await client.User().list({ id: "example" })
 ```
 
 ### Common Methods

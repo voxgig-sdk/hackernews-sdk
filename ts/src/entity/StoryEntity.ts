@@ -37,7 +37,7 @@ class StoryEntity extends HackernewsEntityBase<Story> {
 
 
 
-  async list(this: any, reqmatch?: StoryListMatch, ctrl?: Control): Promise<Story[]> {
+  async list(this: any, reqmatch?: StoryListMatch, ctrl?: Control): Promise<StoryEntity[]> {
 
     const utility = this._utility
 

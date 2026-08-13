@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Hackernews SDK exists test
 
 import pytest
 from hackernews_sdk import HackernewsSDK

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from hackernews_sdk.utility.voxgig_struct import voxgig_struct as vs
 from hackernews_sdk import HackernewsSDK
-from core import helpers
+from hackernews_sdk.core import helpers
 from test import runner
 
 

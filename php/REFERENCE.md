@@ -111,11 +111,11 @@ $item = $client->Item();
 | `by` | `string` | No |  |
 | `dead` | `bool` | No |  |
 | `deleted` | `bool` | No |  |
-| `descendant` | `int` | No |  |
+| `descendants` | `int` | No |  |
 | `id` | `int` | Yes |  |
-| `kid` | `array` | No |  |
+| `kids` | `array` | No |  |
 | `parent` | `int` | No |  |
-| `part` | `array` | No |  |
+| `parts` | `array` | No |  |
 | `poll` | `int` | No |  |
 | `score` | `int` | No |  |
 | `text` | `string` | No |  |
@@ -266,8 +266,8 @@ $update = $client->Update();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | `array` | No |  |
-| `profile` | `array` | No |  |
+| `items` | `array` | No |  |
+| `profiles` | `array` | No |  |
 
 ### Operations
 

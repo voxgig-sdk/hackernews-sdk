@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import HackernewsControl
-from core.error import HackernewsError
-from core.result import HackernewsResult
-from core.spec import HackernewsSpec
+from hackernews_sdk.config import make_config
+from hackernews_sdk.features import _make_feature
+from hackernews_sdk.core.control import HackernewsControl
+from hackernews_sdk.core.error import HackernewsError
+from hackernews_sdk.core.result import HackernewsResult
+from hackernews_sdk.core.spec import HackernewsSpec
 
 
 # True when this SDK was generated with the named feature.

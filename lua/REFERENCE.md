@@ -109,11 +109,11 @@ local item = client:Item(nil)
 | `by` | `string` | No |  |
 | `dead` | `boolean` | No |  |
 | `deleted` | `boolean` | No |  |
-| `descendant` | `number` | No |  |
+| `descendants` | `number` | No |  |
 | `id` | `number` | Yes |  |
-| `kid` | `table` | No |  |
+| `kids` | `table` | No |  |
 | `parent` | `number` | No |  |
-| `part` | `table` | No |  |
+| `parts` | `table` | No |  |
 | `poll` | `number` | No |  |
 | `score` | `number` | No |  |
 | `text` | `string` | No |  |
@@ -264,8 +264,8 @@ local update = client:Update(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | `table` | No |  |
-| `profile` | `table` | No |  |
+| `items` | `table` | No |  |
+| `profiles` | `table` | No |  |
 
 ### Operations
 

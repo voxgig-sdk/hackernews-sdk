@@ -23,7 +23,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new HackernewsSDK()
-const items = await client.Item().list()
+const items = await client.Item().list({ id: 1 })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = HackernewsSDK.test()
-const items = await client.Item().list()
-// items is an array of bare Item records populated with mock data
-console.log(items)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = HackernewsSDK.test({
+  entity: {
+    update: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const updates = await client.Update().list()
+// updates is an array of Update entities, populated with mock data
+// — call updates[0].data() for the record itself
+console.log(updates)
 ```
 
 ### Python
 
 ```python
 client = HackernewsSDK.test()
-items = client.Item().list()
-print(items)
+updates = client.Update().list()
+print(updates)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(items)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = HackernewsSDK::test([
-    "entity" => ["item" => ["test01" => []]],
+    "entity" => ["update" => ["test01" => []]],
 ]);
-$items = $client->Item()->list();
+$updates = $client->Update()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Item(nil).List(
+result, err := client.Update(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Item(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = HackernewsSDK.test({
-  "entity" => { "item" => { "test01" => {} } },
+  "entity" => { "update" => { "test01" => {} } },
 })
-items = client.Item.list()
+updates = client.Update.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Item():list()
+local results, err = client:Update():list()
 ```
 
 ## Packages
@@ -110,8 +119,8 @@ import { HackernewsSDK } from '@voxgig-sdk/hackernews'
 
 const client = new HackernewsSDK()
 
-// List all items (returns Item[])
-const items = await client.Item().list()
+// List all items (returns ItemEntity[] — .data() for the record)
+const items = await client.Item().list({ id: 1 })
 for (const item of items) {
   console.log(item)
 }
@@ -174,7 +183,7 @@ from hackernews_sdk import HackernewsSDK
 client = HackernewsSDK()
 
 # List all items (returns a list, raises on error)
-items = client.Item().list()
+items = client.Item().list({"id": 1})
 for item in items:
     print(item)
 ```
@@ -347,6 +356,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://hacker-news.firebaseio.com/v0](https://hacker-news.firebaseio.com/v0)
 

@@ -49,6 +49,7 @@ guide: {
     path: "/user/{id}.json": {
       action: "id": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.submitted`")|top
     }
   }
 

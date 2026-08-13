@@ -63,7 +63,7 @@ describe('UserEntity', async () => {
     const user_ref01_ent = client.User()
     const user_ref01_match: any = {}
 
-    const user_ref01_list = await user_ref01_ent.list(user_ref01_match)
+    const user_ref01_list = (await user_ref01_ent.list(user_ref01_match)).map((e: any) => e.data())
 
 
   })

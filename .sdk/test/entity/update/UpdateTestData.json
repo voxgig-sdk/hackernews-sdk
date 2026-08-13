@@ -2,24 +2,24 @@
   "existing": {
     "update": {
       "UPDATE00": {
-        "item": [],
-        "profile": []
+        "items": [],
+        "profiles": []
       },
       "UPDATE01": {
-        "item": [],
-        "profile": []
+        "items": [],
+        "profiles": []
       },
       "UPDATE02": {
-        "item": [],
-        "profile": []
+        "items": [],
+        "profiles": []
       }
     }
   },
   "new": {
     "update": {
       "update_ref01": {
-        "item": [],
-        "profile": []
+        "items": [],
+        "profiles": []
       }
     }
   }

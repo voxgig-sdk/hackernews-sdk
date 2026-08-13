@@ -63,7 +63,7 @@ describe('UpdateEntity', async () => {
     const update_ref01_ent = client.Update()
     const update_ref01_match: any = {}
 
-    const update_ref01_list = await update_ref01_ent.list(update_ref01_match)
+    const update_ref01_list = (await update_ref01_ent.list(update_ref01_match)).map((e: any) => e.data())
 
 
   })

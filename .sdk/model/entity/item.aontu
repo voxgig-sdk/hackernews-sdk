@@ -21,7 +21,7 @@ main: kit: entity: item: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "descendant"
+      name: "descendants"
       req: false
       type: "`$INTEGER`"
     }
@@ -31,7 +31,7 @@ main: kit: entity: item: {
       type: "`$INTEGER`"
     }
     {
-      name: "kid"
+      name: "kids"
       req: false
       type: "`$ARRAY`"
     }
@@ -41,7 +41,7 @@ main: kit: entity: item: {
       type: "`$INTEGER`"
     }
     {
-      name: "part"
+      name: "parts"
       req: false
       type: "`$ARRAY`"
     }

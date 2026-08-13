@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $items = $client->Item()->list();
+    $updates = $client->Update()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = HackernewsSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$item = $client->Item()->list();
-print_r($item);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$update = $client->Update()->list();
+print_r($update);
 ```
 
 ### Use a custom fetch function
@@ -229,7 +230,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -254,11 +255,11 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `by` |  |
 | `dead` |  |
 | `deleted` |  |
-| `descendant` |  |
+| `descendants` |  |
 | `id` |  |
-| `kid` |  |
+| `kids` |  |
 | `parent` |  |
-| `part` |  |
+| `parts` |  |
 | `poll` |  |
 | `score` |  |
 | `text` |  |
@@ -293,8 +294,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `item` |  |
-| `profile` |  |
+| `items` |  |
+| `profiles` |  |
 
 Operations: List.
 
@@ -336,11 +337,11 @@ Create an instance: `$item = $client->Item();`
 | `by` | `string` |  |
 | `dead` | `bool` |  |
 | `deleted` | `bool` |  |
-| `descendant` | `int` |  |
+| `descendants` | `int` |  |
 | `id` | `int` |  |
-| `kid` | `array` |  |
+| `kids` | `array` |  |
 | `parent` | `int` |  |
-| `part` | `array` |  |
+| `parts` | `array` |  |
 | `poll` | `int` |  |
 | `score` | `int` |  |
 | `text` | `string` |  |
@@ -370,7 +371,7 @@ Create an instance: `$live_data = $client->LiveData();`
 #### Example: Load
 
 ```php
-// load() returns the bare LiveData record (throws on error).
+// load() returns the ENTITY — call data_get() for the LiveData record (throws on error).
 $live_data = $client->LiveData()->load();
 ```
 
@@ -407,8 +408,8 @@ Create an instance: `$update = $client->Update();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `item` | `array` |  |
-| `profile` | `array` |  |
+| `items` | `array` |  |
+| `profiles` | `array` |  |
 
 #### Example: List
 
@@ -522,11 +523,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$item = $client->Item();
-$item->list();
+$update = $client->Update();
+$update->list();
 
-// $item->data_get() now returns the item data from the last list
-// $item->match_get() returns the last match criteria
+// $update->data_get() now returns the update data from the last list
+// $update->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
