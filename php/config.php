@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class HackernewsConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -35,109 +58,65 @@ class HackernewsConfig
         'item' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'by',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'dead',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'deleted',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'descendants',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'kids',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'parent',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'parts',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'poll',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'score',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'text',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'time',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'title',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'url',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 14,
             ],
           ],
           'name' => 'item',
@@ -147,26 +126,21 @@ class HackernewsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -189,10 +163,8 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -212,15 +184,12 @@ class HackernewsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -240,10 +209,8 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -259,15 +226,12 @@ class HackernewsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -287,18 +251,14 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -318,18 +278,14 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -349,18 +305,14 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -380,18 +332,14 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 3,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -411,18 +359,14 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 4,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -442,10 +386,8 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 5,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -455,18 +397,12 @@ class HackernewsConfig
         'update' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'items',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'profiles',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
           ],
           'name' => 'update',
@@ -476,15 +412,12 @@ class HackernewsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -504,10 +437,8 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -517,39 +448,27 @@ class HackernewsConfig
         'user' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'about',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'created',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'karma',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'submitted',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
           ],
           'name' => 'user',
@@ -559,26 +478,21 @@ class HackernewsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'print',
                         'orig' => 'print',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -601,10 +515,8 @@ class HackernewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.submitted`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [

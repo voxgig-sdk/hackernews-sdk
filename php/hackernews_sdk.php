@@ -40,7 +40,7 @@ class HackernewsSDK
         $utility = new HackernewsUtility();
         $this->_utility = $utility;
 
-        $config = HackernewsConfig::make_config();
+        $config = HackernewsConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

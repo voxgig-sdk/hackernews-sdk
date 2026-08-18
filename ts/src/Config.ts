@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://hacker-news.firebaseio.com/v0',
+    base: "https://hacker-news.firebaseio.com/v0",
 
     headers: {
       "content-type": "application/json"
@@ -67,109 +67,65 @@ class Config {
     "item": {
       "fields": [
         {
-          "active": true,
           "name": "by",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "dead",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 1
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "deleted",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 2
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "descendants",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "kids",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "parent",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 6
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "parts",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 7
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "poll",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 8
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "score",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 9
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "text",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "time",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 11
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "type",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "url",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         }
       ],
       "name": "item",
@@ -179,26 +135,21 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$INTEGER`",
-                    "index$": 0
+                    "type": "`$INTEGER`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -220,11 +171,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -244,15 +193,12 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -271,11 +217,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -291,15 +235,12 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -318,19 +259,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -349,19 +286,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -380,19 +313,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -411,19 +340,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -442,19 +367,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -473,11 +394,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -487,18 +406,12 @@ class Config {
     "update": {
       "fields": [
         {
-          "active": true,
           "name": "items",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "profiles",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         }
       ],
       "name": "update",
@@ -508,15 +421,12 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -535,11 +445,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -549,39 +457,27 @@ class Config {
     "user": {
       "fields": [
         {
-          "active": true,
           "name": "about",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "created",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "karma",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "submitted",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         }
       ],
       "name": "user",
@@ -591,26 +487,21 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -632,11 +523,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.submitted`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {

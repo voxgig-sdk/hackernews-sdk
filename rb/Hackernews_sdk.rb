@@ -28,7 +28,7 @@ class HackernewsSDK
     utility = HackernewsUtility.new
     @_utility = utility
 
-    config = HackernewsConfig.make_config
+    config = HackernewsConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
