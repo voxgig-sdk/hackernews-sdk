@@ -36,90 +36,105 @@
               "active": true,
               "name": "by",
               "req": false,
+              "short": "The username of the item's author",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "dead",
               "req": false,
+              "short": "true if the item is dead",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "deleted",
               "req": false,
+              "short": "true if the item is deleted",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "descendants",
               "req": false,
+              "short": "In the case of stories or polls, the total comment count",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": true,
+              "short": "The item's unique id",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "kids",
               "req": false,
+              "short": "The ids of the item's comments, in ranked display order",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "parent",
               "req": false,
+              "short": "The comment's parent: either another comment or the relevant story",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "parts",
               "req": false,
+              "short": "A list of related pollopts, in display order",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "poll",
               "req": false,
+              "short": "The pollopt's associated poll",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "score",
               "req": false,
+              "short": "The story's score, or the votes for a pollopt",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "text",
               "req": false,
+              "short": "The comment, story or poll text.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "time",
               "req": false,
+              "short": "Creation date of the item, in Unix Time",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the story, poll or job.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "The type of item",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "The URL of the story",
               "type": "`$STRING`"
             }
           ],
@@ -445,12 +460,14 @@
               "active": true,
               "name": "items",
               "req": false,
+              "short": "Array of item IDs that have been updated",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "profiles",
               "req": false,
+              "short": "Array of usernames whose profiles have been updated",
               "type": "`$ARRAY`"
             }
           ],
@@ -507,30 +524,35 @@
               "active": true,
               "name": "about",
               "req": false,
+              "short": "The user's optional self-description.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "created",
               "req": true,
+              "short": "Creation date of the user, in Unix Time",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": true,
+              "short": "The user's unique username.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "karma",
               "req": true,
+              "short": "The user's karma",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "submitted",
               "req": false,
+              "short": "List of the user's stories, polls and comments",
               "type": "`$ARRAY`"
             }
           ],

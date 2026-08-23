@@ -248,21 +248,21 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `by` |  |
-| `dead` |  |
-| `deleted` |  |
-| `descendants` |  |
-| `id` |  |
-| `kids` |  |
-| `parent` |  |
-| `parts` |  |
-| `poll` |  |
-| `score` |  |
-| `text` |  |
-| `time` |  |
-| `title` |  |
-| `type` |  |
-| `url` |  |
+| `by` | The username of the item's author |
+| `dead` | true if the item is dead |
+| `deleted` | true if the item is deleted |
+| `descendants` | In the case of stories or polls, the total comment count |
+| `id` | The item's unique id |
+| `kids` | The ids of the item's comments, in ranked display order |
+| `parent` | The comment's parent: either another comment or the relevant story |
+| `parts` | A list of related pollopts, in display order |
+| `poll` | The pollopt's associated poll |
+| `score` | The story's score, or the votes for a pollopt |
+| `text` | The comment, story or poll text. |
+| `time` | Creation date of the item, in Unix Time |
+| `title` | The title of the story, poll or job. |
+| `type` | The type of item |
+| `url` | The URL of the story |
 
 Operations: List.
 
@@ -290,8 +290,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `items` |  |
-| `profiles` |  |
+| `items` | Array of item IDs that have been updated |
+| `profiles` | Array of usernames whose profiles have been updated |
 
 Operations: List.
 
@@ -301,11 +301,11 @@ API path: `/updates.json`
 
 | Field | Description |
 | --- | --- |
-| `about` |  |
-| `created` |  |
-| `id` |  |
-| `karma` |  |
-| `submitted` |  |
+| `about` | The user's optional self-description. |
+| `created` | Creation date of the user, in Unix Time |
+| `id` | The user's unique username. |
+| `karma` | The user's karma |
+| `submitted` | List of the user's stories, polls and comments |
 
 Operations: List.
 
@@ -330,21 +330,21 @@ Create an instance: `item = client.Item()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `by` | `str` |  |
-| `dead` | `bool` |  |
-| `deleted` | `bool` |  |
-| `descendants` | `int` |  |
-| `id` | `int` |  |
-| `kids` | `list` |  |
-| `parent` | `int` |  |
-| `parts` | `list` |  |
-| `poll` | `int` |  |
-| `score` | `int` |  |
-| `text` | `str` |  |
-| `time` | `int` |  |
-| `title` | `str` |  |
-| `type` | `str` |  |
-| `url` | `str` |  |
+| `by` | `str` | The username of the item's author |
+| `dead` | `bool` | true if the item is dead |
+| `deleted` | `bool` | true if the item is deleted |
+| `descendants` | `int` | In the case of stories or polls, the total comment count |
+| `id` | `int` | The item's unique id |
+| `kids` | `list` | The ids of the item's comments, in ranked display order |
+| `parent` | `int` | The comment's parent: either another comment or the relevant story |
+| `parts` | `list` | A list of related pollopts, in display order |
+| `poll` | `int` | The pollopt's associated poll |
+| `score` | `int` | The story's score, or the votes for a pollopt |
+| `text` | `str` | The comment, story or poll text. |
+| `time` | `int` | Creation date of the item, in Unix Time |
+| `title` | `str` | The title of the story, poll or job. |
+| `type` | `str` | The type of item |
+| `url` | `str` | The URL of the story |
 
 #### Example: List
 
@@ -401,8 +401,8 @@ Create an instance: `update = client.Update()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `items` | `list` |  |
-| `profiles` | `list` |  |
+| `items` | `list` | Array of item IDs that have been updated |
+| `profiles` | `list` | Array of usernames whose profiles have been updated |
 
 #### Example: List
 
@@ -425,11 +425,11 @@ Create an instance: `user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `about` | `str` |  |
-| `created` | `int` |  |
-| `id` | `str` |  |
-| `karma` | `int` |  |
-| `submitted` | `list` |  |
+| `about` | `str` | The user's optional self-description. |
+| `created` | `int` | Creation date of the user, in Unix Time |
+| `id` | `str` | The user's unique username. |
+| `karma` | `int` | The user's karma |
+| `submitted` | `list` | List of the user's stories, polls and comments |
 
 #### Example: List
 

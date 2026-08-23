@@ -164,21 +164,21 @@ const item = client.Item()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | `string` | No |  |
-| `dead` | `boolean` | No |  |
-| `deleted` | `boolean` | No |  |
-| `descendants` | `number` | No |  |
-| `id` | `number` | Yes |  |
-| `kids` | `any[]` | No |  |
-| `parent` | `number` | No |  |
-| `parts` | `any[]` | No |  |
-| `poll` | `number` | No |  |
-| `score` | `number` | No |  |
-| `text` | `string` | No |  |
-| `time` | `number` | No |  |
-| `title` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `by` | `string` | No | The username of the item's author |
+| `dead` | `boolean` | No | true if the item is dead |
+| `deleted` | `boolean` | No | true if the item is deleted |
+| `descendants` | `number` | No | In the case of stories or polls, the total comment count |
+| `id` | `number` | Yes | The item's unique id |
+| `kids` | `any[]` | No | The ids of the item's comments, in ranked display order |
+| `parent` | `number` | No | The comment's parent: either another comment or the relevant story |
+| `parts` | `any[]` | No | A list of related pollopts, in display order |
+| `poll` | `number` | No | The pollopt's associated poll |
+| `score` | `number` | No | The story's score, or the votes for a pollopt |
+| `text` | `string` | No | The comment, story or poll text. |
+| `time` | `number` | No | Creation date of the item, in Unix Time |
+| `title` | `string` | No | The title of the story, poll or job. |
+| `type` | `string` | No | The type of item |
+| `url` | `string` | No | The URL of the story |
 
 ### Actions
 
@@ -336,8 +336,8 @@ const update = client.Update()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `items` | `any[]` | No |  |
-| `profiles` | `any[]` | No |  |
+| `items` | `any[]` | No | Array of item IDs that have been updated |
+| `profiles` | `any[]` | No | Array of usernames whose profiles have been updated |
 
 ### Operations
 
@@ -387,11 +387,11 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | `string` | No |  |
-| `created` | `number` | Yes |  |
-| `id` | `string` | Yes |  |
-| `karma` | `number` | Yes |  |
-| `submitted` | `any[]` | No |  |
+| `about` | `string` | No | The user's optional self-description. |
+| `created` | `number` | Yes | Creation date of the user, in Unix Time |
+| `id` | `string` | Yes | The user's unique username. |
+| `karma` | `number` | Yes | The user's karma |
+| `submitted` | `any[]` | No | List of the user's stories, polls and comments |
 
 ### Actions
 

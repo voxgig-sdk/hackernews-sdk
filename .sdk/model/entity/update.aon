@@ -8,11 +8,13 @@ main: kit: entity: update: {
     {
       name: "items"
       req: false
+      short: "Array of item IDs that have been updated"
       type: "`$ARRAY`"
     }
     {
       name: "profiles"
       req: false
+      short: "Array of usernames whose profiles have been updated"
       type: "`$ARRAY`"
     }
   ]

@@ -8,26 +8,31 @@ main: kit: entity: user: {
     {
       name: "about"
       req: false
+      short: "The user's optional self-description."
       type: "`$STRING`"
     }
     {
       name: "created"
       req: true
+      short: "Creation date of the user, in Unix Time"
       type: "`$INTEGER`"
     }
     {
       name: "id"
       req: true
+      short: "The user's unique username."
       type: "`$STRING`"
     }
     {
       name: "karma"
       req: true
+      short: "The user's karma"
       type: "`$INTEGER`"
     }
     {
       name: "submitted"
       req: false
+      short: "List of the user's stories, polls and comments"
       type: "`$ARRAY`"
     }
   ]

@@ -106,21 +106,21 @@ local item = client:Item(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | `string` | No |  |
-| `dead` | `boolean` | No |  |
-| `deleted` | `boolean` | No |  |
-| `descendants` | `number` | No |  |
-| `id` | `number` | Yes |  |
-| `kids` | `table` | No |  |
-| `parent` | `number` | No |  |
-| `parts` | `table` | No |  |
-| `poll` | `number` | No |  |
-| `score` | `number` | No |  |
-| `text` | `string` | No |  |
-| `time` | `number` | No |  |
-| `title` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `by` | `string` | No | The username of the item's author |
+| `dead` | `boolean` | No | true if the item is dead |
+| `deleted` | `boolean` | No | true if the item is deleted |
+| `descendants` | `number` | No | In the case of stories or polls, the total comment count |
+| `id` | `number` | Yes | The item's unique id |
+| `kids` | `table` | No | The ids of the item's comments, in ranked display order |
+| `parent` | `number` | No | The comment's parent: either another comment or the relevant story |
+| `parts` | `table` | No | A list of related pollopts, in display order |
+| `poll` | `number` | No | The pollopt's associated poll |
+| `score` | `number` | No | The story's score, or the votes for a pollopt |
+| `text` | `string` | No | The comment, story or poll text. |
+| `time` | `number` | No | Creation date of the item, in Unix Time |
+| `title` | `string` | No | The title of the story, poll or job. |
+| `type` | `string` | No | The type of item |
+| `url` | `string` | No | The URL of the story |
 
 ### Operations
 
@@ -264,8 +264,8 @@ local update = client:Update(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `items` | `table` | No |  |
-| `profiles` | `table` | No |  |
+| `items` | `table` | No | Array of item IDs that have been updated |
+| `profiles` | `table` | No | Array of usernames whose profiles have been updated |
 
 ### Operations
 
@@ -317,11 +317,11 @@ local user = client:User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | `string` | No |  |
-| `created` | `number` | Yes |  |
-| `id` | `string` | Yes |  |
-| `karma` | `number` | Yes |  |
-| `submitted` | `table` | No |  |
+| `about` | `string` | No | The user's optional self-description. |
+| `created` | `number` | Yes | Creation date of the user, in Unix Time |
+| `id` | `string` | Yes | The user's unique username. |
+| `karma` | `number` | Yes | The user's karma |
+| `submitted` | `table` | No | List of the user's stories, polls and comments |
 
 ### Operations
 

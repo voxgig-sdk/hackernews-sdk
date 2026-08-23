@@ -108,21 +108,21 @@ $item = $client->Item();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | `string` | No |  |
-| `dead` | `bool` | No |  |
-| `deleted` | `bool` | No |  |
-| `descendants` | `int` | No |  |
-| `id` | `int` | Yes |  |
-| `kids` | `array` | No |  |
-| `parent` | `int` | No |  |
-| `parts` | `array` | No |  |
-| `poll` | `int` | No |  |
-| `score` | `int` | No |  |
-| `text` | `string` | No |  |
-| `time` | `int` | No |  |
-| `title` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `by` | `string` | No | The username of the item's author |
+| `dead` | `bool` | No | true if the item is dead |
+| `deleted` | `bool` | No | true if the item is deleted |
+| `descendants` | `int` | No | In the case of stories or polls, the total comment count |
+| `id` | `int` | Yes | The item's unique id |
+| `kids` | `array` | No | The ids of the item's comments, in ranked display order |
+| `parent` | `int` | No | The comment's parent: either another comment or the relevant story |
+| `parts` | `array` | No | A list of related pollopts, in display order |
+| `poll` | `int` | No | The pollopt's associated poll |
+| `score` | `int` | No | The story's score, or the votes for a pollopt |
+| `text` | `string` | No | The comment, story or poll text. |
+| `time` | `int` | No | Creation date of the item, in Unix Time |
+| `title` | `string` | No | The title of the story, poll or job. |
+| `type` | `string` | No | The type of item |
+| `url` | `string` | No | The URL of the story |
 
 ### Operations
 
@@ -266,8 +266,8 @@ $update = $client->Update();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `items` | `array` | No |  |
-| `profiles` | `array` | No |  |
+| `items` | `array` | No | Array of item IDs that have been updated |
+| `profiles` | `array` | No | Array of usernames whose profiles have been updated |
 
 ### Operations
 
@@ -319,11 +319,11 @@ $user = $client->User();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | `string` | No |  |
-| `created` | `int` | Yes |  |
-| `id` | `string` | Yes |  |
-| `karma` | `int` | Yes |  |
-| `submitted` | `array` | No |  |
+| `about` | `string` | No | The user's optional self-description. |
+| `created` | `int` | Yes | Creation date of the user, in Unix Time |
+| `id` | `string` | Yes | The user's unique username. |
+| `karma` | `int` | Yes | The user's karma |
+| `submitted` | `array` | No | List of the user's stories, polls and comments |
 
 ### Operations
 

@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Hackernews",
+            "slug": "hackernews",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -54,63 +57,78 @@ def make_config():
         "fields": [
           {
             "name": "by",
+            "short": "The username of the item's author",
             "type": "`$STRING`",
           },
           {
             "name": "dead",
+            "short": "true if the item is dead",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "deleted",
+            "short": "true if the item is deleted",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "descendants",
+            "short": "In the case of stories or polls, the total comment count",
             "type": "`$INTEGER`",
           },
           {
             "name": "id",
             "req": True,
+            "short": "The item's unique id",
             "type": "`$INTEGER`",
           },
           {
             "name": "kids",
+            "short": "The ids of the item's comments, in ranked display order",
             "type": "`$ARRAY`",
           },
           {
             "name": "parent",
+            "short": "The comment's parent: either another comment or the relevant story",
             "type": "`$INTEGER`",
           },
           {
             "name": "parts",
+            "short": "A list of related pollopts, in display order",
             "type": "`$ARRAY`",
           },
           {
             "name": "poll",
+            "short": "The pollopt's associated poll",
             "type": "`$INTEGER`",
           },
           {
             "name": "score",
+            "short": "The story's score, or the votes for a pollopt",
             "type": "`$INTEGER`",
           },
           {
             "name": "text",
+            "short": "The comment, story or poll text.",
             "type": "`$STRING`",
           },
           {
             "name": "time",
+            "short": "Creation date of the item, in Unix Time",
             "type": "`$INTEGER`",
           },
           {
             "name": "title",
+            "short": "The title of the story, poll or job.",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "The type of item",
             "type": "`$STRING`",
           },
           {
             "name": "url",
+            "short": "The URL of the story",
             "type": "`$STRING`",
           },
         ],
@@ -393,10 +411,12 @@ def make_config():
         "fields": [
           {
             "name": "items",
+            "short": "Array of item IDs that have been updated",
             "type": "`$ARRAY`",
           },
           {
             "name": "profiles",
+            "short": "Array of usernames whose profiles have been updated",
             "type": "`$ARRAY`",
           },
         ],
@@ -444,25 +464,30 @@ def make_config():
         "fields": [
           {
             "name": "about",
+            "short": "The user's optional self-description.",
             "type": "`$STRING`",
           },
           {
             "name": "created",
             "req": True,
+            "short": "Creation date of the user, in Unix Time",
             "type": "`$INTEGER`",
           },
           {
             "name": "id",
             "req": True,
+            "short": "The user's unique username.",
             "type": "`$STRING`",
           },
           {
             "name": "karma",
             "req": True,
+            "short": "The user's karma",
             "type": "`$INTEGER`",
           },
           {
             "name": "submitted",
+            "short": "List of the user's stories, polls and comments",
             "type": "`$ARRAY`",
           },
         ],

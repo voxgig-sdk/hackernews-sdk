@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Hackernews",
+			"slug": "hackernews",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -37,63 +40,78 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "by",
+						"short": "The username of the item's author",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "dead",
+						"short": "true if the item is dead",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "deleted",
+						"short": "true if the item is deleted",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "descendants",
+						"short": "In the case of stories or polls, the total comment count",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
 						"req": true,
+						"short": "The item's unique id",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "kids",
+						"short": "The ids of the item's comments, in ranked display order",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "parent",
+						"short": "The comment's parent: either another comment or the relevant story",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "parts",
+						"short": "A list of related pollopts, in display order",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "poll",
+						"short": "The pollopt's associated poll",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "score",
+						"short": "The story's score, or the votes for a pollopt",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "text",
+						"short": "The comment, story or poll text.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "time",
+						"short": "Creation date of the item, in Unix Time",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the story, poll or job.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "The type of item",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "The URL of the story",
 						"type": "`$STRING`",
 					},
 				},
@@ -376,10 +394,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "items",
+						"short": "Array of item IDs that have been updated",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "profiles",
+						"short": "Array of usernames whose profiles have been updated",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -427,25 +447,30 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "about",
+						"short": "The user's optional self-description.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "created",
 						"req": true,
+						"short": "Creation date of the user, in Unix Time",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
 						"req": true,
+						"short": "The user's unique username.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "karma",
 						"req": true,
+						"short": "The user's karma",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "submitted",
+						"short": "List of the user's stories, polls and comments",
 						"type": "`$ARRAY`",
 					},
 				},

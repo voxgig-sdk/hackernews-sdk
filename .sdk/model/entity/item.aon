@@ -8,76 +8,91 @@ main: kit: entity: item: {
     {
       name: "by"
       req: false
+      short: "The username of the item's author"
       type: "`$STRING`"
     }
     {
       name: "dead"
       req: false
+      short: "true if the item is dead"
       type: "`$BOOLEAN`"
     }
     {
       name: "deleted"
       req: false
+      short: "true if the item is deleted"
       type: "`$BOOLEAN`"
     }
     {
       name: "descendants"
       req: false
+      short: "In the case of stories or polls, the total comment count"
       type: "`$INTEGER`"
     }
     {
       name: "id"
       req: true
+      short: "The item's unique id"
       type: "`$INTEGER`"
     }
     {
       name: "kids"
       req: false
+      short: "The ids of the item's comments, in ranked display order"
       type: "`$ARRAY`"
     }
     {
       name: "parent"
       req: false
+      short: "The comment's parent: either another comment or the relevant story"
       type: "`$INTEGER`"
     }
     {
       name: "parts"
       req: false
+      short: "A list of related pollopts, in display order"
       type: "`$ARRAY`"
     }
     {
       name: "poll"
       req: false
+      short: "The pollopt's associated poll"
       type: "`$INTEGER`"
     }
     {
       name: "score"
       req: false
+      short: "The story's score, or the votes for a pollopt"
       type: "`$INTEGER`"
     }
     {
       name: "text"
       req: false
+      short: "The comment, story or poll text."
       type: "`$STRING`"
     }
     {
       name: "time"
       req: false
+      short: "Creation date of the item, in Unix Time"
       type: "`$INTEGER`"
     }
     {
       name: "title"
       req: false
+      short: "The title of the story, poll or job."
       type: "`$STRING`"
     }
     {
       name: "type"
       req: false
+      short: "The type of item"
       type: "`$STRING`"
     }
     {
       name: "url"
       req: false
+      short: "The URL of the story"
       type: "`$STRING`"
     }
   ]

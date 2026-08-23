@@ -237,21 +237,21 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `by` |  |
-| `dead` |  |
-| `deleted` |  |
-| `descendants` |  |
-| `id` |  |
-| `kids` |  |
-| `parent` |  |
-| `parts` |  |
-| `poll` |  |
-| `score` |  |
-| `text` |  |
-| `time` |  |
-| `title` |  |
-| `type` |  |
-| `url` |  |
+| `by` | The username of the item's author |
+| `dead` | true if the item is dead |
+| `deleted` | true if the item is deleted |
+| `descendants` | In the case of stories or polls, the total comment count |
+| `id` | The item's unique id |
+| `kids` | The ids of the item's comments, in ranked display order |
+| `parent` | The comment's parent: either another comment or the relevant story |
+| `parts` | A list of related pollopts, in display order |
+| `poll` | The pollopt's associated poll |
+| `score` | The story's score, or the votes for a pollopt |
+| `text` | The comment, story or poll text. |
+| `time` | Creation date of the item, in Unix Time |
+| `title` | The title of the story, poll or job. |
+| `type` | The type of item |
+| `url` | The URL of the story |
 
 Operations: List.
 
@@ -279,8 +279,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `items` |  |
-| `profiles` |  |
+| `items` | Array of item IDs that have been updated |
+| `profiles` | Array of usernames whose profiles have been updated |
 
 Operations: List.
 
@@ -290,11 +290,11 @@ API path: `/updates.json`
 
 | Field | Description |
 | --- | --- |
-| `about` |  |
-| `created` |  |
-| `id` |  |
-| `karma` |  |
-| `submitted` |  |
+| `about` | The user's optional self-description. |
+| `created` | Creation date of the user, in Unix Time |
+| `id` | The user's unique username. |
+| `karma` | The user's karma |
+| `submitted` | List of the user's stories, polls and comments |
 
 Operations: List.
 
@@ -319,21 +319,21 @@ Create an instance: `local item = client:Item(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `by` | `string` |  |
-| `dead` | `boolean` |  |
-| `deleted` | `boolean` |  |
-| `descendants` | `number` |  |
-| `id` | `number` |  |
-| `kids` | `table` |  |
-| `parent` | `number` |  |
-| `parts` | `table` |  |
-| `poll` | `number` |  |
-| `score` | `number` |  |
-| `text` | `string` |  |
-| `time` | `number` |  |
-| `title` | `string` |  |
-| `type` | `string` |  |
-| `url` | `string` |  |
+| `by` | `string` | The username of the item's author |
+| `dead` | `boolean` | true if the item is dead |
+| `deleted` | `boolean` | true if the item is deleted |
+| `descendants` | `number` | In the case of stories or polls, the total comment count |
+| `id` | `number` | The item's unique id |
+| `kids` | `table` | The ids of the item's comments, in ranked display order |
+| `parent` | `number` | The comment's parent: either another comment or the relevant story |
+| `parts` | `table` | A list of related pollopts, in display order |
+| `poll` | `number` | The pollopt's associated poll |
+| `score` | `number` | The story's score, or the votes for a pollopt |
+| `text` | `string` | The comment, story or poll text. |
+| `time` | `number` | Creation date of the item, in Unix Time |
+| `title` | `string` | The title of the story, poll or job. |
+| `type` | `string` | The type of item |
+| `url` | `string` | The URL of the story |
 
 #### Example: List
 
@@ -390,8 +390,8 @@ Create an instance: `local update = client:Update(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `items` | `table` |  |
-| `profiles` | `table` |  |
+| `items` | `table` | Array of item IDs that have been updated |
+| `profiles` | `table` | Array of usernames whose profiles have been updated |
 
 #### Example: List
 
@@ -414,11 +414,11 @@ Create an instance: `local user = client:User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `about` | `string` |  |
-| `created` | `number` |  |
-| `id` | `string` |  |
-| `karma` | `number` |  |
-| `submitted` | `table` |  |
+| `about` | `string` | The user's optional self-description. |
+| `created` | `number` | Creation date of the user, in Unix Time |
+| `id` | `string` | The user's unique username. |
+| `karma` | `number` | The user's karma |
+| `submitted` | `table` | List of the user's stories, polls and comments |
 
 #### Example: List
 

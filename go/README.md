@@ -6,7 +6,7 @@ The Golang SDK for the Hackernews API — an entity-oriented client using standa
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Item(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -266,21 +266,21 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"by"` |  |
-| `"dead"` |  |
-| `"deleted"` |  |
-| `"descendants"` |  |
-| `"id"` |  |
-| `"kids"` |  |
-| `"parent"` |  |
-| `"parts"` |  |
-| `"poll"` |  |
-| `"score"` |  |
-| `"text"` |  |
-| `"time"` |  |
-| `"title"` |  |
-| `"type"` |  |
-| `"url"` |  |
+| `"by"` | The username of the item's author |
+| `"dead"` | true if the item is dead |
+| `"deleted"` | true if the item is deleted |
+| `"descendants"` | In the case of stories or polls, the total comment count |
+| `"id"` | The item's unique id |
+| `"kids"` | The ids of the item's comments, in ranked display order |
+| `"parent"` | The comment's parent: either another comment or the relevant story |
+| `"parts"` | A list of related pollopts, in display order |
+| `"poll"` | The pollopt's associated poll |
+| `"score"` | The story's score, or the votes for a pollopt |
+| `"text"` | The comment, story or poll text. |
+| `"time"` | Creation date of the item, in Unix Time |
+| `"title"` | The title of the story, poll or job. |
+| `"type"` | The type of item |
+| `"url"` | The URL of the story |
 
 Operations: List.
 
@@ -308,8 +308,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `"items"` |  |
-| `"profiles"` |  |
+| `"items"` | Array of item IDs that have been updated |
+| `"profiles"` | Array of usernames whose profiles have been updated |
 
 Operations: List.
 
@@ -319,11 +319,11 @@ API path: `/updates.json`
 
 | Field | Description |
 | --- | --- |
-| `"about"` |  |
-| `"created"` |  |
-| `"id"` |  |
-| `"karma"` |  |
-| `"submitted"` |  |
+| `"about"` | The user's optional self-description. |
+| `"created"` | Creation date of the user, in Unix Time |
+| `"id"` | The user's unique username. |
+| `"karma"` | The user's karma |
+| `"submitted"` | List of the user's stories, polls and comments |
 
 Operations: List.
 
@@ -348,21 +348,21 @@ Create an instance: `item := client.Item(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `by` | `string` |  |
-| `dead` | `bool` |  |
-| `deleted` | `bool` |  |
-| `descendants` | `int` |  |
-| `id` | `int` |  |
-| `kids` | `[]any` |  |
-| `parent` | `int` |  |
-| `parts` | `[]any` |  |
-| `poll` | `int` |  |
-| `score` | `int` |  |
-| `text` | `string` |  |
-| `time` | `int` |  |
-| `title` | `string` |  |
-| `type` | `string` |  |
-| `url` | `string` |  |
+| `by` | `string` | The username of the item's author |
+| `dead` | `bool` | true if the item is dead |
+| `deleted` | `bool` | true if the item is deleted |
+| `descendants` | `int` | In the case of stories or polls, the total comment count |
+| `id` | `int` | The item's unique id |
+| `kids` | `[]any` | The ids of the item's comments, in ranked display order |
+| `parent` | `int` | The comment's parent: either another comment or the relevant story |
+| `parts` | `[]any` | A list of related pollopts, in display order |
+| `poll` | `int` | The pollopt's associated poll |
+| `score` | `int` | The story's score, or the votes for a pollopt |
+| `text` | `string` | The comment, story or poll text. |
+| `time` | `int` | Creation date of the item, in Unix Time |
+| `title` | `string` | The title of the story, poll or job. |
+| `type` | `string` | The type of item |
+| `url` | `string` | The URL of the story |
 
 #### Example: List
 
@@ -431,8 +431,8 @@ Create an instance: `update := client.Update(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `items` | `[]any` |  |
-| `profiles` | `[]any` |  |
+| `items` | `[]any` | Array of item IDs that have been updated |
+| `profiles` | `[]any` | Array of usernames whose profiles have been updated |
 
 #### Example: List
 
@@ -459,11 +459,11 @@ Create an instance: `user := client.User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `about` | `string` |  |
-| `created` | `int` |  |
-| `id` | `string` |  |
-| `karma` | `int` |  |
-| `submitted` | `[]any` |  |
+| `about` | `string` | The user's optional self-description. |
+| `created` | `int` | Creation date of the user, in Unix Time |
+| `id` | `string` | The user's unique username. |
+| `karma` | `int` | The user's karma |
+| `submitted` | `[]any` | List of the user's stories, polls and comments |
 
 #### Example: List
 

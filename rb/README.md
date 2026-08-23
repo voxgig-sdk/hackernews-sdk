@@ -242,21 +242,21 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `by` |  |
-| `dead` |  |
-| `deleted` |  |
-| `descendants` |  |
-| `id` |  |
-| `kids` |  |
-| `parent` |  |
-| `parts` |  |
-| `poll` |  |
-| `score` |  |
-| `text` |  |
-| `time` |  |
-| `title` |  |
-| `type` |  |
-| `url` |  |
+| `by` | The username of the item's author |
+| `dead` | true if the item is dead |
+| `deleted` | true if the item is deleted |
+| `descendants` | In the case of stories or polls, the total comment count |
+| `id` | The item's unique id |
+| `kids` | The ids of the item's comments, in ranked display order |
+| `parent` | The comment's parent: either another comment or the relevant story |
+| `parts` | A list of related pollopts, in display order |
+| `poll` | The pollopt's associated poll |
+| `score` | The story's score, or the votes for a pollopt |
+| `text` | The comment, story or poll text. |
+| `time` | Creation date of the item, in Unix Time |
+| `title` | The title of the story, poll or job. |
+| `type` | The type of item |
+| `url` | The URL of the story |
 
 Operations: List.
 
@@ -284,8 +284,8 @@ API path: `/askstories.json`
 
 | Field | Description |
 | --- | --- |
-| `items` |  |
-| `profiles` |  |
+| `items` | Array of item IDs that have been updated |
+| `profiles` | Array of usernames whose profiles have been updated |
 
 Operations: List.
 
@@ -295,11 +295,11 @@ API path: `/updates.json`
 
 | Field | Description |
 | --- | --- |
-| `about` |  |
-| `created` |  |
-| `id` |  |
-| `karma` |  |
-| `submitted` |  |
+| `about` | The user's optional self-description. |
+| `created` | Creation date of the user, in Unix Time |
+| `id` | The user's unique username. |
+| `karma` | The user's karma |
+| `submitted` | List of the user's stories, polls and comments |
 
 Operations: List.
 
@@ -324,21 +324,21 @@ Create an instance: `item = client.Item`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `by` | `String` |  |
-| `dead` | `Boolean` |  |
-| `deleted` | `Boolean` |  |
-| `descendants` | `Integer` |  |
-| `id` | `Integer` |  |
-| `kids` | `Array` |  |
-| `parent` | `Integer` |  |
-| `parts` | `Array` |  |
-| `poll` | `Integer` |  |
-| `score` | `Integer` |  |
-| `text` | `String` |  |
-| `time` | `Integer` |  |
-| `title` | `String` |  |
-| `type` | `String` |  |
-| `url` | `String` |  |
+| `by` | `String` | The username of the item's author |
+| `dead` | `Boolean` | true if the item is dead |
+| `deleted` | `Boolean` | true if the item is deleted |
+| `descendants` | `Integer` | In the case of stories or polls, the total comment count |
+| `id` | `Integer` | The item's unique id |
+| `kids` | `Array` | The ids of the item's comments, in ranked display order |
+| `parent` | `Integer` | The comment's parent: either another comment or the relevant story |
+| `parts` | `Array` | A list of related pollopts, in display order |
+| `poll` | `Integer` | The pollopt's associated poll |
+| `score` | `Integer` | The story's score, or the votes for a pollopt |
+| `text` | `String` | The comment, story or poll text. |
+| `time` | `Integer` | Creation date of the item, in Unix Time |
+| `title` | `String` | The title of the story, poll or job. |
+| `type` | `String` | The type of item |
+| `url` | `String` | The URL of the story |
 
 #### Example: List
 
@@ -398,8 +398,8 @@ Create an instance: `update = client.Update`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `items` | `Array` |  |
-| `profiles` | `Array` |  |
+| `items` | `Array` | Array of item IDs that have been updated |
+| `profiles` | `Array` | Array of usernames whose profiles have been updated |
 
 #### Example: List
 
@@ -423,11 +423,11 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `about` | `String` |  |
-| `created` | `Integer` |  |
-| `id` | `String` |  |
-| `karma` | `Integer` |  |
-| `submitted` | `Array` |  |
+| `about` | `String` | The user's optional self-description. |
+| `created` | `Integer` | Creation date of the user, in Unix Time |
+| `id` | `String` | The user's unique username. |
+| `karma` | `Integer` | The user's karma |
+| `submitted` | `Array` | List of the user's stories, polls and comments |
 
 #### Example: List
 

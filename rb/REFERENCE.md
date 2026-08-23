@@ -109,21 +109,21 @@ item = client.Item
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `by` | `String` | No |  |
-| `dead` | `Boolean` | No |  |
-| `deleted` | `Boolean` | No |  |
-| `descendants` | `Integer` | No |  |
-| `id` | `Integer` | Yes |  |
-| `kids` | `Array` | No |  |
-| `parent` | `Integer` | No |  |
-| `parts` | `Array` | No |  |
-| `poll` | `Integer` | No |  |
-| `score` | `Integer` | No |  |
-| `text` | `String` | No |  |
-| `time` | `Integer` | No |  |
-| `title` | `String` | No |  |
-| `type` | `String` | No |  |
-| `url` | `String` | No |  |
+| `by` | `String` | No | The username of the item's author |
+| `dead` | `Boolean` | No | true if the item is dead |
+| `deleted` | `Boolean` | No | true if the item is deleted |
+| `descendants` | `Integer` | No | In the case of stories or polls, the total comment count |
+| `id` | `Integer` | Yes | The item's unique id |
+| `kids` | `Array` | No | The ids of the item's comments, in ranked display order |
+| `parent` | `Integer` | No | The comment's parent: either another comment or the relevant story |
+| `parts` | `Array` | No | A list of related pollopts, in display order |
+| `poll` | `Integer` | No | The pollopt's associated poll |
+| `score` | `Integer` | No | The story's score, or the votes for a pollopt |
+| `text` | `String` | No | The comment, story or poll text. |
+| `time` | `Integer` | No | Creation date of the item, in Unix Time |
+| `title` | `String` | No | The title of the story, poll or job. |
+| `type` | `String` | No | The type of item |
+| `url` | `String` | No | The URL of the story |
 
 ### Operations
 
@@ -267,8 +267,8 @@ update = client.Update
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `items` | `Array` | No |  |
-| `profiles` | `Array` | No |  |
+| `items` | `Array` | No | Array of item IDs that have been updated |
+| `profiles` | `Array` | No | Array of usernames whose profiles have been updated |
 
 ### Operations
 
@@ -320,11 +320,11 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `about` | `String` | No |  |
-| `created` | `Integer` | Yes |  |
-| `id` | `String` | Yes |  |
-| `karma` | `Integer` | Yes |  |
-| `submitted` | `Array` | No |  |
+| `about` | `String` | No | The user's optional self-description. |
+| `created` | `Integer` | Yes | Creation date of the user, in Unix Time |
+| `id` | `String` | Yes | The user's unique username. |
+| `karma` | `Integer` | Yes | The user's karma |
+| `submitted` | `Array` | No | List of the user's stories, polls and comments |
 
 ### Operations
 
