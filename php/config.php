@@ -42,6 +42,7 @@ class HackernewsConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
