@@ -37,24 +37,28 @@ class Item(ItemRequired, total=False):
     url: str
 
 
-class ItemListMatch(TypedDict):
+class ItemListMatchRequired(TypedDict):
     id: int
+
+
+class ItemListMatch(ItemListMatchRequired, total=False):
+    print: str
 
 
 class LiveData(TypedDict):
     pass
 
 
-class LiveDataLoadMatch(TypedDict):
-    pass
+class LiveDataLoadMatch(TypedDict, total=False):
+    print: str
 
 
 class Story(TypedDict):
     pass
 
 
-class StoryListMatch(TypedDict):
-    pass
+class StoryListMatch(TypedDict, total=False):
+    print: str
 
 
 class Update(TypedDict, total=False):
@@ -63,8 +67,7 @@ class Update(TypedDict, total=False):
 
 
 class UpdateListMatch(TypedDict, total=False):
-    items: list
-    profiles: list
+    print: str
 
 
 class UserRequired(TypedDict):
@@ -78,5 +81,9 @@ class User(UserRequired, total=False):
     submitted: list
 
 
-class UserListMatch(TypedDict):
+class UserListMatchRequired(TypedDict):
     id: str
+
+
+class UserListMatch(UserListMatchRequired, total=False):
+    print: str

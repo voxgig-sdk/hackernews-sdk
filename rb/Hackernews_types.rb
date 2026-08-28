@@ -77,8 +77,12 @@ Item = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [Integer]
+#
+# @!attribute [rw] print
+#   @return [String, nil]
 ItemListMatch = Struct.new(
   :id,
+  :print,
   keyword_init: true
 )
 
@@ -87,16 +91,26 @@ class LiveData
 end
 
 # Request payload for LiveData#load.
-class LiveDataLoadMatch
-end
+#
+# @!attribute [rw] print
+#   @return [String, nil]
+LiveDataLoadMatch = Struct.new(
+  :print,
+  keyword_init: true
+)
 
 # Story entity data model.
 class Story
 end
 
 # Request payload for Story#list.
-class StoryListMatch
-end
+#
+# @!attribute [rw] print
+#   @return [String, nil]
+StoryListMatch = Struct.new(
+  :print,
+  keyword_init: true
+)
 
 # Update entity data model.
 #
@@ -113,14 +127,10 @@ Update = Struct.new(
 
 # Request payload for Update#list.
 #
-# @!attribute [rw] items
-#   @return [Array, nil]
-#
-# @!attribute [rw] profiles
-#   @return [Array, nil]
+# @!attribute [rw] print
+#   @return [String, nil]
 UpdateListMatch = Struct.new(
-  :items,
-  :profiles,
+  :print,
   keyword_init: true
 )
 
@@ -153,8 +163,12 @@ User = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] print
+#   @return [String, nil]
 UserListMatch = Struct.new(
   :id,
+  :print,
   keyword_init: true
 )
 

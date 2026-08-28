@@ -25,22 +25,24 @@
 
 ---@class ItemListMatch
 ---@field id number
+---@field print? string
 
 ---@class LiveData
 
 ---@class LiveDataLoadMatch
+---@field print? string
 
 ---@class Story
 
 ---@class StoryListMatch
+---@field print? string
 
 ---@class Update
 ---@field items? table
 ---@field profiles? table
 
 ---@class UpdateListMatch
----@field items? table
----@field profiles? table
+---@field print? string
 
 ---@class User
 ---@field about? string
@@ -51,6 +53,7 @@
 
 ---@class UserListMatch
 ---@field id string
+---@field print? string
 
 local M = {}
 

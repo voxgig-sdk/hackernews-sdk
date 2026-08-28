@@ -36,6 +36,7 @@ class Item
 class ItemListMatch
 {
     public int $id;
+    public ?string $print = null;
 }
 
 /** LiveData entity data model. */
@@ -46,6 +47,7 @@ class LiveData
 /** Request payload for LiveData#load. */
 class LiveDataLoadMatch
 {
+    public ?string $print = null;
 }
 
 /** Story entity data model. */
@@ -56,6 +58,7 @@ class Story
 /** Request payload for Story#list. */
 class StoryListMatch
 {
+    public ?string $print = null;
 }
 
 /** Update entity data model. */
@@ -68,8 +71,7 @@ class Update
 /** Request payload for Update#list. */
 class UpdateListMatch
 {
-    public ?array $items = null;
-    public ?array $profiles = null;
+    public ?string $print = null;
 }
 
 /** User entity data model. */
@@ -86,5 +88,6 @@ class User
 class UserListMatch
 {
     public string $id;
+    public ?string $print = null;
 }
 

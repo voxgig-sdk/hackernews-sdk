@@ -25,6 +25,7 @@ export interface Item {
 
 export interface ItemListMatch {
   id: number
+  print?: string
 
   // Selects a custom action instead of the plain list:
   //   'id'
@@ -37,12 +38,14 @@ export interface LiveData {
 }
 
 export interface LiveDataLoadMatch {
+  print?: string
 }
 
 export interface Story {
 }
 
 export interface StoryListMatch {
+  print?: string
 }
 
 export interface Update {
@@ -51,8 +54,7 @@ export interface Update {
 }
 
 export interface UpdateListMatch {
-  items?: any[]
-  profiles?: any[]
+  print?: string
 }
 
 export interface User {
@@ -65,6 +67,7 @@ export interface User {
 
 export interface UserListMatch {
   id: string
+  print?: string
 
   // Selects a custom action instead of the plain list:
   //   'id'

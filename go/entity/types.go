@@ -34,6 +34,7 @@ type Item struct {
 // ItemListMatch is the typed request payload for Item.ListTyped.
 type ItemListMatch struct {
 	Id int `json:"id"`
+	Print *string `json:"print,omitempty"`
 }
 
 // LiveData is the typed data model for the live_data entity.
@@ -42,6 +43,7 @@ type LiveData struct {
 
 // LiveDataLoadMatch is the typed request payload for LiveData.LoadTyped.
 type LiveDataLoadMatch struct {
+	Print *string `json:"print,omitempty"`
 }
 
 // Story is the typed data model for the story entity.
@@ -50,6 +52,7 @@ type Story struct {
 
 // StoryListMatch is the typed request payload for Story.ListTyped.
 type StoryListMatch struct {
+	Print *string `json:"print,omitempty"`
 }
 
 // Update is the typed data model for the update entity.
@@ -60,8 +63,7 @@ type Update struct {
 
 // UpdateListMatch is the typed request payload for Update.ListTyped.
 type UpdateListMatch struct {
-	Items *[]any `json:"items,omitempty"`
-	Profiles *[]any `json:"profiles,omitempty"`
+	Print *string `json:"print,omitempty"`
 }
 
 // User is the typed data model for the user entity.
@@ -76,6 +78,7 @@ type User struct {
 // UserListMatch is the typed request payload for User.ListTyped.
 type UserListMatch struct {
 	Id string `json:"id"`
+	Print *string `json:"print,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
