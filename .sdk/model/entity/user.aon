@@ -70,9 +70,13 @@ main: kit: entity: user: {
           }
           method: "GET"
           orig: "/user/{id}.json"
-          parts: [
-            "user"
-            "{id}.json"
+          segments: [
+            {
+              lit: "user"
+            }
+            {
+              lit: "{id}.json"
+            }
           ]
           select: {
             "$action": "id"
@@ -88,14 +92,6 @@ main: kit: entity: user: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "user"
-      ]
-    ]
   }
 
 

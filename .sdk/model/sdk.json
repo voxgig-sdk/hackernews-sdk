@@ -175,9 +175,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/item/{id}.json",
-                  "parts": [
-                    "item",
-                    "{id}.json"
+                  "segments": [
+                    {
+                      "lit": "item"
+                    },
+                    {
+                      "lit": "{id}.json"
+                    }
                   ],
                   "select": {
                     "$action": "id",
@@ -195,11 +199,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "item"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "live_data": {
@@ -231,8 +231,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/maxitem.json",
-                  "parts": [
-                    "maxitem.json"
+                  "segments": [
+                    {
+                      "lit": "maxitem.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -280,8 +282,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/askstories.json",
-                  "parts": [
-                    "askstories.json"
+                  "segments": [
+                    {
+                      "lit": "askstories.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -310,8 +314,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/beststories.json",
-                  "parts": [
-                    "beststories.json"
+                  "segments": [
+                    {
+                      "lit": "beststories.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -340,8 +346,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/jobstories.json",
-                  "parts": [
-                    "jobstories.json"
+                  "segments": [
+                    {
+                      "lit": "jobstories.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -370,8 +378,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/newstories.json",
-                  "parts": [
-                    "newstories.json"
+                  "segments": [
+                    {
+                      "lit": "newstories.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -400,8 +410,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/showstories.json",
-                  "parts": [
-                    "showstories.json"
+                  "segments": [
+                    {
+                      "lit": "showstories.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -430,8 +442,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/topstories.json",
-                  "parts": [
-                    "topstories.json"
+                  "segments": [
+                    {
+                      "lit": "topstories.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -494,8 +508,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/updates.json",
-                  "parts": [
-                    "updates.json"
+                  "segments": [
+                    {
+                      "lit": "updates.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -593,9 +609,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/user/{id}.json",
-                  "parts": [
-                    "user",
-                    "{id}.json"
+                  "segments": [
+                    {
+                      "lit": "user"
+                    },
+                    {
+                      "lit": "{id}.json"
+                    }
                   ],
                   "select": {
                     "$action": "id",
@@ -613,11 +633,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "user"
-              ]
-            ]
+            "ancestors": []
           }
         }
       },
@@ -685,8 +701,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -917,6 +936,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -942,6 +964,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -993,6 +1019,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1017,6 +1044,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1068,6 +1096,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1092,6 +1121,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1132,6 +1162,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1157,6 +1190,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1191,6 +1227,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1216,6 +1255,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1256,6 +1298,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1281,6 +1326,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1326,6 +1374,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1351,6 +1402,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1368,11 +1422,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1401,6 +1450,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1425,6 +1477,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

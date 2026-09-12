@@ -38,8 +38,10 @@ main: kit: entity: update: {
           }
           method: "GET"
           orig: "/updates.json"
-          parts: [
-            "updates.json"
+          segments: [
+            {
+              lit: "updates.json"
+            }
           ]
           select: {
             exist: [

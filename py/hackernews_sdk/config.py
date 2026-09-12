@@ -1,6 +1,14 @@
 # Hackernews SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -133,6 +141,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "item",
         "op": {
           "list": {
@@ -162,9 +174,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/item/{id}.json",
-                "parts": [
-                  "item",
-                  "{id}.json",
+                "segments": [
+                  {
+                    "lit": "item",
+                  },
+                  {
+                    "lit": "{id}.json",
+                  },
                 ],
                 "select": {
                   "$action": "id",
@@ -177,16 +193,16 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "item",
+                  "{id}.json",
+                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "item",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "live_data": {
@@ -211,8 +227,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/maxitem.json",
-                "parts": [
-                  "maxitem.json",
+                "segments": [
+                  {
+                    "lit": "maxitem.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -223,6 +241,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "maxitem.json",
+                ],
               },
             ],
           },
@@ -253,8 +274,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/askstories.json",
-                "parts": [
-                  "askstories.json",
+                "segments": [
+                  {
+                    "lit": "askstories.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -265,6 +288,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "askstories.json",
+                ],
               },
               {
                 "args": {
@@ -280,8 +306,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/beststories.json",
-                "parts": [
-                  "beststories.json",
+                "segments": [
+                  {
+                    "lit": "beststories.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -292,6 +320,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "beststories.json",
+                ],
               },
               {
                 "args": {
@@ -307,8 +338,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jobstories.json",
-                "parts": [
-                  "jobstories.json",
+                "segments": [
+                  {
+                    "lit": "jobstories.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -319,6 +352,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "jobstories.json",
+                ],
               },
               {
                 "args": {
@@ -334,8 +370,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/newstories.json",
-                "parts": [
-                  "newstories.json",
+                "segments": [
+                  {
+                    "lit": "newstories.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -346,6 +384,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "newstories.json",
+                ],
               },
               {
                 "args": {
@@ -361,8 +402,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/showstories.json",
-                "parts": [
-                  "showstories.json",
+                "segments": [
+                  {
+                    "lit": "showstories.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -373,6 +416,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "showstories.json",
+                ],
               },
               {
                 "args": {
@@ -388,8 +434,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/topstories.json",
-                "parts": [
-                  "topstories.json",
+                "segments": [
+                  {
+                    "lit": "topstories.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -400,6 +448,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "topstories.json",
+                ],
               },
             ],
           },
@@ -441,8 +492,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/updates.json",
-                "parts": [
-                  "updates.json",
+                "segments": [
+                  {
+                    "lit": "updates.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -453,6 +506,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "updates.json",
+                ],
               },
             ],
           },
@@ -492,6 +548,10 @@ def make_config():
             "type": "`$ARRAY`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "user",
         "op": {
           "list": {
@@ -521,9 +581,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/user/{id}.json",
-                "parts": [
-                  "user",
-                  "{id}.json",
+                "segments": [
+                  {
+                    "lit": "user",
+                  },
+                  {
+                    "lit": "{id}.json",
+                  },
                 ],
                 "select": {
                   "$action": "id",
@@ -536,16 +600,16 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.submitted`",
                 },
+                "parts": [
+                  "user",
+                  "{id}.json",
+                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "user",
-            ],
-          ],
+          "ancestors": [],
         },
       },
     },

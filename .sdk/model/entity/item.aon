@@ -130,9 +130,13 @@ main: kit: entity: item: {
           }
           method: "GET"
           orig: "/item/{id}.json"
-          parts: [
-            "item"
-            "{id}.json"
+          segments: [
+            {
+              lit: "item"
+            }
+            {
+              lit: "{id}.json"
+            }
           ]
           select: {
             "$action": "id"
@@ -148,14 +152,6 @@ main: kit: entity: item: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "item"
-      ]
-    ]
   }
 
 

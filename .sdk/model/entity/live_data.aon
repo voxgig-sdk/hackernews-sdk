@@ -23,8 +23,10 @@ main: kit: entity: live_data: {
           }
           method: "GET"
           orig: "/maxitem.json"
-          parts: [
-            "maxitem.json"
+          segments: [
+            {
+              lit: "maxitem.json"
+            }
           ]
           select: {
             exist: [

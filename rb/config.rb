@@ -124,6 +124,10 @@ module HackernewsConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "item",
           "op" => {
             "list" => {
@@ -153,9 +157,13 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/item/{id}.json",
-                  "parts" => [
-                    "item",
-                    "{id}.json",
+                  "segments" => [
+                    {
+                      "lit" => "item",
+                    },
+                    {
+                      "lit" => "{id}.json",
+                    },
                   ],
                   "select" => {
                     "$action" => "id",
@@ -168,16 +176,16 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "item",
+                    "{id}.json",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "item",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "live_data" => {
@@ -202,8 +210,10 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/maxitem.json",
-                  "parts" => [
-                    "maxitem.json",
+                  "segments" => [
+                    {
+                      "lit" => "maxitem.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -214,6 +224,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "maxitem.json",
+                  ],
                 },
               ],
             },
@@ -244,8 +257,10 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/askstories.json",
-                  "parts" => [
-                    "askstories.json",
+                  "segments" => [
+                    {
+                      "lit" => "askstories.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -256,6 +271,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "askstories.json",
+                  ],
                 },
                 {
                   "args" => {
@@ -271,8 +289,10 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/beststories.json",
-                  "parts" => [
-                    "beststories.json",
+                  "segments" => [
+                    {
+                      "lit" => "beststories.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -283,6 +303,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "beststories.json",
+                  ],
                 },
                 {
                   "args" => {
@@ -298,8 +321,10 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jobstories.json",
-                  "parts" => [
-                    "jobstories.json",
+                  "segments" => [
+                    {
+                      "lit" => "jobstories.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -310,6 +335,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jobstories.json",
+                  ],
                 },
                 {
                   "args" => {
@@ -325,8 +353,10 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/newstories.json",
-                  "parts" => [
-                    "newstories.json",
+                  "segments" => [
+                    {
+                      "lit" => "newstories.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -337,6 +367,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "newstories.json",
+                  ],
                 },
                 {
                   "args" => {
@@ -352,8 +385,10 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/showstories.json",
-                  "parts" => [
-                    "showstories.json",
+                  "segments" => [
+                    {
+                      "lit" => "showstories.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -364,6 +399,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "showstories.json",
+                  ],
                 },
                 {
                   "args" => {
@@ -379,8 +417,10 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/topstories.json",
-                  "parts" => [
-                    "topstories.json",
+                  "segments" => [
+                    {
+                      "lit" => "topstories.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -391,6 +431,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "topstories.json",
+                  ],
                 },
               ],
             },
@@ -432,8 +475,10 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/updates.json",
-                  "parts" => [
-                    "updates.json",
+                  "segments" => [
+                    {
+                      "lit" => "updates.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -444,6 +489,9 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "updates.json",
+                  ],
                 },
               ],
             },
@@ -483,6 +531,10 @@ module HackernewsConfig
               "type" => "`$ARRAY`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "user",
           "op" => {
             "list" => {
@@ -512,9 +564,13 @@ module HackernewsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/user/{id}.json",
-                  "parts" => [
-                    "user",
-                    "{id}.json",
+                  "segments" => [
+                    {
+                      "lit" => "user",
+                    },
+                    {
+                      "lit" => "{id}.json",
+                    },
                   ],
                   "select" => {
                     "$action" => "id",
@@ -527,16 +583,16 @@ module HackernewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.submitted`",
                   },
+                  "parts" => [
+                    "user",
+                    "{id}.json",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "user",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
       },

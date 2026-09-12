@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -155,6 +166,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "item",
       "op": {
         "list": {
@@ -184,9 +199,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/item/{id}.json",
-              "parts": [
-                "item",
-                "{id}.json"
+              "segments": [
+                {
+                  "lit": "item"
+                },
+                {
+                  "lit": "{id}.json"
+                }
               ],
               "select": {
                 "$action": "id",
@@ -198,17 +217,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "item",
+                "{id}.json"
+              ]
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "item"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "live_data": {
@@ -233,8 +252,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/maxitem.json",
-              "parts": [
-                "maxitem.json"
+              "segments": [
+                {
+                  "lit": "maxitem.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -244,7 +265,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "maxitem.json"
+              ]
             }
           ]
         }
@@ -275,8 +299,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/askstories.json",
-              "parts": [
-                "askstories.json"
+              "segments": [
+                {
+                  "lit": "askstories.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -286,7 +312,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "askstories.json"
+              ]
             },
             {
               "args": {
@@ -302,8 +331,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/beststories.json",
-              "parts": [
-                "beststories.json"
+              "segments": [
+                {
+                  "lit": "beststories.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -313,7 +344,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "beststories.json"
+              ]
             },
             {
               "args": {
@@ -329,8 +363,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/jobstories.json",
-              "parts": [
-                "jobstories.json"
+              "segments": [
+                {
+                  "lit": "jobstories.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -340,7 +376,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "jobstories.json"
+              ]
             },
             {
               "args": {
@@ -356,8 +395,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/newstories.json",
-              "parts": [
-                "newstories.json"
+              "segments": [
+                {
+                  "lit": "newstories.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -367,7 +408,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "newstories.json"
+              ]
             },
             {
               "args": {
@@ -383,8 +427,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/showstories.json",
-              "parts": [
-                "showstories.json"
+              "segments": [
+                {
+                  "lit": "showstories.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -394,7 +440,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "showstories.json"
+              ]
             },
             {
               "args": {
@@ -410,8 +459,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/topstories.json",
-              "parts": [
-                "topstories.json"
+              "segments": [
+                {
+                  "lit": "topstories.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -421,7 +472,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "topstories.json"
+              ]
             }
           ]
         }
@@ -463,8 +517,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/updates.json",
-              "parts": [
-                "updates.json"
+              "segments": [
+                {
+                  "lit": "updates.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -474,7 +530,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "updates.json"
+              ]
             }
           ]
         }
@@ -514,6 +573,10 @@ class Config {
           "type": "`$ARRAY`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "user",
       "op": {
         "list": {
@@ -543,9 +606,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/user/{id}.json",
-              "parts": [
-                "user",
-                "{id}.json"
+              "segments": [
+                {
+                  "lit": "user"
+                },
+                {
+                  "lit": "{id}.json"
+                }
               ],
               "select": {
                 "$action": "id",
@@ -557,17 +624,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.submitted`"
-              }
+              },
+              "parts": [
+                "user",
+                "{id}.json"
+              ]
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "user"
-          ]
-        ]
+        "ancestors": []
       }
     }
   }
@@ -577,6 +644,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

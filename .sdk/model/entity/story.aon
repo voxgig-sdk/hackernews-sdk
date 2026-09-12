@@ -23,8 +23,10 @@ main: kit: entity: story: {
           }
           method: "GET"
           orig: "/askstories.json"
-          parts: [
-            "askstories.json"
+          segments: [
+            {
+              lit: "askstories.json"
+            }
           ]
           select: {
             exist: [
@@ -50,8 +52,10 @@ main: kit: entity: story: {
           }
           method: "GET"
           orig: "/beststories.json"
-          parts: [
-            "beststories.json"
+          segments: [
+            {
+              lit: "beststories.json"
+            }
           ]
           select: {
             exist: [
@@ -77,8 +81,10 @@ main: kit: entity: story: {
           }
           method: "GET"
           orig: "/jobstories.json"
-          parts: [
-            "jobstories.json"
+          segments: [
+            {
+              lit: "jobstories.json"
+            }
           ]
           select: {
             exist: [
@@ -104,8 +110,10 @@ main: kit: entity: story: {
           }
           method: "GET"
           orig: "/newstories.json"
-          parts: [
-            "newstories.json"
+          segments: [
+            {
+              lit: "newstories.json"
+            }
           ]
           select: {
             exist: [
@@ -131,8 +139,10 @@ main: kit: entity: story: {
           }
           method: "GET"
           orig: "/showstories.json"
-          parts: [
-            "showstories.json"
+          segments: [
+            {
+              lit: "showstories.json"
+            }
           ]
           select: {
             exist: [
@@ -158,8 +168,10 @@ main: kit: entity: story: {
           }
           method: "GET"
           orig: "/topstories.json"
-          parts: [
-            "topstories.json"
+          segments: [
+            {
+              lit: "topstories.json"
+            }
           ]
           select: {
             exist: [
