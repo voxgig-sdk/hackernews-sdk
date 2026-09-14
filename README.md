@@ -105,7 +105,7 @@ local results, err = client:Update():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
+| TypeScript | `@voxgig-sdk/hackernews-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
 | Python | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
 | PHP | `voxgig-sdk/hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/hackernews-sdk/go` | `go get github.com/voxgig-sdk/hackernews-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Update():list()
 ### TypeScript
 
 ```ts
-import { HackernewsSDK } from '@voxgig-sdk/hackernews'
+import { HackernewsSDK } from '@voxgig-sdk/hackernews-sdk'
 
 const client = new HackernewsSDK()
 

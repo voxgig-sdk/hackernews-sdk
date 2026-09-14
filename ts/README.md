@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { HackernewsSDK } from '@voxgig-sdk/hackernews'
+import { HackernewsSDK } from '@voxgig-sdk/hackernews-sdk'
 
 const client = new HackernewsSDK()
 ```
@@ -565,7 +565,7 @@ hackernews/
 Import the SDK from the package root:
 
 ```ts
-import { HackernewsSDK } from '@voxgig-sdk/hackernews'
+import { HackernewsSDK } from '@voxgig-sdk/hackernews-sdk'
 ```
 
 ### Entity state
