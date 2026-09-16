@@ -36,6 +36,12 @@ main: kit: entity: update: {
               }
             ]
           }
+          contract: {
+            id: "GET /updates.json"
+            json: "{\"operationId\":\"getUpdates\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Contains lists of changed items and profiles\",\"properties\":{\"items\":{\"description\":\"Array of item IDs that have been updated\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"profiles\":{\"description\":\"Array of usernames whose profiles have been updated\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/updates.json"
           segments: [

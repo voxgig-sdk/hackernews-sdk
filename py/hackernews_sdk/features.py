@@ -1,12 +1,18 @@
 # Hackernews SDK feature factory
 
 from hackernews_sdk.feature.base_feature import HackernewsBaseFeature
+from hackernews_sdk.feature.ratelimit_feature import HackernewsRatelimitFeature
+from hackernews_sdk.feature.retry_feature import HackernewsRetryFeature
 from hackernews_sdk.feature.test_feature import HackernewsTestFeature
+from hackernews_sdk.feature.timeout_feature import HackernewsTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: HackernewsBaseFeature(),
+    "ratelimit": lambda: HackernewsRatelimitFeature(),
+    "retry": lambda: HackernewsRetryFeature(),
     "test": lambda: HackernewsTestFeature(),
+    "timeout": lambda: HackernewsTimeoutFeature(),
 }
 
 

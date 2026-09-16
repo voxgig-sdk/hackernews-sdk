@@ -3,23 +3,23 @@
     "user": {
       "USER00": {
         "about": "s32",
-        "created": "s33",
+        "created": 51,
         "id": "USER00",
-        "karma": "s35",
+        "karma": 53,
         "submitted": []
       },
       "USER01": {
         "about": "s64",
-        "created": "s65",
+        "created": 101,
         "id": "USER01",
-        "karma": "s67",
+        "karma": 103,
         "submitted": []
       },
       "USER02": {
         "about": "s96",
-        "created": "s97",
+        "created": 151,
         "id": "USER02",
-        "karma": "s99",
+        "karma": 153,
         "submitted": []
       }
     }
@@ -28,9 +28,101 @@
     "user": {
       "user_ref01": {
         "about": "sc8",
-        "created": "sc9",
-        "karma": "scb",
+        "created": 201,
+        "karma": 203,
         "submitted": []
+      }
+    }
+  },
+  "requests": {
+    "GET /user/{id}.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "description": "The user's unique username (case-sensitive)",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "in": "query",
+            "name": "print",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pretty"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "about": "This is a test",
+                  "created": 1173923446,
+                  "id": "jl",
+                  "karma": 2937,
+                  "submitted": [
+                    8265435,
+                    8168423,
+                    8090946,
+                    8090326,
+                    7699907
+                  ]
+                },
+                "schema": {
+                  "description": "Represents a Hacker News user",
+                  "properties": {
+                    "about": {
+                      "description": "The user's optional self-description. HTML.",
+                      "type": "string"
+                    },
+                    "created": {
+                      "description": "Creation date of the user, in Unix Time",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The user's unique username. Case-sensitive.",
+                      "type": "string"
+                    },
+                    "karma": {
+                      "description": "The user's karma",
+                      "type": "integer"
+                    },
+                    "submitted": {
+                      "description": "List of the user's stories, polls and comments",
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "created",
+                    "karma"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

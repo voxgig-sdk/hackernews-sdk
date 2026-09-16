@@ -10,5 +10,283 @@
     "story": {
       "story_ref01": {}
     }
+  },
+  "requests": {
+    "GET /askstories.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAskStories",
+        "parameters": [
+          {
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "in": "query",
+            "name": "print",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pretty"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  9127232,
+                  9128437,
+                  9130049,
+                  9130144,
+                  9130064
+                ],
+                "schema": {
+                  "description": "Array of item IDs",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 200,
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /beststories.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBestStories",
+        "parameters": [
+          {
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "in": "query",
+            "name": "print",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pretty"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  9129911,
+                  9129199,
+                  9127761,
+                  9128141,
+                  9128264
+                ],
+                "schema": {
+                  "description": "Array of item IDs",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 500,
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /jobstories.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getJobStories",
+        "parameters": [
+          {
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "in": "query",
+            "name": "print",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pretty"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  9127232,
+                  9128437,
+                  9130049,
+                  9130144,
+                  9130064
+                ],
+                "schema": {
+                  "description": "Array of item IDs",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 200,
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /newstories.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getNewStories",
+        "parameters": [
+          {
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "in": "query",
+            "name": "print",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pretty"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  9129911,
+                  9129199,
+                  9127761,
+                  9128141,
+                  9128264
+                ],
+                "schema": {
+                  "description": "Array of item IDs",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 500,
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /showstories.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getShowStories",
+        "parameters": [
+          {
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "in": "query",
+            "name": "print",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pretty"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  9127232,
+                  9128437,
+                  9130049,
+                  9130144,
+                  9130064
+                ],
+                "schema": {
+                  "description": "Array of item IDs",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 200,
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /topstories.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getTopStories",
+        "parameters": [
+          {
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "in": "query",
+            "name": "print",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pretty"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  9129911,
+                  9129199,
+                  9127761,
+                  9128141,
+                  9128264
+                ],
+                "schema": {
+                  "description": "Array of item IDs",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "maxItems": 500,
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

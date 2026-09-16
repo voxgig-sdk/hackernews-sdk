@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.HACKERNEWS_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'user.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'user.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set HACKERNEWS_TEST_USER_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "about", "req": false, "short": "The user's optional self-description.", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "created", "req": true, "short": "Creation date of the user, in Unix Time", "type": "`$INTEGER`", "index$": 1 }, { "active": true, "name": "id", "req": true, "short": "The user's unique username.", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "karma", "req": true, "short": "The user's karma", "type": "`$INTEGER`", "index$": 3 }, { "active": true, "name": "submitted", "req": false, "short": "List of the user's stories, polls and comments", "type": "`$ARRAY`", "index$": 4 }], "id": { "field": "id", "name": "id" }, "name": "user", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "id", "reqd": true, "type": "`$STRING`", "index$": 0 }], "query": [{ "active": true, "kind": "query", "name": "print", "orig": "print", "reqd": false, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /user/{id}.json", "json": "{\"operationId\":\"getUser\",\"parameters\":[{\"description\":\"The user's unique username (case-sensitive)\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"about\":\"This is a test\",\"created\":1173923446,\"id\":\"jl\",\"karma\":2937,\"submitted\":[8265435,8168423,8090946,8090326,7699907]},\"schema\":{\"description\":\"Represents a Hacker News user\",\"properties\":{\"about\":{\"description\":\"The user's optional self-description. HTML.\",\"type\":\"string\"},\"created\":{\"description\":\"Creation date of the user, in Unix Time\",\"type\":\"integer\"},\"id\":{\"description\":\"The user's unique username. Case-sensitive.\",\"type\":\"string\"},\"karma\":{\"description\":\"The user's karma\",\"type\":\"integer\"},\"submitted\":{\"description\":\"List of the user's stories, polls and comments\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"}},\"required\":[\"id\",\"created\",\"karma\"],\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"User not found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/user/{id}.json", "segments": [{ "lit": "user" }, { "lit": "{id}.json" }], "select": { "$action": "id", "exist": ["id", "print"] }, "transform": { "req": "`reqdata`", "res": "`body.submitted`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "user", "name__orig": "user", "Name": "User", "name_": "user", "name-": "user", "NAME": "USER", "index$": 4 }, { "active": true, "entity": "user", "key$": "BasicUserFlow", "kind": "basic", "name": "BasicUserFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "user_ref01" } }], "index$": 0 }] }, 'User');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['HACKERNEWS_TEST_USER_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'HACKERNEWS_TEST_USER_ENTID': idmap,
         'HACKERNEWS_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['HACKERNEWS_TEST_USER_ENTID'];
     const live = 'TRUE' === env.HACKERNEWS_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['HACKERNEWS_TEST_USER_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.HackernewsSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.HACKERNEWS_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

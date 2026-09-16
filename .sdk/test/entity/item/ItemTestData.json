@@ -5,15 +5,15 @@
         "by": "s96",
         "dead": false,
         "deleted": true,
-        "descendants": "s99",
+        "descendants": 153,
         "id": "ITEM00",
         "kids": [],
-        "parent": "s9c",
+        "parent": 156,
         "parts": [],
-        "poll": "s9e",
-        "score": "s9f",
+        "poll": 158,
+        "score": 159,
         "text": "sa0",
-        "time": "sa1",
+        "time": 161,
         "title": "sa2",
         "type": "sa3",
         "url": "sa4"
@@ -22,15 +22,15 @@
         "by": "s12c",
         "dead": false,
         "deleted": true,
-        "descendants": "s12f",
+        "descendants": 303,
         "id": "ITEM01",
         "kids": [],
-        "parent": "s132",
+        "parent": 306,
         "parts": [],
-        "poll": "s134",
-        "score": "s135",
+        "poll": 308,
+        "score": 309,
         "text": "s136",
-        "time": "s137",
+        "time": 311,
         "title": "s138",
         "type": "s139",
         "url": "s13a"
@@ -39,15 +39,15 @@
         "by": "s1c2",
         "dead": false,
         "deleted": true,
-        "descendants": "s1c5",
+        "descendants": 453,
         "id": "ITEM02",
         "kids": [],
-        "parent": "s1c8",
+        "parent": 456,
         "parts": [],
-        "poll": "s1ca",
-        "score": "s1cb",
+        "poll": 458,
+        "score": 459,
         "text": "s1cc",
-        "time": "s1cd",
+        "time": 461,
         "title": "s1ce",
         "type": "s1cf",
         "url": "s1d0"
@@ -60,17 +60,230 @@
         "by": "s258",
         "dead": false,
         "deleted": true,
-        "descendants": "s25b",
+        "descendants": 603,
         "kids": [],
-        "parent": "s25e",
+        "parent": 606,
         "parts": [],
-        "poll": "s260",
-        "score": "s261",
+        "poll": 608,
+        "score": 609,
         "text": "s262",
-        "time": "s263",
+        "time": 611,
         "title": "s264",
         "type": "s265",
         "url": "s266"
+      }
+    }
+  },
+  "requests": {
+    "GET /item/{id}.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getItem",
+        "parameters": [
+          {
+            "description": "The item's unique ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Format output (e.g., 'pretty' for formatted JSON)",
+            "in": "query",
+            "name": "print",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pretty"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "comment": {
+                    "summary": "Comment example",
+                    "value": {
+                      "by": "norvig",
+                      "id": 2921983,
+                      "kids": [
+                        2922097,
+                        2922429,
+                        2924562
+                      ],
+                      "parent": 2921506,
+                      "text": "Aw shucks, guys ... you make me blush with your compliments.<p>Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?",
+                      "time": 1314211127,
+                      "type": "comment"
+                    }
+                  },
+                  "job": {
+                    "summary": "Job example",
+                    "value": {
+                      "by": "justin",
+                      "id": 192327,
+                      "score": 6,
+                      "text": "Justin.tv is the biggest live video site online...",
+                      "time": 1210981217,
+                      "title": "Justin.tv is looking for a Lead Flash Engineer!",
+                      "type": "job",
+                      "url": ""
+                    }
+                  },
+                  "poll": {
+                    "summary": "Poll example",
+                    "value": {
+                      "by": "pg",
+                      "descendants": 54,
+                      "id": 126809,
+                      "kids": [
+                        126822,
+                        126823,
+                        126993
+                      ],
+                      "parts": [
+                        126810,
+                        126811,
+                        126812
+                      ],
+                      "score": 46,
+                      "text": "",
+                      "time": 1204403652,
+                      "title": "Poll: What would happen if News.YC had explicit support for polls?",
+                      "type": "poll"
+                    }
+                  },
+                  "pollopt": {
+                    "summary": "Poll option example",
+                    "value": {
+                      "by": "pg",
+                      "id": 160705,
+                      "poll": 160704,
+                      "score": 335,
+                      "text": "Yes, ban them; I'm tired of seeing Valleywag stories on News.YC.",
+                      "time": 1207886576,
+                      "type": "pollopt"
+                    }
+                  },
+                  "story": {
+                    "summary": "Story example",
+                    "value": {
+                      "by": "dhouston",
+                      "descendants": 71,
+                      "id": 8863,
+                      "kids": [
+                        8952,
+                        9224,
+                        8917,
+                        8884,
+                        8887
+                      ],
+                      "score": 111,
+                      "time": 1175714200,
+                      "title": "My YC app: Dropbox - Throw away your USB drive",
+                      "type": "story",
+                      "url": "http://www.getdropbox.com/u/2/screencast.html"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Represents a story, comment, job, Ask HN, poll, or poll option",
+                  "properties": {
+                    "by": {
+                      "description": "The username of the item's author",
+                      "type": "string"
+                    },
+                    "dead": {
+                      "description": "true if the item is dead",
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "description": "true if the item is deleted",
+                      "type": "boolean"
+                    },
+                    "descendants": {
+                      "description": "In the case of stories or polls, the total comment count",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The item's unique id",
+                      "type": "integer"
+                    },
+                    "kids": {
+                      "description": "The ids of the item's comments, in ranked display order",
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "parent": {
+                      "description": "The comment's parent: either another comment or the relevant story",
+                      "type": "integer"
+                    },
+                    "parts": {
+                      "description": "A list of related pollopts, in display order",
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "poll": {
+                      "description": "The pollopt's associated poll",
+                      "type": "integer"
+                    },
+                    "score": {
+                      "description": "The story's score, or the votes for a pollopt",
+                      "type": "integer"
+                    },
+                    "text": {
+                      "description": "The comment, story or poll text. HTML.",
+                      "type": "string"
+                    },
+                    "time": {
+                      "description": "Creation date of the item, in Unix Time",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "description": "The title of the story, poll or job. HTML.",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of item",
+                      "enum": [
+                        "job",
+                        "story",
+                        "comment",
+                        "poll",
+                        "pollopt"
+                      ],
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "The URL of the story",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

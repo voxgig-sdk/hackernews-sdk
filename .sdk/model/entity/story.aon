@@ -21,6 +21,12 @@ main: kit: entity: story: {
               }
             ]
           }
+          contract: {
+            id: "GET /askstories.json"
+            json: "{\"operationId\":\"getAskStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9127232,9128437,9130049,9130144,9130064],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":200,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/askstories.json"
           segments: [
@@ -49,6 +55,12 @@ main: kit: entity: story: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /beststories.json"
+            json: "{\"operationId\":\"getBestStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9129911,9129199,9127761,9128141,9128264],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":500,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/beststories.json"
@@ -79,6 +91,12 @@ main: kit: entity: story: {
               }
             ]
           }
+          contract: {
+            id: "GET /jobstories.json"
+            json: "{\"operationId\":\"getJobStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9127232,9128437,9130049,9130144,9130064],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":200,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/jobstories.json"
           segments: [
@@ -107,6 +125,12 @@ main: kit: entity: story: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /newstories.json"
+            json: "{\"operationId\":\"getNewStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9129911,9129199,9127761,9128141,9128264],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":500,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/newstories.json"
@@ -137,6 +161,12 @@ main: kit: entity: story: {
               }
             ]
           }
+          contract: {
+            id: "GET /showstories.json"
+            json: "{\"operationId\":\"getShowStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9127232,9128437,9130049,9130144,9130064],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":200,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/showstories.json"
           segments: [
@@ -165,6 +195,12 @@ main: kit: entity: story: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /topstories.json"
+            json: "{\"operationId\":\"getTopStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9129911,9129199,9127761,9128141,9128264],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":500,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/topstories.json"
