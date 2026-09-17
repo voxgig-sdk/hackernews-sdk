@@ -127,21 +127,21 @@ class Config {
 
     entity: {
       
-      item: {
-      },
-
-      live_data: {
-      },
-
-      story: {
-      },
-
-      update: {
-      },
-
-      user: {
-      },
-
+        item: {
+        },
+  
+        live_data: {
+        },
+  
+        story: {
+        },
+  
+        update: {
+        },
+  
+        user: {
+        },
+  
     }
   }
 

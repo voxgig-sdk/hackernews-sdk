@@ -105,12 +105,12 @@ local results, err = client:Update():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/hackernews-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
-| Python | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
-| PHP | `voxgig-sdk/hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
+| TypeScript | `@voxgig-sdk/hackernews-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
+| Python | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
+| PHP | `voxgig-sdk/hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/hackernews-sdk/go` | `go get github.com/voxgig-sdk/hackernews-sdk/go@latest` |
-| Ruby | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
-| Lua | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/releases) |
+| Ruby | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
+| Lua | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/hackernews-sdk/go-cli` | `go install github.com/voxgig-sdk/hackernews-sdk/go-cli/cmd/hackernews@latest` |
 | Go MCP server | `github.com/voxgig-sdk/hackernews-sdk/go-mcp` | `go get github.com/voxgig-sdk/hackernews-sdk/go-mcp@latest` |
 
