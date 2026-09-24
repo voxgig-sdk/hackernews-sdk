@@ -1,7 +1,7 @@
 // Typed models for the Hackernews SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,21 +14,6 @@ import (
 
 // Item is the typed data model for the item entity.
 type Item struct {
-	By *string `json:"by,omitempty"`
-	Dead *bool `json:"dead,omitempty"`
-	Deleted *bool `json:"deleted,omitempty"`
-	Descendants *int `json:"descendants,omitempty"`
-	Id int `json:"id"`
-	Kids *[]any `json:"kids,omitempty"`
-	Parent *int `json:"parent,omitempty"`
-	Parts *[]any `json:"parts,omitempty"`
-	Poll *int `json:"poll,omitempty"`
-	Score *int `json:"score,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Time *int `json:"time,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // ItemListMatch is the typed request payload for Item.ListTyped.
@@ -57,8 +42,6 @@ type StoryListMatch struct {
 
 // Update is the typed data model for the update entity.
 type Update struct {
-	Items *[]any `json:"items,omitempty"`
-	Profiles *[]any `json:"profiles,omitempty"`
 }
 
 // UpdateListMatch is the typed request payload for Update.ListTyped.
@@ -68,11 +51,6 @@ type UpdateListMatch struct {
 
 // User is the typed data model for the user entity.
 type User struct {
-	About *string `json:"about,omitempty"`
-	Created int `json:"created"`
-	Id string `json:"id"`
-	Karma int `json:"karma"`
-	Submitted *[]any `json:"submitted,omitempty"`
 }
 
 // UserListMatch is the typed request payload for User.ListTyped.

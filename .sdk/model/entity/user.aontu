@@ -1,0 +1,109 @@
+# Entity: user
+
+main: kit: entity: user: {
+
+  alias: field: {}
+
+  fields: {
+    about: {
+      h: "About"
+      n: "about"
+      r: false
+      sh: "The user's optional self-description."
+      t: "`$STRING`"
+    }
+    created: {
+      h: "Created"
+      n: "created"
+      r: true
+      sh: "Creation date of the user, in Unix Time"
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "The user's unique username."
+      t: "`$STRING`"
+    }
+    karma: {
+      h: "Karma"
+      n: "karma"
+      r: true
+      sh: "The user's karma"
+      t: "`$INTEGER`"
+    }
+    submitted: {
+      h: "Submitted"
+      n: "submitted"
+      r: false
+      sh: "List of the user's stories, polls and comments"
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "user"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /user/{id}.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "print"
+                or: "print"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/user/{id}.json"
+          q: {
+            "$action": "id"
+            exist: [
+              "id"
+              "print"
+            ]
+          }
+          s: [
+            {
+              lit: "user"
+            }
+            {
+              lit: "{id}.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.submitted`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -151,79 +144,94 @@ class Config {
       "fields": [
         {
           "name": "by",
-          "short": "The username of the item's author",
-          "type": "`$STRING`"
+          "title": "By",
+          "type": "`$STRING`",
+          "short": "The username of the item's author"
         },
         {
           "name": "dead",
-          "short": "true if the item is dead",
-          "type": "`$BOOLEAN`"
+          "title": "Dead",
+          "type": "`$BOOLEAN`",
+          "short": "true if the item is dead"
         },
         {
           "name": "deleted",
-          "short": "true if the item is deleted",
-          "type": "`$BOOLEAN`"
+          "title": "Deleted",
+          "type": "`$BOOLEAN`",
+          "short": "true if the item is deleted"
         },
         {
           "name": "descendants",
-          "short": "In the case of stories or polls, the total comment count",
-          "type": "`$INTEGER`"
+          "title": "Descendants",
+          "type": "`$INTEGER`",
+          "short": "In the case of stories or polls, the total comment count"
         },
         {
           "name": "id",
+          "title": "Id",
+          "type": "`$INTEGER`",
           "req": true,
-          "short": "The item's unique id",
-          "type": "`$INTEGER`"
+          "short": "The item's unique id"
         },
         {
           "name": "kids",
-          "short": "The ids of the item's comments, in ranked display order",
-          "type": "`$ARRAY`"
+          "title": "Kids",
+          "type": "`$ARRAY`",
+          "short": "The ids of the item's comments, in ranked display order"
         },
         {
           "name": "parent",
-          "short": "The comment's parent: either another comment or the relevant story",
-          "type": "`$INTEGER`"
+          "title": "Parent",
+          "type": "`$INTEGER`",
+          "short": "The comment's parent: either another comment or the relevant story"
         },
         {
           "name": "parts",
-          "short": "A list of related pollopts, in display order",
-          "type": "`$ARRAY`"
+          "title": "Parts",
+          "type": "`$ARRAY`",
+          "short": "A list of related pollopts, in display order"
         },
         {
           "name": "poll",
-          "short": "The pollopt's associated poll",
-          "type": "`$INTEGER`"
+          "title": "Poll",
+          "type": "`$INTEGER`",
+          "short": "The pollopt's associated poll"
         },
         {
           "name": "score",
-          "short": "The story's score, or the votes for a pollopt",
-          "type": "`$INTEGER`"
+          "title": "Score",
+          "type": "`$INTEGER`",
+          "short": "The story's score, or the votes for a pollopt"
         },
         {
           "name": "text",
-          "short": "The comment, story or poll text.",
-          "type": "`$STRING`"
+          "title": "Text",
+          "type": "`$STRING`",
+          "short": "The comment, story or poll text."
         },
         {
           "name": "time",
-          "short": "Creation date of the item, in Unix Time",
-          "type": "`$INTEGER`"
+          "title": "Time",
+          "type": "`$INTEGER`",
+          "short": "Creation date of the item, in Unix Time"
         },
         {
           "name": "title",
-          "short": "The title of the story, poll or job.",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The title of the story, poll or job."
         },
         {
           "name": "type",
-          "short": "The type of item",
-          "type": "`$STRING`"
+          "title": "Type",
+          "type": "`$STRING`",
+          "short": "The type of item"
         },
         {
           "name": "url",
-          "short": "The URL of the story",
-          "type": "`$STRING`"
+          "title": "Url",
+          "type": "`$STRING`",
+          "short": "The URL of the story"
         }
       ],
       "id": {
@@ -237,25 +245,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ],
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "print",
-                    "orig": "print",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/item/{id}.json",
@@ -267,21 +256,41 @@ class Config {
                   "lit": "{id}.json"
                 }
               ],
+              "parts": [
+                "item",
+                "{id}.json"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "print",
+                    "orig": "print",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "$action": "id",
                 "exist": [
                   "id",
                   "print"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "item",
-                "{id}.json"
-              ]
+              }
             }
           ]
         }
@@ -299,16 +308,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "print",
-                    "orig": "print",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/maxitem.json",
@@ -317,18 +316,29 @@ class Config {
                   "lit": "maxitem.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "print"
-                ]
-              },
+              "parts": [
+                "maxitem.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "maxitem.json"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "print",
+                    "orig": "print",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "print"
+                ]
+              }
             }
           ]
         }
@@ -346,16 +356,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "print",
-                    "orig": "print",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/askstories.json",
@@ -364,30 +364,31 @@ class Config {
                   "lit": "askstories.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "print"
-                ]
-              },
+              "parts": [
+                "askstories.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "askstories.json"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "print"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/beststories.json",
@@ -396,30 +397,31 @@ class Config {
                   "lit": "beststories.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "print"
-                ]
-              },
+              "parts": [
+                "beststories.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "beststories.json"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "print"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/jobstories.json",
@@ -428,30 +430,31 @@ class Config {
                   "lit": "jobstories.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "print"
-                ]
-              },
+              "parts": [
+                "jobstories.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "jobstories.json"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "print"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/newstories.json",
@@ -460,30 +463,31 @@ class Config {
                   "lit": "newstories.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "print"
-                ]
-              },
+              "parts": [
+                "newstories.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "newstories.json"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "print"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/showstories.json",
@@ -492,30 +496,31 @@ class Config {
                   "lit": "showstories.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "print"
-                ]
-              },
+              "parts": [
+                "showstories.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "showstories.json"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
                     "name": "print",
                     "orig": "print",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "print"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/topstories.json",
@@ -524,18 +529,29 @@ class Config {
                   "lit": "topstories.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "print"
-                ]
-              },
+              "parts": [
+                "topstories.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "topstories.json"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "print",
+                    "orig": "print",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "print"
+                ]
+              }
             }
           ]
         }
@@ -548,13 +564,15 @@ class Config {
       "fields": [
         {
           "name": "items",
-          "short": "Array of item IDs that have been updated",
-          "type": "`$ARRAY`"
+          "title": "Items",
+          "type": "`$ARRAY`",
+          "short": "Array of item IDs that have been updated"
         },
         {
           "name": "profiles",
-          "short": "Array of usernames whose profiles have been updated",
-          "type": "`$ARRAY`"
+          "title": "Profiles",
+          "type": "`$ARRAY`",
+          "short": "Array of usernames whose profiles have been updated"
         }
       ],
       "name": "update",
@@ -564,16 +582,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "print",
-                    "orig": "print",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/updates.json",
@@ -582,18 +590,29 @@ class Config {
                   "lit": "updates.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "print"
-                ]
-              },
+              "parts": [
+                "updates.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "updates.json"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "print",
+                    "orig": "print",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "print"
+                ]
+              }
             }
           ]
         }
@@ -606,31 +625,36 @@ class Config {
       "fields": [
         {
           "name": "about",
-          "short": "The user's optional self-description.",
-          "type": "`$STRING`"
+          "title": "About",
+          "type": "`$STRING`",
+          "short": "The user's optional self-description."
         },
         {
           "name": "created",
+          "title": "Created",
+          "type": "`$INTEGER`",
           "req": true,
-          "short": "Creation date of the user, in Unix Time",
-          "type": "`$INTEGER`"
+          "short": "Creation date of the user, in Unix Time"
         },
         {
           "name": "id",
+          "title": "Id",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The user's unique username.",
-          "type": "`$STRING`"
+          "short": "The user's unique username."
         },
         {
           "name": "karma",
+          "title": "Karma",
+          "type": "`$INTEGER`",
           "req": true,
-          "short": "The user's karma",
-          "type": "`$INTEGER`"
+          "short": "The user's karma"
         },
         {
           "name": "submitted",
-          "short": "List of the user's stories, polls and comments",
-          "type": "`$ARRAY`"
+          "title": "Submitted",
+          "type": "`$ARRAY`",
+          "short": "List of the user's stories, polls and comments"
         }
       ],
       "id": {
@@ -644,25 +668,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "print",
-                    "orig": "print",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/user/{id}.json",
@@ -674,21 +679,41 @@ class Config {
                   "lit": "{id}.json"
                 }
               ],
+              "parts": [
+                "user",
+                "{id}.json"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.submitted`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "print",
+                    "orig": "print",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "$action": "id",
                 "exist": [
                   "id",
                   "print"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.submitted`"
-              },
-              "parts": [
-                "user",
-                "{id}.json"
-              ]
+              }
             }
           ]
         }

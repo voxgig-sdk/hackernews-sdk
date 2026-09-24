@@ -95,79 +95,94 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "by",
-						"short": "The username of the item's author",
+						"title": "By",
 						"type": "`$STRING`",
+						"short": "The username of the item's author",
 					},
 					map[string]any{
 						"name": "dead",
-						"short": "true if the item is dead",
+						"title": "Dead",
 						"type": "`$BOOLEAN`",
+						"short": "true if the item is dead",
 					},
 					map[string]any{
 						"name": "deleted",
-						"short": "true if the item is deleted",
+						"title": "Deleted",
 						"type": "`$BOOLEAN`",
+						"short": "true if the item is deleted",
 					},
 					map[string]any{
 						"name": "descendants",
-						"short": "In the case of stories or polls, the total comment count",
+						"title": "Descendants",
 						"type": "`$INTEGER`",
+						"short": "In the case of stories or polls, the total comment count",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "The item's unique id",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "kids",
-						"short": "The ids of the item's comments, in ranked display order",
+						"title": "Kids",
 						"type": "`$ARRAY`",
+						"short": "The ids of the item's comments, in ranked display order",
 					},
 					map[string]any{
 						"name": "parent",
-						"short": "The comment's parent: either another comment or the relevant story",
+						"title": "Parent",
 						"type": "`$INTEGER`",
+						"short": "The comment's parent: either another comment or the relevant story",
 					},
 					map[string]any{
 						"name": "parts",
-						"short": "A list of related pollopts, in display order",
+						"title": "Parts",
 						"type": "`$ARRAY`",
+						"short": "A list of related pollopts, in display order",
 					},
 					map[string]any{
 						"name": "poll",
-						"short": "The pollopt's associated poll",
+						"title": "Poll",
 						"type": "`$INTEGER`",
+						"short": "The pollopt's associated poll",
 					},
 					map[string]any{
 						"name": "score",
-						"short": "The story's score, or the votes for a pollopt",
+						"title": "Score",
 						"type": "`$INTEGER`",
+						"short": "The story's score, or the votes for a pollopt",
 					},
 					map[string]any{
 						"name": "text",
-						"short": "The comment, story or poll text.",
+						"title": "Text",
 						"type": "`$STRING`",
+						"short": "The comment, story or poll text.",
 					},
 					map[string]any{
 						"name": "time",
-						"short": "Creation date of the item, in Unix Time",
+						"title": "Time",
 						"type": "`$INTEGER`",
+						"short": "Creation date of the item, in Unix Time",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The title of the story, poll or job.",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The title of the story, poll or job.",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "The type of item",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "The type of item",
 					},
 					map[string]any{
 						"name": "url",
-						"short": "The URL of the story",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "The URL of the story",
 					},
 				},
 				"id": map[string]any{
@@ -181,25 +196,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/item/{id}.json",
@@ -211,20 +207,40 @@ func MakeConfig() map[string]any {
 										"lit": "{id}.json",
 									},
 								},
+								"parts": []any{
+									"item",
+									"{id}.json",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "id",
 									"exist": []any{
 										"id",
 										"print",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"item",
-									"{id}.json",
 								},
 							},
 						},
@@ -243,16 +259,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/maxitem.json",
@@ -261,17 +267,28 @@ func MakeConfig() map[string]any {
 										"lit": "maxitem.json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"print",
-									},
+								"parts": []any{
+									"maxitem.json",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"maxitem.json",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"print",
+									},
 								},
 							},
 						},
@@ -290,16 +307,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/askstories.json",
@@ -308,30 +315,31 @@ func MakeConfig() map[string]any {
 										"lit": "askstories.json",
 									},
 								},
+								"parts": []any{
+									"askstories.json",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"print",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"askstories.json",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/beststories.json",
@@ -340,30 +348,31 @@ func MakeConfig() map[string]any {
 										"lit": "beststories.json",
 									},
 								},
+								"parts": []any{
+									"beststories.json",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"print",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"beststories.json",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/jobstories.json",
@@ -372,30 +381,31 @@ func MakeConfig() map[string]any {
 										"lit": "jobstories.json",
 									},
 								},
+								"parts": []any{
+									"jobstories.json",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"print",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"jobstories.json",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/newstories.json",
@@ -404,30 +414,31 @@ func MakeConfig() map[string]any {
 										"lit": "newstories.json",
 									},
 								},
+								"parts": []any{
+									"newstories.json",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"print",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"newstories.json",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/showstories.json",
@@ -436,30 +447,31 @@ func MakeConfig() map[string]any {
 										"lit": "showstories.json",
 									},
 								},
+								"parts": []any{
+									"showstories.json",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"print",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"showstories.json",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/topstories.json",
@@ -468,17 +480,28 @@ func MakeConfig() map[string]any {
 										"lit": "topstories.json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"print",
-									},
+								"parts": []any{
+									"topstories.json",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"topstories.json",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"print",
+									},
 								},
 							},
 						},
@@ -492,13 +515,15 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "items",
-						"short": "Array of item IDs that have been updated",
+						"title": "Items",
 						"type": "`$ARRAY`",
+						"short": "Array of item IDs that have been updated",
 					},
 					map[string]any{
 						"name": "profiles",
-						"short": "Array of usernames whose profiles have been updated",
+						"title": "Profiles",
 						"type": "`$ARRAY`",
+						"short": "Array of usernames whose profiles have been updated",
 					},
 				},
 				"name": "update",
@@ -508,16 +533,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/updates.json",
@@ -526,17 +541,28 @@ func MakeConfig() map[string]any {
 										"lit": "updates.json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"print",
-									},
+								"parts": []any{
+									"updates.json",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"updates.json",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"print",
+									},
 								},
 							},
 						},
@@ -550,31 +576,36 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "about",
-						"short": "The user's optional self-description.",
+						"title": "About",
 						"type": "`$STRING`",
+						"short": "The user's optional self-description.",
 					},
 					map[string]any{
 						"name": "created",
+						"title": "Created",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Creation date of the user, in Unix Time",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The user's unique username.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "karma",
+						"title": "Karma",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "The user's karma",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "submitted",
-						"short": "List of the user's stories, polls and comments",
+						"title": "Submitted",
 						"type": "`$ARRAY`",
+						"short": "List of the user's stories, polls and comments",
 					},
 				},
 				"id": map[string]any{
@@ -588,25 +619,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "print",
-											"orig": "print",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/user/{id}.json",
@@ -618,20 +630,40 @@ func MakeConfig() map[string]any {
 										"lit": "{id}.json",
 									},
 								},
+								"parts": []any{
+									"user",
+									"{id}.json",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.submitted`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "print",
+											"orig": "print",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "id",
 									"exist": []any{
 										"id",
 										"print",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.submitted`",
-								},
-								"parts": []any{
-									"user",
-									"{id}.json",
 								},
 							},
 						},

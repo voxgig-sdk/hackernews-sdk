@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
 const HackernewsEntityBase_1 = require("../HackernewsEntityBase");
-// TODO: needs Entity superclass
 class UserEntity extends HackernewsEntityBase_1.HackernewsEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

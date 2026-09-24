@@ -24,119 +24,200 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "item": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "by",
-              "req": false,
-              "short": "The username of the item's author",
-              "type": "`$STRING`"
+          "fields": {
+            "by": {
+              "a": true,
+              "h": "By",
+              "n": "by",
+              "r": false,
+              "sh": "The username of the item's author",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "dead",
-              "req": false,
-              "short": "true if the item is dead",
-              "type": "`$BOOLEAN`"
+            "dead": {
+              "a": true,
+              "h": "Dead",
+              "n": "dead",
+              "r": false,
+              "sh": "true if the item is dead",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "deleted",
-              "req": false,
-              "short": "true if the item is deleted",
-              "type": "`$BOOLEAN`"
+            "deleted": {
+              "a": true,
+              "h": "Deleted",
+              "n": "deleted",
+              "r": false,
+              "sh": "true if the item is deleted",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "descendants",
-              "req": false,
-              "short": "In the case of stories or polls, the total comment count",
-              "type": "`$INTEGER`"
+            "descendants": {
+              "a": true,
+              "h": "Descendants",
+              "n": "descendants",
+              "r": false,
+              "sh": "In the case of stories or polls, the total comment count",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": true,
-              "short": "The item's unique id",
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "The item's unique id",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "kids",
-              "req": false,
-              "short": "The ids of the item's comments, in ranked display order",
-              "type": "`$ARRAY`"
+            "kids": {
+              "a": true,
+              "h": "Kids",
+              "n": "kids",
+              "r": false,
+              "sh": "The ids of the item's comments, in ranked display order",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "parent",
-              "req": false,
-              "short": "The comment's parent: either another comment or the relevant story",
-              "type": "`$INTEGER`"
+            "parent": {
+              "a": true,
+              "h": "Parent",
+              "n": "parent",
+              "r": false,
+              "sh": "The comment's parent: either another comment or the relevant story",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "parts",
-              "req": false,
-              "short": "A list of related pollopts, in display order",
-              "type": "`$ARRAY`"
+            "parts": {
+              "a": true,
+              "h": "Parts",
+              "n": "parts",
+              "r": false,
+              "sh": "A list of related pollopts, in display order",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "poll",
-              "req": false,
-              "short": "The pollopt's associated poll",
-              "type": "`$INTEGER`"
+            "poll": {
+              "a": true,
+              "h": "Poll",
+              "n": "poll",
+              "r": false,
+              "sh": "The pollopt's associated poll",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "score",
-              "req": false,
-              "short": "The story's score, or the votes for a pollopt",
-              "type": "`$INTEGER`"
+            "score": {
+              "a": true,
+              "h": "Score",
+              "n": "score",
+              "r": false,
+              "sh": "The story's score, or the votes for a pollopt",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "text",
-              "req": false,
-              "short": "The comment, story or poll text.",
-              "type": "`$STRING`"
+            "text": {
+              "a": true,
+              "h": "Text",
+              "n": "text",
+              "r": false,
+              "sh": "The comment, story or poll text.",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "time",
-              "req": false,
-              "short": "Creation date of the item, in Unix Time",
-              "type": "`$INTEGER`"
+            "time": {
+              "a": true,
+              "h": "Time",
+              "n": "time",
+              "r": false,
+              "sh": "Creation date of the item, in Unix Time",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "The title of the story, poll or job.",
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "sh": "The title of the story, poll or job.",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "The type of item",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "The type of item",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "url",
-              "req": false,
-              "short": "The URL of the story",
-              "type": "`$STRING`"
+            "url": {
+              "a": true,
+              "h": "Url",
+              "n": "url",
+              "r": false,
+              "sh": "The URL of the story",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -148,39 +229,46 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /item/{id}.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /item/{id}.json",
-                    "json": "{\"operationId\":\"getItem\",\"parameters\":[{\"description\":\"The item's unique ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}},{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"comment\":{\"summary\":\"Comment example\",\"value\":{\"by\":\"norvig\",\"id\":2921983,\"kids\":[2922097,2922429,2924562],\"parent\":2921506,\"text\":\"Aw shucks, guys ... you make me blush with your compliments.<p>Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?\",\"time\":1314211127,\"type\":\"comment\"}},\"job\":{\"summary\":\"Job example\",\"value\":{\"by\":\"justin\",\"id\":192327,\"score\":6,\"text\":\"Justin.tv is the biggest live video site online...\",\"time\":1210981217,\"title\":\"Justin.tv is looking for a Lead Flash Engineer!\",\"type\":\"job\",\"url\":\"\"}},\"poll\":{\"summary\":\"Poll example\",\"value\":{\"by\":\"pg\",\"descendants\":54,\"id\":126809,\"kids\":[126822,126823,126993],\"parts\":[126810,126811,126812],\"score\":46,\"text\":\"\",\"time\":1204403652,\"title\":\"Poll: What would happen if News.YC had explicit support for polls?\",\"type\":\"poll\"}},\"pollopt\":{\"summary\":\"Poll option example\",\"value\":{\"by\":\"pg\",\"id\":160705,\"poll\":160704,\"score\":335,\"text\":\"Yes, ban them; I'm tired of seeing Valleywag stories on News.YC.\",\"time\":1207886576,\"type\":\"pollopt\"}},\"story\":{\"summary\":\"Story example\",\"value\":{\"by\":\"dhouston\",\"descendants\":71,\"id\":8863,\"kids\":[8952,9224,8917,8884,8887],\"score\":111,\"time\":1175714200,\"title\":\"My YC app: Dropbox - Throw away your USB drive\",\"type\":\"story\",\"url\":\"http://www.getdropbox.com/u/2/screencast.html\"}}},\"schema\":{\"description\":\"Represents a story, comment, job, Ask HN, poll, or poll option\",\"properties\":{\"by\":{\"description\":\"The username of the item's author\",\"type\":\"string\"},\"dead\":{\"description\":\"true if the item is dead\",\"type\":\"boolean\"},\"deleted\":{\"description\":\"true if the item is deleted\",\"type\":\"boolean\"},\"descendants\":{\"description\":\"In the case of stories or polls, the total comment count\",\"type\":\"integer\"},\"id\":{\"description\":\"The item's unique id\",\"type\":\"integer\"},\"kids\":{\"description\":\"The ids of the item's comments, in ranked display order\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"parent\":{\"description\":\"The comment's parent: either another comment or the relevant story\",\"type\":\"integer\"},\"parts\":{\"description\":\"A list of related pollopts, in display order\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"poll\":{\"description\":\"The pollopt's associated poll\",\"type\":\"integer\"},\"score\":{\"description\":\"The story's score, or the votes for a pollopt\",\"type\":\"integer\"},\"text\":{\"description\":\"The comment, story or poll text. HTML.\",\"type\":\"string\"},\"time\":{\"description\":\"Creation date of the item, in Unix Time\",\"type\":\"integer\"},\"title\":{\"description\":\"The title of the story, poll or job. HTML.\",\"type\":\"string\"},\"type\":{\"description\":\"The type of item\",\"enum\":[\"job\",\"story\",\"comment\",\"poll\",\"pollopt\"],\"type\":\"string\"},\"url\":{\"description\":\"The URL of the story\",\"type\":\"string\"}},\"required\":[\"id\"],\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Item not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/item/{id}.json",
+                  "q": {
+                    "$action": "id",
+                    "exist": [
+                      "id",
+                      "print"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/item/{id}.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "item"
                     },
@@ -188,14 +276,7 @@
                       "lit": "{id}.json"
                     }
                   ],
-                  "select": {
-                    "$action": "id",
-                    "exist": [
-                      "id",
-                      "print"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -212,7 +293,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "live_data",
           "op": {
             "load": {
@@ -220,39 +301,39 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /maxitem.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /maxitem.json",
-                    "json": "{\"operationId\":\"getMaxItem\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":9130260,\"schema\":{\"description\":\"The current largest item ID\",\"type\":\"integer\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/maxitem.json",
-                  "segments": [
-                    {
-                      "lit": "maxitem.json"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/maxitem.json",
+                  "q": {
                     "exist": [
                       "print"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "maxitem.json"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -269,7 +350,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "story",
           "op": {
             "list": {
@@ -277,229 +358,229 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /askstories.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /askstories.json",
-                    "json": "{\"operationId\":\"getAskStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9127232,9128437,9130049,9130144,9130064],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":200,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/askstories.json",
+                  "q": {
+                    "exist": [
+                      "print"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/askstories.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "askstories.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /beststories.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /beststories.json",
-                    "json": "{\"operationId\":\"getBestStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9129911,9129199,9127761,9128141,9128264],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":500,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/beststories.json",
+                  "q": {
+                    "exist": [
+                      "print"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/beststories.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "beststories.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /jobstories.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /jobstories.json",
-                    "json": "{\"operationId\":\"getJobStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9127232,9128437,9130049,9130144,9130064],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":200,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/jobstories.json",
+                  "q": {
+                    "exist": [
+                      "print"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/jobstories.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "jobstories.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /newstories.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /newstories.json",
-                    "json": "{\"operationId\":\"getNewStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9129911,9129199,9127761,9128141,9128264],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":500,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/newstories.json",
+                  "q": {
+                    "exist": [
+                      "print"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/newstories.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "newstories.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /showstories.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /showstories.json",
-                    "json": "{\"operationId\":\"getShowStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9127232,9128437,9130049,9130144,9130064],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":200,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/showstories.json",
+                  "q": {
+                    "exist": [
+                      "print"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/showstories.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "showstories.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /topstories.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /topstories.json",
-                    "json": "{\"operationId\":\"getTopStories\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[9129911,9129199,9127761,9128141,9128264],\"schema\":{\"description\":\"Array of item IDs\",\"items\":{\"type\":\"integer\"},\"maxItems\":500,\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/topstories.json",
-                  "segments": [
-                    {
-                      "lit": "topstories.json"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/topstories.json",
+                  "q": {
                     "exist": [
                       "print"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "topstories.json"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -516,22 +597,24 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "items",
-              "req": false,
-              "short": "Array of item IDs that have been updated",
-              "type": "`$ARRAY`"
+          "fields": {
+            "items": {
+              "a": true,
+              "h": "Items",
+              "n": "items",
+              "r": false,
+              "sh": "Array of item IDs that have been updated",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "profiles",
-              "req": false,
-              "short": "Array of usernames whose profiles have been updated",
-              "type": "`$ARRAY`"
+            "profiles": {
+              "a": true,
+              "h": "Profiles",
+              "n": "profiles",
+              "r": false,
+              "sh": "Array of usernames whose profiles have been updated",
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "update",
           "op": {
             "list": {
@@ -539,39 +622,39 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /updates.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /updates.json",
-                    "json": "{\"operationId\":\"getUpdates\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Contains lists of changed items and profiles\",\"properties\":{\"items\":{\"description\":\"Array of item IDs that have been updated\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"profiles\":{\"description\":\"Array of usernames whose profiles have been updated\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/updates.json",
-                  "segments": [
-                    {
-                      "lit": "updates.json"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/updates.json",
+                  "q": {
                     "exist": [
                       "print"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "updates.json"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -588,43 +671,48 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "about",
-              "req": false,
-              "short": "The user's optional self-description.",
-              "type": "`$STRING`"
+          "fields": {
+            "about": {
+              "a": true,
+              "h": "About",
+              "n": "about",
+              "r": false,
+              "sh": "The user's optional self-description.",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "created",
-              "req": true,
-              "short": "Creation date of the user, in Unix Time",
-              "type": "`$INTEGER`"
+            "created": {
+              "a": true,
+              "h": "Created",
+              "n": "created",
+              "r": true,
+              "sh": "Creation date of the user, in Unix Time",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": true,
-              "short": "The user's unique username.",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "The user's unique username.",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "karma",
-              "req": true,
-              "short": "The user's karma",
-              "type": "`$INTEGER`"
+            "karma": {
+              "a": true,
+              "h": "Karma",
+              "n": "karma",
+              "r": true,
+              "sh": "The user's karma",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "submitted",
-              "req": false,
-              "short": "List of the user's stories, polls and comments",
-              "type": "`$ARRAY`"
+            "submitted": {
+              "a": true,
+              "h": "Submitted",
+              "n": "submitted",
+              "r": false,
+              "sh": "List of the user's stories, polls and comments",
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -636,39 +724,46 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /user/{id}.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "print",
-                        "orig": "print",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "print",
+                        "or": "print",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /user/{id}.json",
-                    "json": "{\"operationId\":\"getUser\",\"parameters\":[{\"description\":\"The user's unique username (case-sensitive)\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"about\":\"This is a test\",\"created\":1173923446,\"id\":\"jl\",\"karma\":2937,\"submitted\":[8265435,8168423,8090946,8090326,7699907]},\"schema\":{\"description\":\"Represents a Hacker News user\",\"properties\":{\"about\":{\"description\":\"The user's optional self-description. HTML.\",\"type\":\"string\"},\"created\":{\"description\":\"Creation date of the user, in Unix Time\",\"type\":\"integer\"},\"id\":{\"description\":\"The user's unique username. Case-sensitive.\",\"type\":\"string\"},\"karma\":{\"description\":\"The user's karma\",\"type\":\"integer\"},\"submitted\":{\"description\":\"List of the user's stories, polls and comments\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"}},\"required\":[\"id\",\"created\",\"karma\"],\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"User not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/user/{id}.json",
+                  "q": {
+                    "$action": "id",
+                    "exist": [
+                      "id",
+                      "print"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/user/{id}.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "user"
                     },
@@ -676,14 +771,7 @@
                       "lit": "{id}.json"
                     }
                   ],
-                  "select": {
-                    "$action": "id",
-                    "exist": [
-                      "id",
-                      "print"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.submitted`"
                   }
@@ -1112,13 +1200,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1138,17 +1226,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "live_data_ref01",
                 "srcdatavar": "live_data_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1168,13 +1256,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1194,13 +1282,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1220,13 +1308,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

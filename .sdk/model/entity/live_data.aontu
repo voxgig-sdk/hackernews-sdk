@@ -1,0 +1,55 @@
+# Entity: live_data
+
+main: kit: entity: live_data: {
+
+  alias: field: {}
+
+  name: "live_data"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /maxitem.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "print"
+                or: "print"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/maxitem.json"
+          q: {
+            exist: [
+              "print"
+            ]
+          }
+          s: [
+            {
+              lit: "maxitem.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

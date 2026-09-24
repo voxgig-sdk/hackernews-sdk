@@ -1,0 +1,179 @@
+# Entity: item
+
+main: kit: entity: item: {
+
+  alias: field: {}
+
+  fields: {
+    by: {
+      h: "By"
+      n: "by"
+      r: false
+      sh: "The username of the item's author"
+      t: "`$STRING`"
+    }
+    dead: {
+      h: "Dead"
+      n: "dead"
+      r: false
+      sh: "true if the item is dead"
+      t: "`$BOOLEAN`"
+    }
+    deleted: {
+      h: "Deleted"
+      n: "deleted"
+      r: false
+      sh: "true if the item is deleted"
+      t: "`$BOOLEAN`"
+    }
+    descendants: {
+      h: "Descendants"
+      n: "descendants"
+      r: false
+      sh: "In the case of stories or polls, the total comment count"
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "The item's unique id"
+      t: "`$INTEGER`"
+    }
+    kids: {
+      h: "Kids"
+      n: "kids"
+      r: false
+      sh: "The ids of the item's comments, in ranked display order"
+      t: "`$ARRAY`"
+    }
+    parent: {
+      h: "Parent"
+      n: "parent"
+      r: false
+      sh: "The comment's parent: either another comment or the relevant story"
+      t: "`$INTEGER`"
+    }
+    parts: {
+      h: "Parts"
+      n: "parts"
+      r: false
+      sh: "A list of related pollopts, in display order"
+      t: "`$ARRAY`"
+    }
+    poll: {
+      h: "Poll"
+      n: "poll"
+      r: false
+      sh: "The pollopt's associated poll"
+      t: "`$INTEGER`"
+    }
+    score: {
+      h: "Score"
+      n: "score"
+      r: false
+      sh: "The story's score, or the votes for a pollopt"
+      t: "`$INTEGER`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      sh: "The comment, story or poll text."
+      t: "`$STRING`"
+    }
+    time: {
+      h: "Time"
+      n: "time"
+      r: false
+      sh: "Creation date of the item, in Unix Time"
+      t: "`$INTEGER`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The title of the story, poll or job."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of item"
+      t: "`$STRING`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "The URL of the story"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "item"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /item/{id}.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "print"
+                or: "print"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/item/{id}.json"
+          q: {
+            "$action": "id"
+            exist: [
+              "id"
+              "print"
+            ]
+          }
+          s: [
+            {
+              lit: "item"
+            }
+            {
+              lit: "{id}.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

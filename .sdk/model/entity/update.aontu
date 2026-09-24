@@ -1,0 +1,69 @@
+# Entity: update
+
+main: kit: entity: update: {
+
+  alias: field: {}
+
+  fields: {
+    items: {
+      h: "Items"
+      n: "items"
+      r: false
+      sh: "Array of item IDs that have been updated"
+      t: "`$ARRAY`"
+    }
+    profiles: {
+      h: "Profiles"
+      n: "profiles"
+      r: false
+      sh: "Array of usernames whose profiles have been updated"
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "update"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /updates.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "print"
+                or: "print"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/updates.json"
+          q: {
+            exist: [
+              "print"
+            ]
+          }
+          s: [
+            {
+              lit: "updates.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

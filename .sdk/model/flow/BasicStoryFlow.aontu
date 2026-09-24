@@ -1,0 +1,22 @@
+# BasicStoryFlow
+
+main: kit: flow: BasicStoryFlow:
+{
+  entity: "story",
+  kind: "basic",
+  name: "BasicStoryFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "story_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStoryFlow"
+}

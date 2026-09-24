@@ -117,79 +117,94 @@ class HackernewsConfig
           'fields' => [
             [
               'name' => 'by',
-              'short' => 'The username of the item\'s author',
+              'title' => 'By',
               'type' => '`$STRING`',
+              'short' => 'The username of the item\'s author',
             ],
             [
               'name' => 'dead',
-              'short' => 'true if the item is dead',
+              'title' => 'Dead',
               'type' => '`$BOOLEAN`',
+              'short' => 'true if the item is dead',
             ],
             [
               'name' => 'deleted',
-              'short' => 'true if the item is deleted',
+              'title' => 'Deleted',
               'type' => '`$BOOLEAN`',
+              'short' => 'true if the item is deleted',
             ],
             [
               'name' => 'descendants',
-              'short' => 'In the case of stories or polls, the total comment count',
+              'title' => 'Descendants',
               'type' => '`$INTEGER`',
+              'short' => 'In the case of stories or polls, the total comment count',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
+              'type' => '`$INTEGER`',
               'req' => true,
               'short' => 'The item\'s unique id',
-              'type' => '`$INTEGER`',
             ],
             [
               'name' => 'kids',
-              'short' => 'The ids of the item\'s comments, in ranked display order',
+              'title' => 'Kids',
               'type' => '`$ARRAY`',
+              'short' => 'The ids of the item\'s comments, in ranked display order',
             ],
             [
               'name' => 'parent',
-              'short' => 'The comment\'s parent: either another comment or the relevant story',
+              'title' => 'Parent',
               'type' => '`$INTEGER`',
+              'short' => 'The comment\'s parent: either another comment or the relevant story',
             ],
             [
               'name' => 'parts',
-              'short' => 'A list of related pollopts, in display order',
+              'title' => 'Parts',
               'type' => '`$ARRAY`',
+              'short' => 'A list of related pollopts, in display order',
             ],
             [
               'name' => 'poll',
-              'short' => 'The pollopt\'s associated poll',
+              'title' => 'Poll',
               'type' => '`$INTEGER`',
+              'short' => 'The pollopt\'s associated poll',
             ],
             [
               'name' => 'score',
-              'short' => 'The story\'s score, or the votes for a pollopt',
+              'title' => 'Score',
               'type' => '`$INTEGER`',
+              'short' => 'The story\'s score, or the votes for a pollopt',
             ],
             [
               'name' => 'text',
-              'short' => 'The comment, story or poll text.',
+              'title' => 'Text',
               'type' => '`$STRING`',
+              'short' => 'The comment, story or poll text.',
             ],
             [
               'name' => 'time',
-              'short' => 'Creation date of the item, in Unix Time',
+              'title' => 'Time',
               'type' => '`$INTEGER`',
+              'short' => 'Creation date of the item, in Unix Time',
             ],
             [
               'name' => 'title',
-              'short' => 'The title of the story, poll or job.',
+              'title' => 'Title',
               'type' => '`$STRING`',
+              'short' => 'The title of the story, poll or job.',
             ],
             [
               'name' => 'type',
-              'short' => 'The type of item',
+              'title' => 'Type',
               'type' => '`$STRING`',
+              'short' => 'The type of item',
             ],
             [
               'name' => 'url',
-              'short' => 'The URL of the story',
+              'title' => 'Url',
               'type' => '`$STRING`',
+              'short' => 'The URL of the story',
             ],
           ],
           'id' => [
@@ -203,25 +218,6 @@ class HackernewsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'reqd' => true,
-                        'type' => '`$INTEGER`',
-                      ],
-                    ],
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/item/{id}.json',
@@ -233,20 +229,40 @@ class HackernewsConfig
                       'lit' => '{id}.json',
                     ],
                   ],
+                  'parts' => [
+                    'item',
+                    '{id}.json',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     '$action' => 'id',
                     'exist' => [
                       'id',
                       'print',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'item',
-                    '{id}.json',
                   ],
                 ],
               ],
@@ -265,16 +281,6 @@ class HackernewsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/maxitem.json',
@@ -283,17 +289,28 @@ class HackernewsConfig
                       'lit' => 'maxitem.json',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'print',
-                    ],
+                  'parts' => [
+                    'maxitem.json',
                   ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'maxitem.json',
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'print',
+                    ],
                   ],
                 ],
               ],
@@ -312,16 +329,6 @@ class HackernewsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/askstories.json',
@@ -330,30 +337,31 @@ class HackernewsConfig
                       'lit' => 'askstories.json',
                     ],
                   ],
+                  'parts' => [
+                    'askstories.json',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'print',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'askstories.json',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/beststories.json',
@@ -362,30 +370,31 @@ class HackernewsConfig
                       'lit' => 'beststories.json',
                     ],
                   ],
+                  'parts' => [
+                    'beststories.json',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'print',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'beststories.json',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jobstories.json',
@@ -394,30 +403,31 @@ class HackernewsConfig
                       'lit' => 'jobstories.json',
                     ],
                   ],
+                  'parts' => [
+                    'jobstories.json',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'print',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'jobstories.json',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/newstories.json',
@@ -426,30 +436,31 @@ class HackernewsConfig
                       'lit' => 'newstories.json',
                     ],
                   ],
+                  'parts' => [
+                    'newstories.json',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'print',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'newstories.json',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/showstories.json',
@@ -458,30 +469,31 @@ class HackernewsConfig
                       'lit' => 'showstories.json',
                     ],
                   ],
+                  'parts' => [
+                    'showstories.json',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'print',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'showstories.json',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/topstories.json',
@@ -490,17 +502,28 @@ class HackernewsConfig
                       'lit' => 'topstories.json',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'print',
-                    ],
+                  'parts' => [
+                    'topstories.json',
                   ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'topstories.json',
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'print',
+                    ],
                   ],
                 ],
               ],
@@ -514,13 +537,15 @@ class HackernewsConfig
           'fields' => [
             [
               'name' => 'items',
-              'short' => 'Array of item IDs that have been updated',
+              'title' => 'Items',
               'type' => '`$ARRAY`',
+              'short' => 'Array of item IDs that have been updated',
             ],
             [
               'name' => 'profiles',
-              'short' => 'Array of usernames whose profiles have been updated',
+              'title' => 'Profiles',
               'type' => '`$ARRAY`',
+              'short' => 'Array of usernames whose profiles have been updated',
             ],
           ],
           'name' => 'update',
@@ -530,16 +555,6 @@ class HackernewsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/updates.json',
@@ -548,17 +563,28 @@ class HackernewsConfig
                       'lit' => 'updates.json',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'print',
-                    ],
+                  'parts' => [
+                    'updates.json',
                   ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'updates.json',
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'print',
+                    ],
                   ],
                 ],
               ],
@@ -572,31 +598,36 @@ class HackernewsConfig
           'fields' => [
             [
               'name' => 'about',
-              'short' => 'The user\'s optional self-description.',
+              'title' => 'About',
               'type' => '`$STRING`',
+              'short' => 'The user\'s optional self-description.',
             ],
             [
               'name' => 'created',
+              'title' => 'Created',
+              'type' => '`$INTEGER`',
               'req' => true,
               'short' => 'Creation date of the user, in Unix Time',
-              'type' => '`$INTEGER`',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'The user\'s unique username.',
-              'type' => '`$STRING`',
             ],
             [
               'name' => 'karma',
+              'title' => 'Karma',
+              'type' => '`$INTEGER`',
               'req' => true,
               'short' => 'The user\'s karma',
-              'type' => '`$INTEGER`',
             ],
             [
               'name' => 'submitted',
-              'short' => 'List of the user\'s stories, polls and comments',
+              'title' => 'Submitted',
               'type' => '`$ARRAY`',
+              'short' => 'List of the user\'s stories, polls and comments',
             ],
           ],
           'id' => [
@@ -610,25 +641,6 @@ class HackernewsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'print',
-                        'orig' => 'print',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/user/{id}.json',
@@ -640,20 +652,40 @@ class HackernewsConfig
                       'lit' => '{id}.json',
                     ],
                   ],
+                  'parts' => [
+                    'user',
+                    '{id}.json',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.submitted`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                    'query' => [
+                      [
+                        'name' => 'print',
+                        'orig' => 'print',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     '$action' => 'id',
                     'exist' => [
                       'id',
                       'print',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.submitted`',
-                  ],
-                  'parts' => [
-                    'user',
-                    '{id}.json',
                   ],
                 ],
               ],

@@ -43,7 +43,7 @@ local items, err = client:Item():list()
 if err then error(err) end
 
 for _, item in ipairs(items) do
-  print(item["id"], item["by"])
+  print(item["id"])
 end
 ```
 

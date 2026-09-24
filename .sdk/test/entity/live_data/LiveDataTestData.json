@@ -20,39 +20,8 @@
   "requests": {
     "GET /maxitem.json": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getMaxItem",
-        "parameters": [
-          {
-            "description": "Format output (e.g., 'pretty' for formatted JSON)",
-            "in": "query",
-            "name": "print",
-            "required": false,
-            "schema": {
-              "enum": [
-                "pretty"
-              ],
-              "type": "string"
-            }
-          }
-        ],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "example": 9130260,
-                "schema": {
-                  "description": "The current largest item ID",
-                  "type": "integer"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

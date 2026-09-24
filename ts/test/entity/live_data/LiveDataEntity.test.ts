@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('LiveDataEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"live_data","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"print","orig":"print","reqd":false,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /maxitem.json","json":"{\"operationId\":\"getMaxItem\",\"parameters\":[{\"description\":\"Format output (e.g., 'pretty' for formatted JSON)\",\"in\":\"query\",\"name\":\"print\",\"required\":false,\"schema\":{\"enum\":[\"pretty\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":9130260,\"schema\":{\"description\":\"The current largest item ID\",\"type\":\"integer\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/maxitem.json","segments":[{"lit":"maxitem.json"}],"select":{"exist":["print"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"live_data","name__orig":"live_data","Name":"LiveData","name_":"live_data","name-":"live-data","NAME":"LIVE_DATA","index$":1}, {"active":true,"entity":"live_data","key$":"BasicLiveDataFlow","kind":"basic","name":"BasicLiveDataFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"live_data_ref01","srcdatavar":"live_data_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-live_data_ref01"}}],"index$":0}]}, 'LiveData')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"live_data","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /maxitem.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/maxitem.json","q":{"exist":["print"]},"r":{},"s":[{"lit":"maxitem.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"live_data","name__orig":"live_data","Name":"LiveData","name_":"live_data","name-":"live-data","NAME":"LIVE_DATA","index$":1}, {"active":true,"entity":"live_data","key$":"BasicLiveDataFlow","kind":"basic","name":"BasicLiveDataFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"live_data_ref01","srcdatavar":"live_data_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-live_data_ref01"}}],"index$":0}]}, 'LiveData', {"GET /maxitem.json":{"protocol":"http","operationId":"getMaxItem","responses":{"200":{"description":"Successful response","content":{"application/json":{"schema":{"type":"integer","description":"The current largest item ID"},"example":9130260}}}},"parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}],"securitySource":"unspecified"}})
     }
     const client = setup.client
     const struct = setup.struct

@@ -19,7 +19,6 @@ import type {
   UpdateListMatch,
 } from '../HackernewsTypes'
 
-// TODO: needs Entity superclass
 class UpdateEntity extends HackernewsEntityBase<Update> {
 
   constructor(client: HackernewsSDK, entopts: any) {
