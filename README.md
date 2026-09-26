@@ -106,11 +106,11 @@ local results, err = client:Update():list()
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/hackernews-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
-| Python | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
-| PHP | `voxgig-sdk/hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
+| Python | `voxgig-sdk-hackernews-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
+| PHP | `voxgig-sdk/hackernews-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/hackernews-sdk/go` | `go get github.com/voxgig-sdk/hackernews-sdk/go@latest` |
-| Ruby | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
-| Lua | `voxgig-sdk-hackernews` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
+| Ruby | `voxgig-sdk-hackernews-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
+| Lua | `voxgig-sdk-hackernews-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hackernews-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/hackernews-sdk/go-cli` | `go install github.com/voxgig-sdk/hackernews-sdk/go-cli/cmd/hackernews@latest` |
 | Go MCP server | `github.com/voxgig-sdk/hackernews-sdk/go-mcp` | `go get github.com/voxgig-sdk/hackernews-sdk/go-mcp@latest` |
 
@@ -343,10 +343,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 
