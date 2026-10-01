@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 HackernewsUtility::setRegistrar(function (HackernewsUtility $u): void {
     $u->clean = [HackernewsClean::class, 'call'];
+    $u->clean_add = [HackernewsClean::class, 'add'];
+    $u->clean_explain = [HackernewsDone::class, 'clean_explain'];
     $u->done = [HackernewsDone::class, 'call'];
     $u->make_error = [HackernewsMakeError::class, 'call'];
     $u->feature_add = [HackernewsFeatureAdd::class, 'call'];

@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 HackernewsUtility.registrar = ->(u) {
   u.clean = HackernewsUtilities::Clean
+  u.clean_add = HackernewsUtilities::CleanAdd
+  u.clean_explain = HackernewsUtilities::CleanExplain
   u.done = HackernewsUtilities::Done
   u.make_error = HackernewsUtilities::MakeError
   u.feature_add = HackernewsUtilities::FeatureAdd
