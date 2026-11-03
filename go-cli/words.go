@@ -75,7 +75,7 @@ func runOp(client *sdk.HackernewsSDK, op string, query *eng.Value, entityAtom en
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.HackernewsSDK, name string) (sdk.HackernewsEntity, error) {
+func entityFor(client *sdk.HackernewsSDK, name string) (sdk.HackernewsEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "item":
 		return client.Item(nil), nil

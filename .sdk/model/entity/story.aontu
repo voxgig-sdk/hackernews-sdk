@@ -28,10 +28,9 @@ main: kit: entity: story: {
           }
           m: "GET"
           o: "/askstories.json"
-          q: {
-            exist: [
-              "print"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -62,10 +61,9 @@ main: kit: entity: story: {
           }
           m: "GET"
           o: "/beststories.json"
-          q: {
-            exist: [
-              "print"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -96,10 +94,9 @@ main: kit: entity: story: {
           }
           m: "GET"
           o: "/jobstories.json"
-          q: {
-            exist: [
-              "print"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -130,10 +127,9 @@ main: kit: entity: story: {
           }
           m: "GET"
           o: "/newstories.json"
-          q: {
-            exist: [
-              "print"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -164,10 +160,9 @@ main: kit: entity: story: {
           }
           m: "GET"
           o: "/showstories.json"
-          q: {
-            exist: [
-              "print"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -198,10 +193,9 @@ main: kit: entity: story: {
           }
           m: "GET"
           o: "/topstories.json"
-          q: {
-            exist: [
-              "print"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

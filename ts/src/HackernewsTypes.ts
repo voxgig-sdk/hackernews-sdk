@@ -26,12 +26,6 @@ export interface Item {
 export interface ItemListMatch {
   id: number
   print?: string
-
-  // Selects a custom action instead of the plain list:
-  //   'id'
-  // The remaining keys are that action's own payload.
-  $action?: string
-  [action: string]: any
 }
 
 export interface LiveData {
@@ -68,11 +62,5 @@ export interface User {
 export interface UserListMatch {
   id: string
   print?: string
-
-  // Selects a custom action instead of the plain list:
-  //   'id'
-  // The remaining keys are that action's own payload.
-  $action?: string
-  [action: string]: any
 }
 

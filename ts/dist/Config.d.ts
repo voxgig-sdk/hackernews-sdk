@@ -57,6 +57,7 @@ declare class Config {
             };
             optspec: {
                 clearTimer: string;
+                now: string;
                 setTimer: string;
             };
             strict: boolean;
@@ -120,6 +121,7 @@ declare class Config {
                                 type: string;
                                 kind: string;
                                 reqd: boolean;
+                                example: number;
                             }[];
                             query: {
                                 name: string;
@@ -129,8 +131,11 @@ declare class Config {
                             }[];
                         };
                         select: {
-                            $action: string;
                             exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
                         };
                     }[];
                 };
@@ -167,8 +172,10 @@ declare class Config {
                                 kind: string;
                             }[];
                         };
-                        select: {
-                            exist: string[];
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
                         };
                     }[];
                 };
@@ -205,8 +212,10 @@ declare class Config {
                                 kind: string;
                             }[];
                         };
-                        select: {
-                            exist: string[];
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
                         };
                     }[];
                 };
@@ -248,8 +257,10 @@ declare class Config {
                                 kind: string;
                             }[];
                         };
-                        select: {
-                            exist: string[];
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
                         };
                     }[];
                 };
@@ -301,6 +312,7 @@ declare class Config {
                                 type: string;
                                 kind: string;
                                 reqd: boolean;
+                                example: string;
                             }[];
                             query: {
                                 name: string;
@@ -310,8 +322,11 @@ declare class Config {
                             }[];
                         };
                         select: {
-                            $action: string;
                             exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
                         };
                     }[];
                 };

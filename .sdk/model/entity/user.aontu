@@ -61,6 +61,7 @@ main: kit: entity: user: {
           g: {
             params: [
               {
+                ex: "pg"
                 k: "param"
                 n: "id"
                 or: "id"
@@ -81,11 +82,13 @@ main: kit: entity: user: {
           m: "GET"
           o: "/user/{id}.json"
           q: {
-            "$action": "id"
             exist: [
               "id"
-              "print"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

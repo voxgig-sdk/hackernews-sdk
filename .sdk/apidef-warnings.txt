@@ -1,0 +1,15 @@
+{
+  point: "warning"
+  note: "Points GET /askstories.json, GET /beststories.json, GET /jobstories.json, GET /newstories.json, GET /showstories.json and GET /topstories.json on entity=story op=list have the same selector (exist: none), so only GET /askstories.json is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "story"
+  op: "list"
+  points: [
+    "GET /askstories.json"
+    "GET /beststories.json"
+    "GET /jobstories.json"
+    "GET /newstories.json"
+    "GET /showstories.json"
+    "GET /topstories.json"
+  ]
+
+}

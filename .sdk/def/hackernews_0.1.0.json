@@ -36,7 +36,8 @@
             "description": "The item's unique ID",
             "schema": {
               "type": "integer"
-            }
+            },
+            "example": 8863
           },
           {
             "name": "print",
@@ -170,7 +171,8 @@
             "description": "The user's unique username (case-sensitive)",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "pg"
           },
           {
             "name": "print",

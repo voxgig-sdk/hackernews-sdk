@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { HackernewsSDK, BaseFeature, stdutil } from '../../..'
+import { HackernewsSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('StoryEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('story hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of HackernewsSDK.test(offline).Story().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of HackernewsSDK.test(offline).Story()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = HackernewsSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Story().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of HackernewsSDK.test().Story().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new HackernewsSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Story().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Story().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = HackernewsSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Story().list({"print":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.HACKERNEWS_TEST_LIVE
@@ -51,7 +109,7 @@ describe('StoryEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"story","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /askstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/askstories.json","q":{"exist":["print"]},"r":{},"s":[{"lit":"askstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /beststories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/beststories.json","q":{"exist":["print"]},"r":{},"s":[{"lit":"beststories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1},{"a":true,"co":{"id":"GET /jobstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/jobstories.json","q":{"exist":["print"]},"r":{},"s":[{"lit":"jobstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":2},{"a":true,"co":{"id":"GET /newstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/newstories.json","q":{"exist":["print"]},"r":{},"s":[{"lit":"newstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":3},{"a":true,"co":{"id":"GET /showstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/showstories.json","q":{"exist":["print"]},"r":{},"s":[{"lit":"showstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":4},{"a":true,"co":{"id":"GET /topstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/topstories.json","q":{"exist":["print"]},"r":{},"s":[{"lit":"topstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":5}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"story","name__orig":"story","Name":"Story","name_":"story","name-":"story","NAME":"STORY","index$":2}, {"active":true,"entity":"story","key$":"BasicStoryFlow","kind":"basic","name":"BasicStoryFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"story_ref01"}}],"index$":0}]}, 'Story', {"GET /askstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /beststories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /jobstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /newstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /showstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /topstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"story","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /askstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/askstories.json","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"askstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /beststories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/beststories.json","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"beststories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1},{"a":true,"co":{"id":"GET /jobstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/jobstories.json","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"jobstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":2},{"a":true,"co":{"id":"GET /newstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/newstories.json","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"newstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":3},{"a":true,"co":{"id":"GET /showstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/showstories.json","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"showstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":4},{"a":true,"co":{"id":"GET /topstories.json","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"print","or":"print","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/topstories.json","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"topstories.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":5}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"story","name__orig":"story","Name":"Story","name_":"story","name-":"story","NAME":"STORY","index$":2}, {"active":true,"entity":"story","key$":"BasicStoryFlow","kind":"basic","name":"BasicStoryFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"story_ref01"}}],"index$":0}]}, 'Story', {"GET /askstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /beststories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /jobstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /newstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /showstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]},"GET /topstories.json":{"protocol":"http","parameters":[{"name":"print","in":"query","required":false,"description":"Format output (e.g., 'pretty' for formatted JSON)","schema":{"type":"string","enum":["pretty"]},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('StoryEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

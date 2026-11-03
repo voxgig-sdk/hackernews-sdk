@@ -18,8 +18,6 @@ export interface Item {
 export interface ItemListMatch {
     id: number;
     print?: string;
-    $action?: string;
-    [action: string]: any;
 }
 export interface LiveData {
 }
@@ -48,6 +46,4 @@ export interface User {
 export interface UserListMatch {
     id: string;
     print?: string;
-    $action?: string;
-    [action: string]: any;
 }

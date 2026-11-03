@@ -54,27 +54,36 @@ const utility_1 = require("../../utility");
         const ent = testsdk.User();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.HackernewsSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.User().list({ "id": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.HACKERNEWS_TEST_LIVE;
-        for (const op of ['list']) {
+        for (const op of []) {
             if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'user.' + op, live))
                 return;
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "about": { "a": true, "h": "About", "n": "about", "r": false, "sh": "The user's optional self-description.", "t": "`$STRING`", "key$": "about", "index$": 0 }, "created": { "a": true, "h": "Created", "n": "created", "r": true, "sh": "Creation date of the user, in Unix Time", "t": "`$INTEGER`", "key$": "created", "index$": 1 }, "id": { "a": true, "h": "Id", "n": "id", "r": true, "sh": "The user's unique username.", "t": "`$STRING`", "key$": "id", "index$": 2 }, "karma": { "a": true, "h": "Karma", "n": "karma", "r": true, "sh": "The user's karma", "t": "`$INTEGER`", "key$": "karma", "index$": 3 }, "submitted": { "a": true, "h": "Submitted", "n": "submitted", "r": false, "sh": "List of the user's stories, polls and comments", "t": "`$ARRAY`", "key$": "submitted", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "user", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /user/{id}.json", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "k": "query", "n": "print", "or": "print", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/user/{id}.json", "q": { "$action": "id", "exist": ["id", "print"] }, "r": {}, "s": [{ "lit": "user" }, { "lit": "{id}.json" }], "t": { "req": "`reqdata`", "res": "`body.submitted`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "user", "name__orig": "user", "Name": "User", "name_": "user", "name-": "user", "NAME": "USER", "index$": 4 }, { "active": true, "entity": "user", "key$": "BasicUserFlow", "kind": "basic", "name": "BasicUserFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "user_ref01" } }], "index$": 0 }] }, 'User', { "GET /user/{id}.json": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "required": true, "description": "The user's unique username (case-sensitive)", "schema": { "type": "string" }, "index$": 0 }, { "name": "print", "in": "query", "required": false, "description": "Format output (e.g., 'pretty' for formatted JSON)", "schema": { "type": "string", "enum": ["pretty"] }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "about": { "a": true, "h": "About", "n": "about", "r": false, "sh": "The user's optional self-description.", "t": "`$STRING`", "key$": "about", "index$": 0 }, "created": { "a": true, "h": "Created", "n": "created", "r": true, "sh": "Creation date of the user, in Unix Time", "t": "`$INTEGER`", "key$": "created", "index$": 1 }, "id": { "a": true, "h": "Id", "n": "id", "r": true, "sh": "The user's unique username.", "t": "`$STRING`", "key$": "id", "index$": 2 }, "karma": { "a": true, "h": "Karma", "n": "karma", "r": true, "sh": "The user's karma", "t": "`$INTEGER`", "key$": "karma", "index$": 3 }, "submitted": { "a": true, "h": "Submitted", "n": "submitted", "r": false, "sh": "List of the user's stories, polls and comments", "t": "`$ARRAY`", "key$": "submitted", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "user", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /user/{id}.json", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "pg", "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "k": "query", "n": "print", "or": "print", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/user/{id}.json", "q": { "exist": ["id"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "user" }, { "lit": "{id}.json" }], "t": { "req": "`reqdata`", "res": "`body.submitted`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "user", "name__orig": "user", "Name": "User", "name_": "user", "name-": "user", "NAME": "USER", "index$": 4 }, { "active": true, "entity": "user", "key$": "BasicUserFlow", "kind": "basic", "name": "BasicUserFlow", "param": {}, "step": [{ "a": false, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "user_ref01" } }], "unreachable": true }] }, 'User', { "GET /user/{id}.json": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "required": true, "description": "The user's unique username (case-sensitive)", "schema": { "type": "string" }, "example": "pg", "index$": 0 }, { "name": "print", "in": "query", "required": false, "description": "Format output (e.g., 'pretty' for formatted JSON)", "schema": { "type": "string", "enum": ["pretty"] }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
         const isempty = struct.isempty;
         const select = struct.select;
         let user_ref01_data = Object.values(setup.data.existing.user)[0];
-        // LIST
-        const user_ref01_ent = client.User();
-        const user_ref01_match = {};
-        const user_ref01_list = (await user_ref01_ent.list(user_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

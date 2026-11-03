@@ -146,6 +146,14 @@ func (sdk *HackernewsSDK) Prepare(fetchargs map[string]any) (map[string]any, err
 	if method == "" {
 		method = "GET"
 	}
+	method = strings.ToUpper(method)
+
+	allowMethodVal := vs.GetPath(options, []any{"allow", "method"})
+	if !Allowed(allowMethodVal, method) {
+		allowMethod, _ := allowMethodVal.(string)
+		return nil, ctx.MakeError("spec_method_allow",
+			"Method \""+method+"\" not allowed by SDK option allow.method value: \""+allowMethod+"\"")
+	}
 
 	params := ToMapAny(vs.GetProp(fetchargs, "params"))
 	if params == nil {
@@ -205,8 +213,7 @@ func (sdk *HackernewsSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 
 // Is this raw-access op permitted by the SDK's allow.op option?
 func (sdk *HackernewsSDK) opAllowed(op string) bool {
-	allowOp, _ := vs.GetPath(sdk.options, []any{"allow", "op"}).(string)
-	return strings.Contains(allowOp, op)
+	return Allowed(vs.GetPath(sdk.options, []any{"allow", "op"}), op)
 }
 
 func (sdk *HackernewsSDK) opDenied(op string) map[string]any {
@@ -278,20 +285,34 @@ func (sdk *HackernewsSDK) rawRequest(fetchargs map[string]any) (map[string]any, 
 		noBody := status == 204 || status == 304 || contentLength == "0"
 
 		var jsonData any
+		var bodyErr error
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
 					jsonData = f()
 				}
 			}
+			if unreadable, _ := vs.GetProp(fm, "unreadable").(bool); unreadable {
+				var failed error
+				if status < 200 || status >= 300 {
+					failed = ctx.MakeError("request_status",
+						fmt.Sprintf("request: %d: %v", status, vs.GetProp(fm, "statusText")))
+				}
+				bodyErr = UnreadableBody(ctx, status, headers, vs.GetProp(fm, "body"),
+					fetchdef["headers"], failed)
+			}
 		}
 
-		return map[string]any{
-			"ok":      status >= 200 && status < 300,
+		out := map[string]any{
+			"ok":      bodyErr == nil && status >= 200 && status < 300,
 			"status":  status,
 			"headers": headers,
 			"data":    jsonData,
-		}, nil
+		}
+		if bodyErr != nil {
+			out["err"] = sdk.cleanErr(ctx, bodyErr)
+		}
+		return out, nil
 	}
 
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
@@ -354,7 +375,7 @@ func (sdk *HackernewsSDK) Graphql(
 // Item returns a Item entity bound to this client.
 // Idiomatic usage: client.Item(nil).List(nil, nil) or
 // client.Item(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *HackernewsSDK) Item(data map[string]any) HackernewsEntity {
+func (sdk *HackernewsSDK) Item(data map[string]any) HackernewsEntityBase {
 	return NewItemEntityFunc(sdk, data)
 }
 
@@ -362,7 +383,7 @@ func (sdk *HackernewsSDK) Item(data map[string]any) HackernewsEntity {
 // LiveData returns a LiveData entity bound to this client.
 // Idiomatic usage: client.LiveData(nil).List(nil, nil) or
 // client.LiveData(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *HackernewsSDK) LiveData(data map[string]any) HackernewsEntity {
+func (sdk *HackernewsSDK) LiveData(data map[string]any) HackernewsEntityBase {
 	return NewLiveDataEntityFunc(sdk, data)
 }
 
@@ -370,7 +391,7 @@ func (sdk *HackernewsSDK) LiveData(data map[string]any) HackernewsEntity {
 // Story returns a Story entity bound to this client.
 // Idiomatic usage: client.Story(nil).List(nil, nil) or
 // client.Story(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *HackernewsSDK) Story(data map[string]any) HackernewsEntity {
+func (sdk *HackernewsSDK) Story(data map[string]any) HackernewsEntityBase {
 	return NewStoryEntityFunc(sdk, data)
 }
 
@@ -378,7 +399,7 @@ func (sdk *HackernewsSDK) Story(data map[string]any) HackernewsEntity {
 // Update returns a Update entity bound to this client.
 // Idiomatic usage: client.Update(nil).List(nil, nil) or
 // client.Update(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *HackernewsSDK) Update(data map[string]any) HackernewsEntity {
+func (sdk *HackernewsSDK) Update(data map[string]any) HackernewsEntityBase {
 	return NewUpdateEntityFunc(sdk, data)
 }
 
@@ -386,7 +407,7 @@ func (sdk *HackernewsSDK) Update(data map[string]any) HackernewsEntity {
 // User returns a User entity bound to this client.
 // Idiomatic usage: client.User(nil).List(nil, nil) or
 // client.User(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *HackernewsSDK) User(data map[string]any) HackernewsEntity {
+func (sdk *HackernewsSDK) User(data map[string]any) HackernewsEntityBase {
 	return NewUserEntityFunc(sdk, data)
 }
 

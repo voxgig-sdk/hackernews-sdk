@@ -367,7 +367,6 @@ initialiser
 [Tt][Yy][Pp][Ee]
 [Uu][Rr][Ll]
 [Uu][Rr][Ll]
-[Pp][Rr][Ii][Nn][Tt]
 [Aa][Rr][Rr][Aa][Yy]
 [Ii][Dd][Ss]
 [Tt][Hh][Aa][Tt]

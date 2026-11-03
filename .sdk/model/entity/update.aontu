@@ -45,10 +45,9 @@ main: kit: entity: update: {
           }
           m: "GET"
           o: "/updates.json"
-          q: {
-            exist: [
-              "print"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

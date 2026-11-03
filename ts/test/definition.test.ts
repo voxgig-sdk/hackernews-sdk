@@ -14,20 +14,29 @@ const PLAN: any[] = [
     "op": "list",
     "method": "GET",
     "path": "/item/{id}.json",
-    "action": "id",
     "args": [
       {
         "name": "id",
         "wire": "id",
-        "value": "p1"
+        "value": 8863
       }
     ],
     "select": {
       "print": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "print"
+    ],
+    "queryArgs": [
+      {
+        "name": "print",
+        "wire": "print"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -59,8 +68,18 @@ const PLAN: any[] = [
       "print": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "print"
+    ],
+    "queryArgs": [
+      {
+        "name": "print",
+        "wire": "print"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -78,8 +97,18 @@ const PLAN: any[] = [
       "print": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "print"
+    ],
+    "queryArgs": [
+      {
+        "name": "print",
+        "wire": "print"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -99,20 +128,29 @@ const PLAN: any[] = [
     "op": "list",
     "method": "GET",
     "path": "/user/{id}.json",
-    "action": "id",
     "args": [
       {
         "name": "id",
         "wire": "id",
-        "value": "p1"
+        "value": "pg"
       }
     ],
     "select": {
       "print": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "print"
+    ],
+    "queryArgs": [
+      {
+        "name": "print",
+        "wire": "print"
+      }
     ],
     "auth": null,
     "status": 200,

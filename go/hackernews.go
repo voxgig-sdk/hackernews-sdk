@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type HackernewsEntity = core.HackernewsEntity
+type HackernewsEntityBase = core.HackernewsEntityBase
+
+// Deprecated: use HackernewsEntityBase.
+type HackernewsEntity = core.HackernewsEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,19 +46,19 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewItemEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntity {
+	core.NewItemEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntityBase {
 		return entity.NewItemEntity(client, entopts)
 	}
-	core.NewLiveDataEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntity {
+	core.NewLiveDataEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntityBase {
 		return entity.NewLiveDataEntity(client, entopts)
 	}
-	core.NewStoryEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntity {
+	core.NewStoryEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntityBase {
 		return entity.NewStoryEntity(client, entopts)
 	}
-	core.NewUpdateEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntity {
+	core.NewUpdateEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntityBase {
 		return entity.NewUpdateEntity(client, entopts)
 	}
-	core.NewUserEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntity {
+	core.NewUserEntityFunc = func(client *core.HackernewsSDK, entopts map[string]any) core.HackernewsEntityBase {
 		return entity.NewUserEntity(client, entopts)
 	}
 }

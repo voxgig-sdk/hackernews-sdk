@@ -135,8 +135,10 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs.headers` | `object` | Request headers (merged with defaults). |
 | `fetchargs.body` | `any` | Request body (objects are JSON-serialized). |
 | `fetchargs.ctrl` | `object` | Control options (e.g. `{ explain: true }`). |
+| `fetchargs.ctrl.signal` | `AbortSignal` | Aborts the request in flight: `ok` is then `false` and `err.code` is `request_aborted`. |
 
-**Returns:** `Promise<{ ok, status, headers, data } | Error>`
+**Returns:** `Promise<{ ok, status, headers, data }>`. On a failure
+`ok` is `false` and `err` holds the error.
 
 #### `prepare(fetchargs?: object)`
 
@@ -150,6 +152,15 @@ same parameters as `direct()`.
 Alias for `HackernewsSDK.test()`.
 
 **Returns:** `HackernewsSDK` instance in test mode.
+
+#### Cancelling a call
+
+Every entity operation takes an optional `ctrl` object after its match or
+data, and an `AbortSignal` in `ctrl.signal` cancels the request in flight.
+The operation then rejects with an error whose `code` is
+`request_aborted` and whose `cause` is the signal's reason. A request
+whose signal has already aborted is not sent. `stream()` takes the signal
+as `callopts.signal`, and ends when it aborts.
 
 
 ---
@@ -180,31 +191,11 @@ const item = client.Item()
 | `type` | `string` | No | The type of item |
 | `url` | `string` | No | The URL of the story |
 
-### Actions
-
-This entity exposes custom API actions in addition to the standard
-operations. Select one with `$action` in the call's argument; the
-remaining keys are sent as that action's payload.
-
-| Action | Route | Call |
-| --- | --- | --- |
-| `id` | `/item/{id}.json` | `client.Item().list({ $action: 'id', ... })` |
-
-An action returns that action's OWN response, which is not necessarily a
-Item record — check the API definition for its shape.
-
-```ts
-const result = await client.Item().list({
-  $action: 'id',
-  /* ...the action's own arguments */
-})
-```
-
 ### Operations
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Item().list({ id: 1 })
@@ -248,7 +239,7 @@ const live_data = client.LiveData()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.LiveData().load()
@@ -292,7 +283,7 @@ const story = client.Story()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Story().list()
@@ -343,7 +334,7 @@ const update = client.Update()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Update().list()
@@ -393,31 +384,11 @@ const user = client.User()
 | `karma` | `number` | Yes | The user's karma |
 | `submitted` | `any[]` | No | List of the user's stories, polls and comments |
 
-### Actions
-
-This entity exposes custom API actions in addition to the standard
-operations. Select one with `$action` in the call's argument; the
-remaining keys are sent as that action's payload.
-
-| Action | Route | Call |
-| --- | --- | --- |
-| `id` | `/user/{id}.json` | `client.User().list({ $action: 'id', ... })` |
-
-An action returns that action's OWN response, which is not necessarily a
-User record — check the API definition for its shape.
-
-```ts
-const result = await client.User().list({
-  $action: 'id',
-  /* ...the action's own arguments */
-})
-```
-
 ### Operations
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.User().list({ id: "example" })
@@ -608,6 +579,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

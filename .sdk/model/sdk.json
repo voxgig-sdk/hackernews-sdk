@@ -239,6 +239,7 @@
                     "params": [
                       {
                         "a": true,
+                        "ex": 8863,
                         "k": "param",
                         "n": "id",
                         "or": "id",
@@ -261,13 +262,15 @@
                   "m": "GET",
                   "o": "/item/{id}.json",
                   "q": {
-                    "$action": "id",
                     "exist": [
-                      "id",
-                      "print"
+                      "id"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "item"
@@ -322,12 +325,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/maxitem.json",
-                  "q": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "maxitem.json"
@@ -379,12 +382,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/askstories.json",
-                  "q": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "askstories.json"
@@ -417,12 +420,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/beststories.json",
-                  "q": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "beststories.json"
@@ -455,12 +458,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/jobstories.json",
-                  "q": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "jobstories.json"
@@ -493,12 +496,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/newstories.json",
-                  "q": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "newstories.json"
@@ -531,12 +534,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/showstories.json",
-                  "q": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "showstories.json"
@@ -569,12 +572,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/topstories.json",
-                  "q": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "topstories.json"
@@ -643,12 +646,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/updates.json",
-                  "q": {
-                    "exist": [
-                      "print"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "updates.json"
@@ -734,6 +737,7 @@
                     "params": [
                       {
                         "a": true,
+                        "ex": "pg",
                         "k": "param",
                         "n": "id",
                         "or": "id",
@@ -756,13 +760,15 @@
                   "m": "GET",
                   "o": "/user/{id}.json",
                   "q": {
-                    "$action": "id",
                     "exist": [
-                      "id",
-                      "print"
+                      "id"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "user"
@@ -1106,6 +1112,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1357,7 +1364,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1410,6 +1417,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1640,7 +1652,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -2017,6 +2032,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

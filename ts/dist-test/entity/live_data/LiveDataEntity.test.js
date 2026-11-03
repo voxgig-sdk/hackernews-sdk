@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.LiveData();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.HackernewsSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.LiveData().load({ "print": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.HACKERNEWS_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "live_data", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /maxitem.json", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "print", "or": "print", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/maxitem.json", "q": { "exist": ["print"] }, "r": {}, "s": [{ "lit": "maxitem.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "live_data", "name__orig": "live_data", "Name": "LiveData", "name_": "live_data", "name-": "live-data", "NAME": "LIVE_DATA", "index$": 1 }, { "active": true, "entity": "live_data", "key$": "BasicLiveDataFlow", "kind": "basic", "name": "BasicLiveDataFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "live_data_ref01", "srcdatavar": "live_data_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-live_data_ref01" } }], "index$": 0 }] }, 'LiveData', { "GET /maxitem.json": { "protocol": "http", "parameters": [{ "name": "print", "in": "query", "required": false, "description": "Format output (e.g., 'pretty' for formatted JSON)", "schema": { "type": "string", "enum": ["pretty"] }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "live_data", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /maxitem.json", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "print", "or": "print", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/maxitem.json", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "maxitem.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "live_data", "name__orig": "live_data", "Name": "LiveData", "name_": "live_data", "name-": "live-data", "NAME": "LIVE_DATA", "index$": 1 }, { "active": true, "entity": "live_data", "key$": "BasicLiveDataFlow", "kind": "basic", "name": "BasicLiveDataFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "live_data_ref01", "srcdatavar": "live_data_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-live_data_ref01" } }], "index$": 0 }] }, 'LiveData', { "GET /maxitem.json": { "protocol": "http", "parameters": [{ "name": "print", "in": "query", "required": false, "description": "Format output (e.g., 'pretty' for formatted JSON)", "schema": { "type": "string", "enum": ["pretty"] }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -76,6 +84,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != live_data_ref01_data_dt0);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

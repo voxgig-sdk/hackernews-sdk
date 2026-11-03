@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Update();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('update hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.HackernewsSDK.test(offline).Update().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.HackernewsSDK.test(offline).Update()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.HackernewsSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Update().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.HackernewsSDK.test().Update().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.HackernewsSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Update().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Update().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.HackernewsSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Update().list({ "print": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.HACKERNEWS_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "items": { "a": true, "h": "Items", "n": "items", "r": false, "sh": "Array of item IDs that have been updated", "t": "`$ARRAY`", "key$": "items", "index$": 0 }, "profiles": { "a": true, "h": "Profiles", "n": "profiles", "r": false, "sh": "Array of usernames whose profiles have been updated", "t": "`$ARRAY`", "key$": "profiles", "index$": 1 } }, "name": "update", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /updates.json", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "print", "or": "print", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/updates.json", "q": { "exist": ["print"] }, "r": {}, "s": [{ "lit": "updates.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "update", "name__orig": "update", "Name": "Update", "name_": "update", "name-": "update", "NAME": "UPDATE", "index$": 3 }, { "active": true, "entity": "update", "key$": "BasicUpdateFlow", "kind": "basic", "name": "BasicUpdateFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "update_ref01" } }], "index$": 0 }] }, 'Update', { "GET /updates.json": { "protocol": "http", "parameters": [{ "name": "print", "in": "query", "required": false, "description": "Format output (e.g., 'pretty' for formatted JSON)", "schema": { "type": "string", "enum": ["pretty"] }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "items": { "a": true, "h": "Items", "n": "items", "r": false, "sh": "Array of item IDs that have been updated", "t": "`$ARRAY`", "key$": "items", "index$": 0 }, "profiles": { "a": true, "h": "Profiles", "n": "profiles", "r": false, "sh": "Array of usernames whose profiles have been updated", "t": "`$ARRAY`", "key$": "profiles", "index$": 1 } }, "name": "update", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /updates.json", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "print", "or": "print", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/updates.json", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "updates.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "update", "name__orig": "update", "Name": "Update", "name_": "update", "name-": "update", "NAME": "UPDATE", "index$": 3 }, { "active": true, "entity": "update", "key$": "BasicUpdateFlow", "kind": "basic", "name": "BasicUpdateFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "update_ref01" } }], "index$": 0 }] }, 'Update', { "GET /updates.json": { "protocol": "http", "parameters": [{ "name": "print", "in": "query", "required": false, "description": "Format output (e.g., 'pretty' for formatted JSON)", "schema": { "type": "string", "enum": ["pretty"] }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const update_ref01_list = (await update_ref01_ent.list(update_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

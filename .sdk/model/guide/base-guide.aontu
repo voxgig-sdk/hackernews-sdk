@@ -10,7 +10,6 @@ guide: {
 
   entity: item: {
     path: "/item/{id}.json": {
-      action: "id": {}
       op: list: method: *GET
     }
   }
@@ -50,7 +49,6 @@ guide: {
 
   entity: user: {
     path: "/user/{id}.json": {
-      action: "id": {}
       op: list: method: *GET
       op: list: transform: res: *("`body.submitted`")|top
     }

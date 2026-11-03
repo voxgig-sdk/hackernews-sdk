@@ -11,6 +11,19 @@ import { HackernewsEntityBase } from './HackernewsEntityBase';
 import { Utility } from './utility/Utility';
 import { BaseFeature } from './feature/base/BaseFeature';
 declare const stdutil: Utility;
+type DirectResult = {
+    ok: false;
+    err: any;
+    status?: undefined;
+    headers?: undefined;
+    data?: undefined;
+} | {
+    ok: boolean;
+    status: number;
+    headers: any;
+    data: any;
+    err?: any;
+};
 declare class HackernewsSDK {
     _mode: string;
     _options: any;
@@ -21,32 +34,8 @@ declare class HackernewsSDK {
     options(): any;
     utility(): any;
     prepare(fetchargs?: any): Promise<any>;
-    direct(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
-    _rawRequest(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
+    direct(fetchargs?: any): Promise<DirectResult>;
+    _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Item(entopts?: Record<string, any>): ItemEntity;
     LiveData(entopts?: Record<string, any>): LiveDataEntity;
@@ -63,3 +52,4 @@ declare class HackernewsSDK {
 }
 declare const SDK: typeof HackernewsSDK;
 export { stdutil, config, BaseFeature, HackernewsEntityBase, HackernewsSDK, SDK, };
+export type { DirectResult };

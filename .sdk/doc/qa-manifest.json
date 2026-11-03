@@ -3,5 +3,24 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Array of item IDs that have been updated",
+      "Array of usernames whose profiles have been updated",
+      "Creation date of the user, in Unix Time",
+      "HackerNews API v0",
+      "In the case of stories or polls, the total comment count",
+      "List of the user&#39;s stories, polls and comments",
+      "Provides public Hacker News data in near real time. Accessible via Firebase client libraries for Android, iOS, and web. Includes information on stories, comments, jobs, Ask HNs, polls, and users.",
+      "Successful response",
+      "The item&#39;s unique id",
+      "The user&#39;s karma",
+      "The user&#39;s optional self-description. HTML.",
+      "The user&#39;s unique username. Case-sensitive.",
+      "The username of the item&#39;s author",
+      "true if the item is dead",
+      "true if the item is deleted"
+    ]
+  }
 }

@@ -131,6 +131,7 @@ main: kit: entity: item: {
           g: {
             params: [
               {
+                ex: 8863
                 k: "param"
                 n: "id"
                 or: "id"
@@ -151,11 +152,13 @@ main: kit: entity: item: {
           m: "GET"
           o: "/item/{id}.json"
           q: {
-            "$action": "id"
             exist: [
               "id"
-              "print"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
